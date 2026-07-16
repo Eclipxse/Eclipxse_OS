@@ -1,9 +1,6 @@
 [kdeglobals][General]
 ColorScheme=MARISHOKU
 
-[kdeglobals][KDE]
-widgetStyle=kvantum
-
 [plasmarc][Theme]
 name=org.marishoku.desktop
 

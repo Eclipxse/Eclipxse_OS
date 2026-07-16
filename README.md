@@ -20,12 +20,15 @@ palette.
 
 ## Current milestone
 
-Phase 0 is in progress. This repository currently contains:
+Phase 1A is in progress while the final Phase 0 screenshot is reviewed in the
+Debian VM. This repository currently contains:
 
 - the approved visual and interaction specification;
 - hardware and content-profile requirements;
-- a Plasma 6 color scheme;
-- initial Global Theme and Plasma Style packages;
+- a contrast-checked Plasma 6 color system;
+- a Global Theme and Aurorae window decoration;
+- original Plasma shell SVGs for panels, dialogs, buttons, fields, tasks,
+  selections, headings, arrows, separators, and tooltips;
 - installation and validation helpers.
 
 The first ISO will be built only after the desktop theme passes visual review
@@ -42,17 +45,16 @@ themes/               Plasma, Qt, GTK, SDDM, boot, icon, and cursor themes
 tools/                Developer installation and validation helpers
 ```
 
-## Test the Phase 0 theme in a Plasma 6 VM
+## Test the Phase 1A theme in a Plasma 6 VM
 
 ```bash
-./tools/install-theme.sh
+./tools/install-theme.sh --apply
 ```
 
-Then open **System Settings → Colors & Themes → Global Theme** and select
-**MARISHOKU/OS**. The script installs into the current user's home directory;
-it does not modify the base OS.
+Log out and back in once after the first application. The script installs into
+the current user's home directory; it does not modify the base OS.
 
 ## Safety rule
 
 Development is VM-first. No repartitioning, dual boot, NVIDIA driver changes,
-or bootloader changes are performed on the ECLIPXSE host during Phase 0.
+or bootloader changes are performed on the ECLIPXSE host during theme development.

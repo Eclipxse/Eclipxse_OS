@@ -3,7 +3,7 @@ BackgroundNormal=216,205,217
 ForegroundNormal=32,23,39
 
 [Colors:Header]
-BackgroundNormal=214,59,172
+BackgroundNormal=143,39,111
 ForegroundNormal=255,243,255
 
 [Colors:View]
@@ -19,7 +19,7 @@ DecorationFocus=98,221,228
 DecorationHover=214,59,172
 
 [Colors:Selection]
-BackgroundNormal=214,59,172
+BackgroundNormal=143,39,111
 ForegroundNormal=255,243,255
 
 [Colors:Tooltip]
@@ -29,4 +29,3 @@ ForegroundNormal=255,243,255
 [Colors:Complementary]
 BackgroundNormal=21,16,31
 ForegroundNormal=255,243,255
-

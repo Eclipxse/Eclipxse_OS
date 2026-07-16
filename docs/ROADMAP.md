@@ -6,7 +6,7 @@
 - [x] Record initial palette, geometry, typography, motion, and content modes.
 - [x] Create Plasma 6 color and package skeletons.
 - [ ] Approve one 1920×1080 desktop concept.
-- [ ] Validate color contrast and pixel snapping.
+- [x] Validate color contrast and pixel snapping.
 
 Exit condition: one approved desktop screenshot and a Plasma VM using the
 approved colors.
@@ -14,6 +14,8 @@ approved colors.
 ## Phase 1 — complete desktop theme
 
 - [ ] Plasma Style SVGs for panels, dialogs, tooltips, and widgets.
+  - [x] Phase 1A core shell frames and interaction states.
+  - [ ] Remaining meters, edit-mode controls, and uncommon widget states.
 - [ ] Aurorae title bars and window buttons.
 - [ ] Kvantum Qt 6 application style.
 - [ ] GTK 3/4 companion theme.
@@ -52,4 +54,3 @@ Exit condition: no release-blocking failures on the target laptop.
 - [ ] Clean-room rebuild in CI.
 - [ ] User and recovery documentation.
 - [ ] Public beta and issue templates.
-
