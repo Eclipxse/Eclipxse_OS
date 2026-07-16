@@ -6,4 +6,6 @@ enabled=false
 
 [ContrastEffect]
 enabled=false
+[Settings]
+FallbackTheme=default
 

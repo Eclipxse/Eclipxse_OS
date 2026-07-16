@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="48" viewBox="0 0 192 48">
+  <!-- Normal: pale raised Win9x frame. -->
+  <g id="normal-topleft"><rect width="4" height="4" fill="#15101f"/><path d="M1 4V1h3" fill="none" stroke="#fff3ff"/><rect x="2" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-top"><rect x="4" width="40" height="4" fill="#15101f"/><rect x="4" y="1" width="40" height="1" fill="#fff3ff"/><rect x="4" y="2" width="40" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-topright"><rect x="44" width="4" height="4" fill="#15101f"/><path d="M44 1h3v3" fill="none" stroke="#fff3ff"/><rect x="44" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-left"><rect y="4" width="4" height="40" fill="#15101f"/><rect x="1" y="4" width="1" height="40" fill="#fff3ff"/><rect x="2" y="4" width="2" height="40" fill="#d8cdd9"/></g>
+  <rect id="normal-center" x="4" y="4" width="40" height="40" fill="#d8cdd9"/>
+  <g id="normal-right"><rect x="44" y="4" width="4" height="40" fill="#15101f"/><rect x="44" y="4" width="2" height="40" fill="#8f7e94"/><rect x="46" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="normal-bottomleft"><rect y="44" width="4" height="4" fill="#15101f"/><rect x="2" y="44" width="2" height="2" fill="#8f7e94"/></g>
+  <g id="normal-bottom"><rect x="4" y="44" width="40" height="4" fill="#15101f"/><rect x="4" y="44" width="40" height="2" fill="#8f7e94"/><rect x="4" y="46" width="40" height="1" fill="#56445e"/></g>
+  <g id="normal-bottomright"><rect x="44" y="44" width="4" height="4" fill="#15101f"/><rect x="44" y="44" width="2" height="2" fill="#8f7e94"/></g>
+
+  <!-- Hover: hot-pink top/left signal with the same readable face. -->
+  <g id="hover-topleft"><rect x="48" width="4" height="4" fill="#15101f"/><path d="M49 4V1h3" fill="none" stroke="#d63bac"/><rect x="50" y="2" width="2" height="2" fill="#fff3ff"/></g>
+  <g id="hover-top"><rect x="52" width="40" height="4" fill="#15101f"/><rect x="52" y="1" width="40" height="1" fill="#d63bac"/><rect x="52" y="2" width="40" height="2" fill="#fff3ff"/></g>
+  <g id="hover-topright"><rect x="92" width="4" height="4" fill="#15101f"/><path d="M92 1h3v3" fill="none" stroke="#d63bac"/><rect x="92" y="2" width="2" height="2" fill="#fff3ff"/></g>
+  <g id="hover-left"><rect x="48" y="4" width="4" height="40" fill="#15101f"/><rect x="49" y="4" width="1" height="40" fill="#d63bac"/><rect x="50" y="4" width="2" height="40" fill="#fff3ff"/></g>
+  <rect id="hover-center" x="52" y="4" width="40" height="40" fill="#fff3ff"/>
+  <g id="hover-right"><rect x="92" y="4" width="4" height="40" fill="#15101f"/><rect x="92" y="4" width="2" height="40" fill="#d63bac"/></g>
+  <g id="hover-bottomleft"><rect x="48" y="44" width="4" height="4" fill="#15101f"/><rect x="50" y="44" width="2" height="2" fill="#8f276f"/></g>
+  <g id="hover-bottom"><rect x="52" y="44" width="40" height="4" fill="#15101f"/><rect x="52" y="44" width="40" height="2" fill="#8f276f"/></g>
+  <g id="hover-bottomright"><rect x="92" y="44" width="4" height="4" fill="#15101f"/><rect x="92" y="44" width="2" height="2" fill="#8f276f"/></g>
+
+  <!-- Pressed: recessed face. -->
+  <g id="pressed-topleft"><rect x="96" width="4" height="4" fill="#15101f"/><path d="M97 4V1h3" fill="none" stroke="#56445e"/><rect x="98" y="2" width="2" height="2" fill="#c8b9cc"/></g>
+  <g id="pressed-top"><rect x="100" width="40" height="4" fill="#15101f"/><rect x="100" y="1" width="40" height="1" fill="#56445e"/><rect x="100" y="2" width="40" height="2" fill="#8f7e94"/></g>
+  <g id="pressed-topright"><rect x="140" width="4" height="4" fill="#15101f"/><rect x="140" y="2" width="2" height="2" fill="#c8b9cc"/></g>
+  <g id="pressed-left"><rect x="96" y="4" width="4" height="40" fill="#15101f"/><rect x="97" y="4" width="1" height="40" fill="#56445e"/><rect x="98" y="4" width="2" height="40" fill="#8f7e94"/></g>
+  <rect id="pressed-center" x="100" y="4" width="40" height="40" fill="#c8b9cc"/>
+  <g id="pressed-right"><rect x="140" y="4" width="4" height="40" fill="#15101f"/><rect x="140" y="4" width="2" height="40" fill="#fff3ff"/></g>
+  <g id="pressed-bottomleft"><rect x="96" y="44" width="4" height="4" fill="#15101f"/><rect x="98" y="44" width="2" height="2" fill="#c8b9cc"/></g>
+  <g id="pressed-bottom"><rect x="100" y="44" width="40" height="4" fill="#15101f"/><rect x="100" y="44" width="40" height="2" fill="#fff3ff"/></g>
+  <g id="pressed-bottomright"><rect x="140" y="44" width="4" height="4" fill="#15101f"/><path d="M140 47h3v-3" fill="none" stroke="#fff3ff"/></g>
+
+  <!-- Focus: cyan keyboard-navigation overlay. -->
+  <g id="focus-topleft"><rect x="144" width="4" height="4" fill="#62dde4"/><rect x="145" y="1" width="3" height="3" fill="#15101f"/></g>
+  <g id="focus-top"><rect x="148" width="40" height="2" fill="#62dde4"/></g>
+  <g id="focus-topright"><rect x="188" width="4" height="4" fill="#62dde4"/><rect x="188" y="1" width="3" height="3" fill="#15101f"/></g>
+  <g id="focus-left"><rect x="144" y="4" width="2" height="40" fill="#62dde4"/></g>
+  <rect id="focus-center" x="148" y="4" width="40" height="40" fill="#62dde4" opacity=".08"/>
+  <g id="focus-right"><rect x="190" y="4" width="2" height="40" fill="#62dde4"/></g>
+  <g id="focus-bottomleft"><rect x="144" y="44" width="4" height="4" fill="#62dde4"/><rect x="145" y="44" width="3" height="3" fill="#15101f"/></g>
+  <g id="focus-bottom"><rect x="148" y="46" width="40" height="2" fill="#62dde4"/></g>
+  <g id="focus-bottomright"><rect x="188" y="44" width="4" height="4" fill="#62dde4"/><rect x="188" y="44" width="3" height="3" fill="#15101f"/></g>
+
+  <rect id="normal-hint-top-margin" width="1" height="5" fill="#000"/>
+  <rect id="normal-hint-right-margin" width="5" height="1" fill="#000"/>
+  <rect id="normal-hint-bottom-margin" width="1" height="5" fill="#000"/>
+  <rect id="normal-hint-left-margin" width="5" height="1" fill="#000"/>
+</svg>
