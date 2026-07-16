@@ -1,0 +1,28 @@
+# Debian live-build outputs and caches
+iso/.build/
+iso/cache/
+iso/chroot/
+iso/binary/
+iso/.stage/
+
+# Virtual machine and disk images
+*.iso
+*.img
+*.qcow2
+*.vdi
+*.vmdk
+*.vbox-prev
+
+# Packages and generated archives
+*.deb
+*.buildinfo
+*.changes
+*.dsc
+*.tar.xz
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+

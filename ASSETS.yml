@@ -1,0 +1,31 @@
+schema: 1
+project: MARISHOKU/OS
+policy:
+  allowed:
+    - original
+    - CC0-1.0
+    - CC-BY-4.0
+    - CC-BY-SA-4.0
+    - OFL-1.1
+    - GPL-compatible-software-assets
+  require_adult_subjects_for_explicit_content: true
+assets:
+  - id: brand-mark-v0.1
+    path: artwork/source/brand-mark.svg
+    type: vector-brand-source
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC-BY-SA-4.0
+    distributable: true
+  - id: desktop-concept-v0.1
+    path: artwork/concepts/desktop-v0.1.png
+    type: ui-concept
+    origin: original-ai-assisted-generation
+    author: MARISHOKU/OS Project
+    license: prototype-only
+    distributable: false
+    notes: >-
+      Generated with the built-in OpenAI image tool using the owner's four
+      supplied images as mood references only. This is a visual target, not a
+      final wallpaper or redistributable OS asset.
+
