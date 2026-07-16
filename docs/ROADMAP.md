@@ -5,7 +5,7 @@
 - [x] Approve name and system identity.
 - [x] Record initial palette, geometry, typography, motion, and content modes.
 - [x] Create Plasma 6 color and package skeletons.
-- [ ] Approve one 1920×1080 desktop concept.
+- [x] Approve and ship the first 1920x1080 wallpaper direction.
 - [x] Validate color contrast and pixel snapping.
 
 Exit condition: one approved desktop screenshot and a Plasma VM using the
@@ -16,11 +16,16 @@ approved colors.
 - [ ] Plasma Style SVGs for panels, dialogs, tooltips, and widgets.
   - [x] Phase 1A core shell frames and interaction states.
   - [ ] Remaining meters, edit-mode controls, and uncommon widget states.
-- [ ] Aurorae title bars and window buttons.
-- [ ] Kvantum Qt 6 application style.
+- [x] Aurorae title bars and window buttons.
+- [x] Kvantum Qt 5/6 application style.
+- [x] Noto-based Latin/Japanese typography integration.
 - [ ] GTK 3/4 companion theme.
 - [ ] Icon and cursor MVP.
+  - [x] Phase 1C launcher and core-app icon set.
+  - [ ] Cursor set and remaining application categories.
 - [ ] Launcher, task switcher, notifications, OSD, and KRunner skin.
+  - [x] Classic bottom taskbar, launcher identity, and task buttons.
+  - [ ] Notifications, OSD, and KRunner-specific artwork.
 - [ ] SDDM, lock screen, and splash screen.
 - [ ] OMOTE/URA switcher.
 

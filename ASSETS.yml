@@ -8,6 +8,9 @@ policy:
     - CC-BY-SA-4.0
     - OFL-1.1
     - GPL-compatible-software-assets
+    - Pexels-License
+    - Pexels-License-and-public-domain
+    - public-domain
   require_adult_subjects_for_explicit_content: true
 assets:
   - id: brand-mark-v0.1
@@ -28,4 +31,49 @@ assets:
       Generated with the built-in OpenAI image tool using the owner's four
       supplied images as mood references only. This is a visual target, not a
       final wallpaper or redistributable OS asset.
-
+  - id: kvantum-marishoku-v0.1
+    path: themes/kvantum/MARISHOKU/MARISHOKU.svg
+    type: qt-control-atlas
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+    notes: >-
+      Built from original square-edged vector primitives. Upstream Kvantum
+      documentation and element naming were used as an implementation schema;
+      no upstream theme artwork is included.
+  - id: wallpaper-marishoku-night-line-v0.4
+    path: artwork/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png
+    type: transformed-wallpaper-composite
+    origin: original-composite-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams; Mikhail Nilov
+    license: Pexels-License-and-public-domain
+    subject_age_review: clearly-adult-as-described-by-source
+    distributable: true
+    notes: >-
+      Includes transformed material from Trev W. Adams' rainy London photo
+      (https://www.pexels.com/photo/london-rainy-27585636/), Mikhail Nilov's
+      adult woman portrait (https://www.pexels.com/photo/woman-wearing-black-jacket-8107857/),
+      and the public-domain Great Wave off Kanagawa
+      (https://commons.wikimedia.org/wiki/File:The_Great_Wave_off_Kanagawa.jpg).
+      Original bus, roundel, blossoms, labels, palette reduction, rain, and CRT
+      treatment were drawn by the MARISHOKU/OS Project. Untouched stock files
+      are not redistributed.
+  - id: wallpaper-marishoku-neon-velvet-v0.4
+    path: artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png
+    type: transformed-wallpaper-composite
+    origin: original-composite-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams; Vika Glitter
+    license: Pexels-License-and-public-domain
+    subject_age_review: clearly-adult-as-described-by-source
+    distributable: true
+    notes: >-
+      Includes transformed material from Trev W. Adams' rainy London photo
+      (https://www.pexels.com/photo/london-rainy-27585636/), Vika Glitter's
+      adult woman portrait
+      (https://www.pexels.com/photo/neon-lit-portrait-of-woman-in-futuristic-attire-33034133/),
+      and the public-domain Great Wave off Kanagawa
+      (https://commons.wikimedia.org/wiki/File:The_Great_Wave_off_Kanagawa.jpg).
+      Original bus, roundel, blossoms, labels, palette reduction, rain, and CRT
+      treatment were drawn by the MARISHOKU/OS Project. Untouched stock files
+      are not redistributed.

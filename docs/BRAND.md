@@ -1,4 +1,4 @@
-# MARISHOKU/OS visual system v0.1
+# MARISHOKU/OS visual system v0.4
 
 ## Brand construction
 
@@ -24,16 +24,16 @@ not over long passages of text.
 
 | Token | Hex | Use |
 |---|---:|---|
-| `ink-950` | `#15101F` | Desktop darkness, outlines |
-| `night-900` | `#24162B` | Dark surfaces |
-| `panel-200` | `#D8CDD9` | Window and control faces |
-| `panel-050` | `#FFF3FF` | Bevel highlights, active text |
-| `panel-600` | `#56445E` | Bevel shadows, inactive chrome |
-| `pink-500` | `#D63BAC` | Hot bevels, hover, attention |
-| `magenta-700` | `#8F276F` | Title bars, selection, pressed states |
-| `violet-500` | `#7241B8` | Secondary state and depth |
-| `cyan-400` | `#62DDE4` | Connected, focus, informational state |
-| `error-400` | `#FF4C91` | Destructive and URA emphasis |
+| `ink-950` | `#080812` | Outlines and dark shell elements |
+| `night-900` | `#303040` | Tooltip and inactive depth |
+| `panel-200` | `#C0C0CA` | Win9x window, control, and taskbar faces |
+| `panel-050` | `#F6F4FA` | Bevel highlights and active text |
+| `panel-600` | `#404050` | Bevel shadows and inactive chrome |
+| `title-blue` | `#000080` | Active title bars and selection |
+| `electric-blue` | `#1239D0` | Active bevel and connected state |
+| `pink-500` | `#FF2C9D` | Attention and wallpaper signal color |
+| `cyan-400` | `#27DCEC` | Focus and informational state |
+| `error-400` | `#FF3366` | Destructive and URA emphasis |
 
 ### Geometry
 
@@ -41,14 +41,14 @@ not over long passages of text.
 - One-pixel ink outline around interactive objects.
 - Two-stage bevel: light on top/left, shadow on bottom/right.
 - Title bars are 26 px at 100% scale and must pixel-snap.
-- Default desktop panel is 36 px at 100% scale.
+- Default desktop panel is 40 px at 100% scale.
 - Icons are authored on 16, 24, 32, and 48 px grids.
 - Blur, glass, floating cards, and soft shadows are disabled by default.
 
 ### Contrast floor
 
 - Normal-size interface text must meet WCAG AA `4.5:1` contrast.
-- White title-bar and selection text sits on `magenta-700` (`7.26:1`).
+- White title-bar and selection text sits on `title-blue` (well above `4.5:1`).
 - `pink-500` remains a non-text accent unless paired with a compliant ink color
   at an approved size.
 
@@ -88,4 +88,6 @@ and **Erase Disk** rather than joke labels.
 
 Reference images guide palette, texture, and emotional direction only. Shipped
 art must not contain Nintendo graphics, recognizable copyrighted characters,
-album artwork, third-party photography, or copied interface assets.
+album artwork, or copied interface assets. Licensed third-party photography is
+allowed only when the asset manifest records its source, terms, transformation,
+and subject-age review; untouched stock inputs are not redistributed.

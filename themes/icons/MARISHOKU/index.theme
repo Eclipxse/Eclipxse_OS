@@ -1,0 +1,17 @@
+[Icon Theme]
+Name=MARISHOKU/OS
+Comment=MR-10 pixel icon MVP with Breeze fallback
+Inherits=breeze,hicolor
+Directories=scalable/apps,scalable/places
+
+[scalable/apps]
+Size=48
+MinSize=16
+MaxSize=256
+Type=Scalable
+
+[scalable/places]
+Size=48
+MinSize=16
+MaxSize=256
+Type=Scalable

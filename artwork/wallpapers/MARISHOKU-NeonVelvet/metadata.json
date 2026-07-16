@@ -1,0 +1,14 @@
+{
+  "KPlugin": {
+    "Authors": [
+      { "Name": "MARISHOKU/OS Project" },
+      { "Name": "Trev W. Adams / Pexels" },
+      { "Name": "Vika Glitter / Pexels" }
+    ],
+    "Description": "Rainy London, adult neon portrait, ukiyo-e wave, and CRT pixel treatment",
+    "Id": "MARISHOKU-NeonVelvet",
+    "License": "LicenseRef-Pexels-and-Public-Domain",
+    "Name": "MARISHOKU Neon Velvet",
+    "Version": "0.4.0"
+  }
+}
