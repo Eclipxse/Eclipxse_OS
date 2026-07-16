@@ -32,7 +32,7 @@ Debian VM. This repository currently contains:
 - an original Kvantum Qt 5/6 control atlas for application interiors;
 - the approved lavender Win9x taskbar, hot-magenta title bars, and heart launcher;
 - a left-side pixel tool rail and fixed MARISHOKU/OS taskbar status block;
-- a MARISHOKU Konsole profile and URA login-ready dialog;
+- a MARISHOKU Konsole profile, pink-heart Fastfetch identity, and URA dialog;
 - two licensed, credited 1920x1080 London/cyber-goth wallpaper composites;
 - Noto Sans/Mono typography with Japanese glyph fallback;
 - installation and validation helpers.
@@ -53,7 +53,7 @@ tools/                Developer installation and validation helpers
 
 ## Test the Phase 1D desktop in a Plasma 6 VM
 
-First-time setup installs the official Debian Kvantum and Noto packages:
+First-time setup installs the official Debian Kvantum, Fastfetch, and Noto packages:
 
 ```bash
 ./tools/install-theme.sh --install-deps --apply
@@ -74,6 +74,10 @@ To deliberately rebuild the bottom taskbar and reset the wallpaper again:
 Log out and back in once after the first application. The script installs into
 the current user's home directory. Only `--install-deps` modifies the base OS,
 through Debian's package manager.
+
+After installation, plain `fastfetch` displays the MARISHOKU/OS pink pixel
+heart instead of Debian's stock logo. If a personal Fastfetch config already
+exists, the installer preserves it once as `config.jsonc.pre-marishoku.bak`.
 
 ## Included wallpaper profiles
 

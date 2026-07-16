@@ -47,6 +47,8 @@ $required = @(
     'themes/icons/MARISHOKU/scalable/apps/marishoku-heart.svg'
     'themes/konsole/MARISHOKU.colorscheme'
     'themes/konsole/MARISHOKU.profile'
+    'themes/fastfetch/config.jsonc'
+    'themes/fastfetch/marishoku-heart.txt'
     'packages/plasma/applets/org.marishoku.status/metadata.json'
     'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml'
     'packages/plasma/applets/org.marishoku.toolrail/metadata.json'
@@ -67,6 +69,7 @@ foreach ($path in $required) {
 $plasma = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/plasma-style/org.marishoku.desktop/metadata.json') | ConvertFrom-Json
 $global = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/global/org.marishoku.os/manifest.json') | ConvertFrom-Json
 $tokens = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/TOKENS.json') | ConvertFrom-Json
+$fastfetch = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/fastfetch/config.jsonc') | ConvertFrom-Json
 
 if ($plasma.'X-Plasma-API-Minimum-Version' -ne '6.0') {
     throw 'Plasma theme does not declare Plasma 6 support.'
@@ -76,6 +79,17 @@ if ($global.KPackageStructure -ne 'Plasma/LookAndFeel') {
 }
 if ($plasma.KPlugin.Version -ne $tokens.version -or $global.KPlugin.Version -ne $tokens.version) {
     throw 'Theme package versions have drifted from themes/TOKENS.json.'
+}
+if ($fastfetch.logo.type -ne 'file' -or $fastfetch.logo.source -notmatch 'marishoku-heart\.txt$') {
+    throw 'Fastfetch does not select the MARISHOKU heart logo.'
+}
+$fastfetchOs = $fastfetch.modules | Where-Object { $_.type -eq 'custom' -and $_.key -eq 'OS' }
+if ($fastfetchOs.format -notmatch '^MARISHOKU/OS') {
+    throw 'Fastfetch OS identity is not MARISHOKU/OS.'
+}
+$fastfetchLogo = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'themes/fastfetch/marishoku-heart.txt')
+if ($fastfetchLogo -notmatch '\$1' -or $fastfetchLogo -notmatch 'MARISHOKU/OS') {
+    throw 'Fastfetch heart artwork is missing its palette marker or identity label.'
 }
 
 $globalDefaults = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/global/org.marishoku.os/contents/defaults')

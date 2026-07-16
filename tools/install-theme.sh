@@ -13,7 +13,7 @@ Usage: ./tools/install-theme.sh [--apply] [--layout] [--install-deps]
 Installs the MARISHOKU/OS Plasma 6 and Kvantum themes for the current user.
   --apply         Activate the complete theme and MARISHOKU typography.
   --layout        Rebuild the classic taskbar and reapply the default wallpaper.
-  --install-deps  Use apt/sudo to install Kvantum and Noto Japanese fonts.
+  --install-deps  Use apt/sudo to install Kvantum, Fastfetch, and Noto fonts.
 EOF
 }
 
@@ -33,7 +33,8 @@ if "$INSTALL_DEPS"; then
     exit 1
   fi
   sudo apt-get update
-  sudo apt-get install -y qt-style-kvantum fonts-noto-core fonts-noto-cjk kdialog
+  sudo apt-get install -y \
+    qt-style-kvantum fonts-noto-core fonts-noto-cjk kdialog fastfetch
 fi
 
 install -Dm644 "$ROOT/themes/colors/MARISHOKU.colors" \
@@ -83,6 +84,18 @@ install -Dm644 "$ROOT/themes/konsole/MARISHOKU.colorscheme" \
   "$HOME/.local/share/konsole/MARISHOKU.colorscheme"
 install -Dm644 "$ROOT/themes/konsole/MARISHOKU.profile" \
   "$HOME/.local/share/konsole/MARISHOKU.profile"
+mkdir -p "$HOME/.config/fastfetch"
+if [[ -f "$HOME/.config/fastfetch/config.jsonc" \
+  && ! -f "$HOME/.config/fastfetch/config.jsonc.pre-marishoku.bak" \
+  ]] && ! cmp -s "$ROOT/themes/fastfetch/config.jsonc" \
+    "$HOME/.config/fastfetch/config.jsonc"; then
+  cp -a "$HOME/.config/fastfetch/config.jsonc" \
+    "$HOME/.config/fastfetch/config.jsonc.pre-marishoku.bak"
+fi
+install -Dm644 "$ROOT/themes/fastfetch/config.jsonc" \
+  "$HOME/.config/fastfetch/config.jsonc"
+install -Dm644 "$ROOT/themes/fastfetch/marishoku-heart.txt" \
+  "$HOME/.config/fastfetch/marishoku-heart.txt"
 install -Dm755 "$ROOT/tools/show-system-ready.sh" \
   "$HOME/.local/bin/marishoku-system-ready"
 install -Dm644 "$ROOT/packages/autostart/org.marishoku.system-ready.desktop" \
