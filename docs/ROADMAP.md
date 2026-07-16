@@ -16,8 +16,9 @@ approved colors.
 - [ ] Plasma Style SVGs for panels, dialogs, tooltips, and widgets.
   - [x] Phase 1A core shell frames and interaction states.
   - [ ] Remaining meters, edit-mode controls, and uncommon widget states.
-- [ ] Aurorae title bars and window buttons.
-- [ ] Kvantum Qt 6 application style.
+- [x] Aurorae title bars and window buttons.
+- [x] Kvantum Qt 5/6 application style.
+- [x] Noto-based Latin/Japanese typography integration.
 - [ ] GTK 3/4 companion theme.
 - [ ] Icon and cursor MVP.
 - [ ] Launcher, task switcher, notifications, OSD, and KRunner skin.

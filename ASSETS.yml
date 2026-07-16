@@ -28,4 +28,14 @@ assets:
       Generated with the built-in OpenAI image tool using the owner's four
       supplied images as mood references only. This is a visual target, not a
       final wallpaper or redistributable OS asset.
-
+  - id: kvantum-marishoku-v0.1
+    path: themes/kvantum/MARISHOKU/MARISHOKU.svg
+    type: qt-control-atlas
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+    notes: >-
+      Built from original square-edged vector primitives. Upstream Kvantum
+      documentation and element naming were used as an implementation schema;
+      no upstream theme artwork is included.

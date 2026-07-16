@@ -8,6 +8,7 @@ $required = @(
     'docs/CONTENT-PROFILES.md',
     'docs/HARDWARE-TARGET.md',
     'docs/ROADMAP.md',
+    'docs/TYPOGRAPHY.md',
     'themes/TOKENS.json',
     'themes/colors/MARISHOKU.colors',
     'themes/plasma-style/org.marishoku.desktop/metadata.json',
@@ -30,7 +31,10 @@ $required = @(
     'themes/aurorae/MARISHOKU/close.svg',
     'themes/aurorae/MARISHOKU/minimize.svg',
     'themes/aurorae/MARISHOKU/maximize.svg',
-    'themes/aurorae/MARISHOKU/restore.svg'
+    'themes/aurorae/MARISHOKU/restore.svg',
+    'themes/kvantum/MARISHOKU/MARISHOKU.kvconfig',
+    'themes/kvantum/MARISHOKU/MARISHOKU.svg',
+    'themes/typography/MARISHOKU.conf'
 )
 
 foreach ($path in $required) {
@@ -127,6 +131,85 @@ Assert-SvgIds 'themes/plasma-style/org.marishoku.desktop/widgets/line.svg' @(
     'horizontal-line', 'vertical-line'
 )
 
+$kvantumSvg = 'themes/kvantum/MARISHOKU/MARISHOKU.svg'
+$kvantumFramePositions = @('top', 'left', 'bottom', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright')
+
+function Assert-KvantumFrames([string] $family, [string[]] $states) {
+    foreach ($state in $states) {
+        $base = "${family}-${state}"
+        Assert-SvgIds $kvantumSvg @(
+            $base
+            $kvantumFramePositions | ForEach-Object { "${base}-${_}" }
+        )
+    }
+}
+
+Assert-KvantumFrames 'button' @('normal', 'focused', 'pressed', 'toggled')
+Assert-KvantumFrames 'lineedit' @('normal', 'focused')
+Assert-KvantumFrames 'common' @('normal', 'focused')
+Assert-KvantumFrames 'tab' @('normal', 'focused', 'toggled')
+Assert-KvantumFrames 'itemview' @('focused', 'pressed', 'toggled')
+Assert-KvantumFrames 'menuitem' @('pressed', 'toggled')
+Assert-KvantumFrames 'menubaritem' @('pressed', 'toggled')
+Assert-KvantumFrames 'scrollbarslider' @('normal', 'focused', 'pressed')
+Assert-KvantumFrames 'slider' @('normal', 'toggled')
+Assert-KvantumFrames 'progress' @('normal')
+Assert-KvantumFrames 'progress-pattern' @('normal', 'disabled')
+Assert-KvantumFrames 'menu' @('normal')
+Assert-KvantumFrames 'tooltip' @('normal')
+Assert-KvantumFrames 'tabframe' @('normal')
+
+Assert-SvgIds $kvantumSvg @(
+    'checkbox-normal', 'checkbox-focused', 'checkbox-checked-normal', 'checkbox-checked-focused',
+    'checkbox-tristate-normal', 'checkbox-tristate-focused',
+    'radio-normal', 'radio-focused', 'radio-checked-normal', 'radio-checked-focused',
+    'slidercursor-normal', 'slidercursor-focused', 'slidercursor-pressed', 'slidercursor-disabled',
+    'tree-plus-normal', 'tree-plus-focused', 'tree-plus-disabled',
+    'tree-minus-normal', 'tree-minus-focused', 'tree-minus-disabled',
+    'splitter-grip-normal', 'splitter-grip-focused', 'splitter-grip-pressed',
+    'sizegrip-normal', 'header-separator', 'toolbar-handle'
+)
+
+foreach ($direction in @('up', 'right', 'down', 'left')) {
+    foreach ($state in @('normal', 'focused', 'pressed', 'toggled', 'disabled')) {
+        Assert-SvgIds $kvantumSvg @("arrow-${direction}-${state}")
+    }
+}
+
+$kvantumFullPath = Join-Path $root $kvantumSvg
+[xml] $kvantumDocument = Get-Content -Raw -Encoding UTF8 -LiteralPath $kvantumFullPath
+$kvantumIds = Get-SvgIds $kvantumSvg
+foreach ($use in $kvantumDocument.SelectNodes('//*[local-name()="use"]')) {
+    $reference = $use.GetAttribute('href', 'http://www.w3.org/1999/xlink')
+    if ($reference.StartsWith('#') -and -not $kvantumIds.ContainsKey($reference.Substring(1))) {
+        throw "Broken SVG reference '$reference' in $kvantumSvg."
+    }
+}
+
+$kvantumConfig = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'themes/kvantum/MARISHOKU/MARISHOKU.kvconfig')
+foreach ($setting in @(
+    '(?m)^\[%General\]$',
+    '(?m)^animate_states=false$',
+    '(?m)^composite=false$',
+    '(?m)^window\.color=#D8CDD9$',
+    '(?m)^highlight\.color=#8F276F$',
+    '(?m)^frame\.element=button$',
+    '(?m)^frame\.element=lineedit$',
+    '(?m)^frame\.element=itemview$'
+)) {
+    if ($kvantumConfig -notmatch $setting) {
+        throw "Kvantum configuration is missing expected setting: $setting"
+    }
+}
+
+$typography = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'themes/typography/MARISHOKU.conf')
+foreach ($fontToken in @($tokens.typography.body, $tokens.typography.system, $tokens.typography.title)) {
+    $family, $size = $fontToken -split ' (?=\d+$)'
+    if ($typography -notmatch "(?m)=${family},${size},") {
+        throw "Typography config has drifted from token '$fontToken'."
+    }
+}
+
 function Get-RelativeLuminance([string] $hex) {
     $clean = $hex.TrimStart('#')
     if ($clean.Length -ne 6) {
@@ -167,4 +250,4 @@ foreach ($pair in $contrastPairs) {
     }
 }
 
-Write-Host 'MARISHOKU/OS Phase 1A validation passed.' -ForegroundColor Magenta
+Write-Host 'MARISHOKU/OS Phase 1B validation passed.' -ForegroundColor Magenta

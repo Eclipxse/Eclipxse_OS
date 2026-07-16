@@ -20,7 +20,7 @@ palette.
 
 ## Current milestone
 
-Phase 1A is in progress while the final Phase 0 screenshot is reviewed in the
+Phase 1B is ready for visual review in the
 Debian VM. This repository currently contains:
 
 - the approved visual and interaction specification;
@@ -29,6 +29,8 @@ Debian VM. This repository currently contains:
 - a Global Theme and Aurorae window decoration;
 - original Plasma shell SVGs for panels, dialogs, buttons, fields, tasks,
   selections, headings, arrows, separators, and tooltips;
+- an original Kvantum Qt 5/6 control atlas for application interiors;
+- Noto Sans/Mono typography with Japanese glyph fallback;
 - installation and validation helpers.
 
 The first ISO will be built only after the desktop theme passes visual review
@@ -45,14 +47,23 @@ themes/               Plasma, Qt, GTK, SDDM, boot, icon, and cursor themes
 tools/                Developer installation and validation helpers
 ```
 
-## Test the Phase 1A theme in a Plasma 6 VM
+## Test the Phase 1B theme in a Plasma 6 VM
+
+First-time setup installs the official Debian Kvantum and Noto packages:
+
+```bash
+./tools/install-theme.sh --install-deps --apply
+```
+
+Later theme-only updates do not need sudo:
 
 ```bash
 ./tools/install-theme.sh --apply
 ```
 
 Log out and back in once after the first application. The script installs into
-the current user's home directory; it does not modify the base OS.
+the current user's home directory. Only `--install-deps` modifies the base OS,
+through Debian's package manager.
 
 ## Safety rule
 

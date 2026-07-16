@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="64" height="64" viewBox="0 0 64 64">
+  <title>MARISHOKU/OS Kvantum control atlas</title>
+  <desc>Original square-edged Qt controls using the MR-10 magenta, cyan, and lavender palette.</desc>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .crisp { shape-rendering: crispEdges; }
+      .ink { fill: #201727; }
+      .face { fill: #d8cdd9; }
+      .base { fill: #fff3ff; }
+      .alt { fill: #e8dce9; }
+      .mid { fill: #8f7e94; }
+      .dark { fill: #56445e; }
+      .pink { fill: #d63bac; }
+      .magenta { fill: #8f276f; }
+      .violet { fill: #7241b8; }
+      .cyan { fill: #62dde4; }
+    ]]></style>
+
+    <!-- Flat interiors. -->
+    <rect id="_fill-face" class="face crisp" width="16" height="16"/>
+    <rect id="_fill-base" class="base crisp" width="16" height="16"/>
+    <rect id="_fill-alt" class="alt crisp" width="16" height="16"/>
+    <rect id="_fill-pressed" class="mid crisp" width="16" height="16"/>
+    <rect id="_fill-selected" class="magenta crisp" width="16" height="16"/>
+    <rect id="_fill-hot" class="pink crisp" width="16" height="16"/>
+    <rect id="_fill-dark" fill="#15101f" class="crisp" width="16" height="16"/>
+
+    <!-- Raised two-pixel frame. -->
+    <rect id="_raised-top" class="base crisp" width="16" height="2"/>
+    <rect id="_raised-left" class="base crisp" width="2" height="16"/>
+    <rect id="_raised-bottom" class="dark crisp" width="16" height="2"/>
+    <rect id="_raised-right" class="dark crisp" width="2" height="16"/>
+    <rect id="_raised-tl" class="base crisp" width="2" height="2"/>
+    <g id="_raised-tr" class="crisp"><rect class="dark" width="2" height="2"/><rect class="base" width="2" height="1"/></g>
+    <g id="_raised-bl" class="crisp"><rect class="dark" width="2" height="2"/><rect class="base" width="1" height="2"/></g>
+    <rect id="_raised-br" class="dark crisp" width="2" height="2"/>
+
+    <!-- Sunken frame for fields and grooves. -->
+    <rect id="_sunken-top" class="dark crisp" width="16" height="2"/>
+    <rect id="_sunken-left" class="dark crisp" width="2" height="16"/>
+    <rect id="_sunken-bottom" class="base crisp" width="16" height="2"/>
+    <rect id="_sunken-right" class="base crisp" width="2" height="16"/>
+    <rect id="_sunken-tl" class="dark crisp" width="2" height="2"/>
+    <g id="_sunken-tr" class="crisp"><rect class="base" width="2" height="2"/><rect class="dark" width="2" height="1"/></g>
+    <g id="_sunken-bl" class="crisp"><rect class="base" width="2" height="2"/><rect class="dark" width="1" height="2"/></g>
+    <rect id="_sunken-br" class="base crisp" width="2" height="2"/>
+
+    <!-- Cyan/magenta focus frame. -->
+    <rect id="_focus-top" class="cyan crisp" width="16" height="2"/>
+    <rect id="_focus-left" class="cyan crisp" width="2" height="16"/>
+    <rect id="_focus-bottom" class="magenta crisp" width="16" height="2"/>
+    <rect id="_focus-right" class="magenta crisp" width="2" height="16"/>
+    <rect id="_focus-tl" class="cyan crisp" width="2" height="2"/>
+    <g id="_focus-tr" class="crisp"><rect class="magenta" width="2" height="2"/><rect class="cyan" width="2" height="1"/></g>
+    <g id="_focus-bl" class="crisp"><rect class="magenta" width="2" height="2"/><rect class="cyan" width="1" height="2"/></g>
+    <rect id="_focus-br" class="magenta crisp" width="2" height="2"/>
+
+    <!-- Pressed frame reverses the classic bevel. -->
+    <rect id="_pressed-top" class="dark crisp" width="16" height="2"/>
+    <rect id="_pressed-left" class="dark crisp" width="2" height="16"/>
+    <rect id="_pressed-bottom" class="base crisp" width="16" height="2"/>
+    <rect id="_pressed-right" class="base crisp" width="2" height="16"/>
+    <rect id="_pressed-tl" class="dark crisp" width="2" height="2"/>
+    <g id="_pressed-tr" class="crisp"><rect class="base" width="2" height="2"/><rect class="dark" width="2" height="1"/></g>
+    <g id="_pressed-bl" class="crisp"><rect class="base" width="2" height="2"/><rect class="dark" width="1" height="2"/></g>
+    <rect id="_pressed-br" class="base crisp" width="2" height="2"/>
+
+    <!-- One-pixel selection frame. -->
+    <rect id="_select-top" class="cyan crisp" width="16" height="1"/>
+    <rect id="_select-left" class="cyan crisp" width="1" height="16"/>
+    <rect id="_select-bottom" fill="#15101f" class="crisp" width="16" height="1"/>
+    <rect id="_select-right" fill="#15101f" class="crisp" width="1" height="16"/>
+    <rect id="_select-tl" class="cyan crisp" width="1" height="1"/>
+    <rect id="_select-tr" class="cyan crisp" width="1" height="1"/>
+    <rect id="_select-bl" fill="#15101f" class="crisp" width="1" height="1"/>
+    <rect id="_select-br" fill="#15101f" class="crisp" width="1" height="1"/>
+
+    <!-- Indicators. -->
+    <g id="_arrow-normal" class="crisp"><path class="ink" d="M1 2h2v2h2v2h2v2H5v2H3V8H1z"/></g>
+    <g id="_arrow-focus" class="crisp"><path class="magenta" d="M1 2h2v2h2v2h2v2H5v2H3V8H1z"/></g>
+    <g id="_arrow-light" class="crisp"><path class="base" d="M1 2h2v2h2v2h2v2H5v2H3V8H1z"/></g>
+    <g id="_arrow-disabled" class="crisp"><path class="mid" d="M1 2h2v2h2v2h2v2H5v2H3V8H1z"/></g>
+    <g id="_checkbox-off" class="crisp"><rect class="base" x="1" y="1" width="14" height="14"/><path class="ink" d="M0 0h16v2H2v12h12V2h2v14H0z"/></g>
+    <g id="_checkbox-focus" class="crisp"><rect class="alt" x="2" y="2" width="12" height="12"/><path class="cyan" d="M0 0h16v2H2v12h12V2h2v14H0z"/></g>
+    <g id="_checkbox-on" class="crisp"><rect class="magenta" x="1" y="1" width="14" height="14"/><path class="base" d="M3 7h2v2h2v2h2V9h2V7h2V5h-2v2H9v2H7V7H5V5H3z"/><path class="ink" d="M0 0h16v2H2v12h12V2h2v14H0z"/></g>
+    <g id="_checkbox-mixed" class="crisp"><rect class="violet" x="1" y="1" width="14" height="14"/><rect class="base" x="4" y="7" width="8" height="2"/><path class="ink" d="M0 0h16v2H2v12h12V2h2v14H0z"/></g>
+    <g id="_radio-off" class="crisp"><path class="ink" d="M6 0h4v2h2v2h2v2h2v4h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V6h2V4h2V2h2z"/><path class="base" d="M6 2h4v2h2v2h2v4h-2v2h-2v2H6v-2H4v-2H2V6h2V4h2z"/></g>
+    <g id="_radio-focus" class="crisp"><path class="cyan" d="M6 0h4v2h2v2h2v2h2v4h-2v2h-2v2h-2v2H6v-2H4v-2H2v-2H0V6h2V4h2V2h2z"/><path class="alt" d="M6 2h4v2h2v2h2v4h-2v2h-2v2H6v-2H4v-2H2V6h2V4h2z"/></g>
+    <g id="_radio-on" class="crisp"><use xlink:href="#_radio-off"/><path class="magenta" d="M6 5h4v2h2v4h-2v2H6v-2H4V7h2z"/></g>
+    <g id="_slider-normal" class="crisp"><rect class="face" x="1" y="1" width="12" height="16"/><path class="ink" d="M0 0h14v2H2v14h10V2h2v16H0z"/><rect class="base" x="3" y="3" width="2" height="12"/></g>
+    <g id="_slider-focus" class="crisp"><rect class="pink" x="1" y="1" width="12" height="16"/><path class="cyan" d="M0 0h14v2H2v14h10V2h2v16H0z"/></g>
+    <g id="_slider-pressed" class="crisp"><rect class="magenta" x="1" y="1" width="12" height="16"/><path class="ink" d="M0 0h14v2H2v14h10V2h2v16H0z"/></g>
+    <g id="_tree-plus" class="crisp"><rect class="base" x="1" y="1" width="9" height="9"/><path class="ink" d="M0 0h11v11H0zm1 1v9h9V1zM3 5h2V3h2v2h2v2H7v2H5V7H3z"/></g>
+    <g id="_tree-minus" class="crisp"><rect class="base" x="1" y="1" width="9" height="9"/><path class="ink" d="M0 0h11v11H0zm1 1v9h9V1zM3 5h6v2H3z"/></g>
+  </defs>
+
+  <!-- Button frames: normal, hover/focus, press, and latched. -->
+  <use id="button-normal" xlink:href="#_fill-face"/>
+  <use id="button-normal-top" xlink:href="#_raised-top"/><use id="button-normal-left" xlink:href="#_raised-left"/>
+  <use id="button-normal-bottom" xlink:href="#_raised-bottom"/><use id="button-normal-right" xlink:href="#_raised-right"/>
+  <use id="button-normal-topleft" xlink:href="#_raised-tl"/><use id="button-normal-topright" xlink:href="#_raised-tr"/>
+  <use id="button-normal-bottomleft" xlink:href="#_raised-bl"/><use id="button-normal-bottomright" xlink:href="#_raised-br"/>
+  <use id="button-focused" xlink:href="#_fill-alt"/>
+  <use id="button-focused-top" xlink:href="#_focus-top"/><use id="button-focused-left" xlink:href="#_focus-left"/>
+  <use id="button-focused-bottom" xlink:href="#_focus-bottom"/><use id="button-focused-right" xlink:href="#_focus-right"/>
+  <use id="button-focused-topleft" xlink:href="#_focus-tl"/><use id="button-focused-topright" xlink:href="#_focus-tr"/>
+  <use id="button-focused-bottomleft" xlink:href="#_focus-bl"/><use id="button-focused-bottomright" xlink:href="#_focus-br"/>
+  <use id="button-pressed" xlink:href="#_fill-pressed"/>
+  <use id="button-pressed-top" xlink:href="#_pressed-top"/><use id="button-pressed-left" xlink:href="#_pressed-left"/>
+  <use id="button-pressed-bottom" xlink:href="#_pressed-bottom"/><use id="button-pressed-right" xlink:href="#_pressed-right"/>
+  <use id="button-pressed-topleft" xlink:href="#_pressed-tl"/><use id="button-pressed-topright" xlink:href="#_pressed-tr"/>
+  <use id="button-pressed-bottomleft" xlink:href="#_pressed-bl"/><use id="button-pressed-bottomright" xlink:href="#_pressed-br"/>
+  <use id="button-toggled" xlink:href="#_fill-selected"/>
+  <use id="button-toggled-top" xlink:href="#_focus-top"/><use id="button-toggled-left" xlink:href="#_focus-left"/>
+  <use id="button-toggled-bottom" xlink:href="#_pressed-bottom"/><use id="button-toggled-right" xlink:href="#_pressed-right"/>
+  <use id="button-toggled-topleft" xlink:href="#_focus-tl"/><use id="button-toggled-topright" xlink:href="#_focus-tr"/>
+  <use id="button-toggled-bottomleft" xlink:href="#_focus-bl"/><use id="button-toggled-bottomright" xlink:href="#_pressed-br"/>
+  <rect id="button-default-indicator" x="0.5" y="0.5" width="15" height="15" fill="none" stroke="#62dde4" stroke-width="1" class="crisp"/>
+
+  <!-- Line edits and generic content frames. -->
+  <use id="lineedit-normal" xlink:href="#_fill-base"/>
+  <use id="lineedit-normal-top" xlink:href="#_sunken-top"/><use id="lineedit-normal-left" xlink:href="#_sunken-left"/>
+  <use id="lineedit-normal-bottom" xlink:href="#_sunken-bottom"/><use id="lineedit-normal-right" xlink:href="#_sunken-right"/>
+  <use id="lineedit-normal-topleft" xlink:href="#_sunken-tl"/><use id="lineedit-normal-topright" xlink:href="#_sunken-tr"/>
+  <use id="lineedit-normal-bottomleft" xlink:href="#_sunken-bl"/><use id="lineedit-normal-bottomright" xlink:href="#_sunken-br"/>
+  <use id="lineedit-focused" xlink:href="#_fill-base"/>
+  <use id="lineedit-focused-top" xlink:href="#_focus-top"/><use id="lineedit-focused-left" xlink:href="#_focus-left"/>
+  <use id="lineedit-focused-bottom" xlink:href="#_focus-bottom"/><use id="lineedit-focused-right" xlink:href="#_focus-right"/>
+  <use id="lineedit-focused-topleft" xlink:href="#_focus-tl"/><use id="lineedit-focused-topright" xlink:href="#_focus-tr"/>
+  <use id="lineedit-focused-bottomleft" xlink:href="#_focus-bl"/><use id="lineedit-focused-bottomright" xlink:href="#_focus-br"/>
+  <use id="common-normal" xlink:href="#_fill-base"/>
+  <use id="common-normal-top" xlink:href="#_sunken-top"/><use id="common-normal-left" xlink:href="#_sunken-left"/>
+  <use id="common-normal-bottom" xlink:href="#_sunken-bottom"/><use id="common-normal-right" xlink:href="#_sunken-right"/>
+  <use id="common-normal-topleft" xlink:href="#_sunken-tl"/><use id="common-normal-topright" xlink:href="#_sunken-tr"/>
+  <use id="common-normal-bottomleft" xlink:href="#_sunken-bl"/><use id="common-normal-bottomright" xlink:href="#_sunken-br"/>
+  <use id="common-focused" xlink:href="#_fill-base"/>
+  <use id="common-focused-top" xlink:href="#_focus-top"/><use id="common-focused-left" xlink:href="#_focus-left"/>
+  <use id="common-focused-bottom" xlink:href="#_focus-bottom"/><use id="common-focused-right" xlink:href="#_focus-right"/>
+  <use id="common-focused-topleft" xlink:href="#_focus-tl"/><use id="common-focused-topright" xlink:href="#_focus-tr"/>
+  <use id="common-focused-bottomleft" xlink:href="#_focus-bl"/><use id="common-focused-bottomright" xlink:href="#_focus-br"/>
+
+  <!-- Popups, tabs, selection, and scrolling reuse the same pixel grammar. -->
+  <use id="menu-normal" xlink:href="#_fill-base"/>
+  <use id="menu-normal-top" xlink:href="#_focus-top"/><use id="menu-normal-left" xlink:href="#_sunken-left"/>
+  <use id="menu-normal-bottom" xlink:href="#_focus-bottom"/><use id="menu-normal-right" xlink:href="#_sunken-right"/>
+  <use id="menu-normal-topleft" xlink:href="#_focus-tl"/><use id="menu-normal-topright" xlink:href="#_focus-tr"/>
+  <use id="menu-normal-bottomleft" xlink:href="#_focus-bl"/><use id="menu-normal-bottomright" xlink:href="#_focus-br"/>
+  <use id="tooltip-normal" xlink:href="#_fill-dark"/>
+  <use id="tooltip-normal-top" xlink:href="#_focus-top"/><use id="tooltip-normal-left" xlink:href="#_focus-left"/>
+  <use id="tooltip-normal-bottom" xlink:href="#_focus-bottom"/><use id="tooltip-normal-right" xlink:href="#_focus-right"/>
+  <use id="tooltip-normal-topleft" xlink:href="#_focus-tl"/><use id="tooltip-normal-topright" xlink:href="#_focus-tr"/>
+  <use id="tooltip-normal-bottomleft" xlink:href="#_focus-bl"/><use id="tooltip-normal-bottomright" xlink:href="#_focus-br"/>
+
+  <use id="tab-normal" xlink:href="#_fill-face"/>
+  <use id="tab-normal-top" xlink:href="#_raised-top"/><use id="tab-normal-left" xlink:href="#_raised-left"/>
+  <use id="tab-normal-bottom" xlink:href="#_raised-bottom"/><use id="tab-normal-right" xlink:href="#_raised-right"/>
+  <use id="tab-normal-topleft" xlink:href="#_raised-tl"/><use id="tab-normal-topright" xlink:href="#_raised-tr"/>
+  <use id="tab-normal-bottomleft" xlink:href="#_raised-bl"/><use id="tab-normal-bottomright" xlink:href="#_raised-br"/>
+  <use id="tab-focused" xlink:href="#_fill-alt"/>
+  <use id="tab-focused-top" xlink:href="#_focus-top"/><use id="tab-focused-left" xlink:href="#_focus-left"/>
+  <use id="tab-focused-bottom" xlink:href="#_focus-bottom"/><use id="tab-focused-right" xlink:href="#_focus-right"/>
+  <use id="tab-focused-topleft" xlink:href="#_focus-tl"/><use id="tab-focused-topright" xlink:href="#_focus-tr"/>
+  <use id="tab-focused-bottomleft" xlink:href="#_focus-bl"/><use id="tab-focused-bottomright" xlink:href="#_focus-br"/>
+  <use id="tab-toggled" xlink:href="#_fill-base"/>
+  <use id="tab-toggled-top" xlink:href="#_focus-top"/><use id="tab-toggled-left" xlink:href="#_focus-left"/>
+  <use id="tab-toggled-bottom" xlink:href="#_fill-base"/><use id="tab-toggled-right" xlink:href="#_focus-right"/>
+  <use id="tab-toggled-topleft" xlink:href="#_focus-tl"/><use id="tab-toggled-topright" xlink:href="#_focus-tr"/>
+  <use id="tab-toggled-bottomleft" xlink:href="#_fill-base"/><use id="tab-toggled-bottomright" xlink:href="#_fill-base"/>
+
+  <use id="tabframe-normal" xlink:href="#_fill-base"/>
+  <use id="tabframe-normal-top" xlink:href="#_sunken-top"/><use id="tabframe-normal-left" xlink:href="#_sunken-left"/>
+  <use id="tabframe-normal-bottom" xlink:href="#_sunken-bottom"/><use id="tabframe-normal-right" xlink:href="#_sunken-right"/>
+  <use id="tabframe-normal-topleft" xlink:href="#_sunken-tl"/><use id="tabframe-normal-topright" xlink:href="#_sunken-tr"/>
+  <use id="tabframe-normal-bottomleft" xlink:href="#_sunken-bl"/><use id="tabframe-normal-bottomright" xlink:href="#_sunken-br"/>
+
+  <use id="itemview-focused" xlink:href="#_fill-alt"/>
+  <use id="itemview-focused-top" xlink:href="#_select-top"/><use id="itemview-focused-left" xlink:href="#_select-left"/>
+  <use id="itemview-focused-bottom" xlink:href="#_select-bottom"/><use id="itemview-focused-right" xlink:href="#_select-right"/>
+  <use id="itemview-focused-topleft" xlink:href="#_select-tl"/><use id="itemview-focused-topright" xlink:href="#_select-tr"/>
+  <use id="itemview-focused-bottomleft" xlink:href="#_select-bl"/><use id="itemview-focused-bottomright" xlink:href="#_select-br"/>
+  <use id="itemview-pressed" xlink:href="#_fill-selected"/>
+  <use id="itemview-pressed-top" xlink:href="#_select-top"/><use id="itemview-pressed-left" xlink:href="#_select-left"/>
+  <use id="itemview-pressed-bottom" xlink:href="#_select-bottom"/><use id="itemview-pressed-right" xlink:href="#_select-right"/>
+  <use id="itemview-pressed-topleft" xlink:href="#_select-tl"/><use id="itemview-pressed-topright" xlink:href="#_select-tr"/>
+  <use id="itemview-pressed-bottomleft" xlink:href="#_select-bl"/><use id="itemview-pressed-bottomright" xlink:href="#_select-br"/>
+  <use id="itemview-toggled" xlink:href="#_fill-selected"/>
+  <use id="itemview-toggled-top" xlink:href="#_select-top"/><use id="itemview-toggled-left" xlink:href="#_select-left"/>
+  <use id="itemview-toggled-bottom" xlink:href="#_select-bottom"/><use id="itemview-toggled-right" xlink:href="#_select-right"/>
+  <use id="itemview-toggled-topleft" xlink:href="#_select-tl"/><use id="itemview-toggled-topright" xlink:href="#_select-tr"/>
+  <use id="itemview-toggled-bottomleft" xlink:href="#_select-bl"/><use id="itemview-toggled-bottomright" xlink:href="#_select-br"/>
+
+  <use id="menuitem-pressed" xlink:href="#_fill-selected"/>
+  <use id="menuitem-pressed-top" xlink:href="#_select-top"/><use id="menuitem-pressed-left" xlink:href="#_select-left"/>
+  <use id="menuitem-pressed-bottom" xlink:href="#_select-bottom"/><use id="menuitem-pressed-right" xlink:href="#_select-right"/>
+  <use id="menuitem-pressed-topleft" xlink:href="#_select-tl"/><use id="menuitem-pressed-topright" xlink:href="#_select-tr"/>
+  <use id="menuitem-pressed-bottomleft" xlink:href="#_select-bl"/><use id="menuitem-pressed-bottomright" xlink:href="#_select-br"/>
+  <use id="menuitem-toggled" xlink:href="#_fill-hot"/>
+  <use id="menuitem-toggled-top" xlink:href="#_select-top"/><use id="menuitem-toggled-left" xlink:href="#_select-left"/>
+  <use id="menuitem-toggled-bottom" xlink:href="#_select-bottom"/><use id="menuitem-toggled-right" xlink:href="#_select-right"/>
+  <use id="menuitem-toggled-topleft" xlink:href="#_select-tl"/><use id="menuitem-toggled-topright" xlink:href="#_select-tr"/>
+  <use id="menuitem-toggled-bottomleft" xlink:href="#_select-bl"/><use id="menuitem-toggled-bottomright" xlink:href="#_select-br"/>
+  <use id="menubaritem-pressed" xlink:href="#_fill-selected"/>
+  <use id="menubaritem-pressed-top" xlink:href="#_select-top"/><use id="menubaritem-pressed-left" xlink:href="#_select-left"/>
+  <use id="menubaritem-pressed-bottom" xlink:href="#_select-bottom"/><use id="menubaritem-pressed-right" xlink:href="#_select-right"/>
+  <use id="menubaritem-pressed-topleft" xlink:href="#_select-tl"/><use id="menubaritem-pressed-topright" xlink:href="#_select-tr"/>
+  <use id="menubaritem-pressed-bottomleft" xlink:href="#_select-bl"/><use id="menubaritem-pressed-bottomright" xlink:href="#_select-br"/>
+  <use id="menubaritem-toggled" xlink:href="#_fill-hot"/>
+  <use id="menubaritem-toggled-top" xlink:href="#_select-top"/><use id="menubaritem-toggled-left" xlink:href="#_select-left"/>
+  <use id="menubaritem-toggled-bottom" xlink:href="#_select-bottom"/><use id="menubaritem-toggled-right" xlink:href="#_select-right"/>
+  <use id="menubaritem-toggled-topleft" xlink:href="#_select-tl"/><use id="menubaritem-toggled-topright" xlink:href="#_select-tr"/>
+  <use id="menubaritem-toggled-bottomleft" xlink:href="#_select-bl"/><use id="menubaritem-toggled-bottomright" xlink:href="#_select-br"/>
+
+  <!-- Scrollbars, sliders, progress, and separators. -->
+  <use id="scrollbarslider-normal" xlink:href="#_fill-face"/>
+  <use id="scrollbarslider-normal-top" xlink:href="#_raised-top"/><use id="scrollbarslider-normal-left" xlink:href="#_raised-left"/>
+  <use id="scrollbarslider-normal-bottom" xlink:href="#_raised-bottom"/><use id="scrollbarslider-normal-right" xlink:href="#_raised-right"/>
+  <use id="scrollbarslider-normal-topleft" xlink:href="#_raised-tl"/><use id="scrollbarslider-normal-topright" xlink:href="#_raised-tr"/>
+  <use id="scrollbarslider-normal-bottomleft" xlink:href="#_raised-bl"/><use id="scrollbarslider-normal-bottomright" xlink:href="#_raised-br"/>
+  <use id="scrollbarslider-focused" xlink:href="#_fill-hot"/>
+  <use id="scrollbarslider-focused-top" xlink:href="#_focus-top"/><use id="scrollbarslider-focused-left" xlink:href="#_focus-left"/>
+  <use id="scrollbarslider-focused-bottom" xlink:href="#_focus-bottom"/><use id="scrollbarslider-focused-right" xlink:href="#_focus-right"/>
+  <use id="scrollbarslider-focused-topleft" xlink:href="#_focus-tl"/><use id="scrollbarslider-focused-topright" xlink:href="#_focus-tr"/>
+  <use id="scrollbarslider-focused-bottomleft" xlink:href="#_focus-bl"/><use id="scrollbarslider-focused-bottomright" xlink:href="#_focus-br"/>
+  <use id="scrollbarslider-pressed" xlink:href="#_fill-selected"/>
+  <use id="scrollbarslider-pressed-top" xlink:href="#_pressed-top"/><use id="scrollbarslider-pressed-left" xlink:href="#_pressed-left"/>
+  <use id="scrollbarslider-pressed-bottom" xlink:href="#_pressed-bottom"/><use id="scrollbarslider-pressed-right" xlink:href="#_pressed-right"/>
+  <use id="scrollbarslider-pressed-topleft" xlink:href="#_pressed-tl"/><use id="scrollbarslider-pressed-topright" xlink:href="#_pressed-tr"/>
+  <use id="scrollbarslider-pressed-bottomleft" xlink:href="#_pressed-bl"/><use id="scrollbarslider-pressed-bottomright" xlink:href="#_pressed-br"/>
+
+  <use id="slider-normal" xlink:href="#_fill-face"/>
+  <use id="slider-normal-top" xlink:href="#_sunken-top"/><use id="slider-normal-left" xlink:href="#_sunken-left"/>
+  <use id="slider-normal-bottom" xlink:href="#_sunken-bottom"/><use id="slider-normal-right" xlink:href="#_sunken-right"/>
+  <use id="slider-normal-topleft" xlink:href="#_sunken-tl"/><use id="slider-normal-topright" xlink:href="#_sunken-tr"/>
+  <use id="slider-normal-bottomleft" xlink:href="#_sunken-bl"/><use id="slider-normal-bottomright" xlink:href="#_sunken-br"/>
+  <use id="slider-toggled" xlink:href="#_fill-selected"/>
+  <use id="slider-toggled-top" xlink:href="#_select-top"/><use id="slider-toggled-left" xlink:href="#_select-left"/>
+  <use id="slider-toggled-bottom" xlink:href="#_select-bottom"/><use id="slider-toggled-right" xlink:href="#_select-right"/>
+  <use id="slider-toggled-topleft" xlink:href="#_select-tl"/><use id="slider-toggled-topright" xlink:href="#_select-tr"/>
+  <use id="slider-toggled-bottomleft" xlink:href="#_select-bl"/><use id="slider-toggled-bottomright" xlink:href="#_select-br"/>
+  <use id="slidercursor-normal" xlink:href="#_slider-normal"/>
+  <use id="slidercursor-focused" xlink:href="#_slider-focus"/>
+  <use id="slidercursor-pressed" xlink:href="#_slider-pressed"/>
+  <use id="slidercursor-disabled" xlink:href="#_slider-normal" opacity="0.55"/>
+
+  <use id="progress-normal" xlink:href="#_fill-base"/>
+  <use id="progress-normal-top" xlink:href="#_sunken-top"/><use id="progress-normal-left" xlink:href="#_sunken-left"/>
+  <use id="progress-normal-bottom" xlink:href="#_sunken-bottom"/><use id="progress-normal-right" xlink:href="#_sunken-right"/>
+  <use id="progress-normal-topleft" xlink:href="#_sunken-tl"/><use id="progress-normal-topright" xlink:href="#_sunken-tr"/>
+  <use id="progress-normal-bottomleft" xlink:href="#_sunken-bl"/><use id="progress-normal-bottomright" xlink:href="#_sunken-br"/>
+  <g id="progress-pattern-normal" class="crisp"><rect class="magenta" width="16" height="16"/><path class="cyan" d="M0 0h3L0 3zm5 0h3L0 8V5zm5 0h3L0 13v-3zm5 0h1v4L4 16H1zm1 9v5l-2 2H9z"/></g>
+  <use id="progress-pattern-normal-top" xlink:href="#_select-top"/><use id="progress-pattern-normal-left" xlink:href="#_select-left"/>
+  <use id="progress-pattern-normal-bottom" xlink:href="#_select-bottom"/><use id="progress-pattern-normal-right" xlink:href="#_select-right"/>
+  <use id="progress-pattern-normal-topleft" xlink:href="#_select-tl"/><use id="progress-pattern-normal-topright" xlink:href="#_select-tr"/>
+  <use id="progress-pattern-normal-bottomleft" xlink:href="#_select-bl"/><use id="progress-pattern-normal-bottomright" xlink:href="#_select-br"/>
+  <use id="progress-pattern-disabled" xlink:href="#_fill-pressed"/>
+  <use id="progress-pattern-disabled-top" xlink:href="#_select-top"/><use id="progress-pattern-disabled-left" xlink:href="#_select-left"/>
+  <use id="progress-pattern-disabled-bottom" xlink:href="#_select-bottom"/><use id="progress-pattern-disabled-right" xlink:href="#_select-right"/>
+  <use id="progress-pattern-disabled-topleft" xlink:href="#_select-tl"/><use id="progress-pattern-disabled-topright" xlink:href="#_select-tr"/>
+  <use id="progress-pattern-disabled-bottomleft" xlink:href="#_select-bl"/><use id="progress-pattern-disabled-bottomright" xlink:href="#_select-br"/>
+
+  <!-- Checkboxes, radios, arrows, tree controls, and utility glyphs. -->
+  <use id="checkbox-normal" xlink:href="#_checkbox-off"/><use id="checkbox-focused" xlink:href="#_checkbox-focus"/>
+  <use id="checkbox-checked-normal" xlink:href="#_checkbox-on"/><use id="checkbox-checked-focused" xlink:href="#_checkbox-on"/>
+  <use id="checkbox-tristate-normal" xlink:href="#_checkbox-mixed"/><use id="checkbox-tristate-focused" xlink:href="#_checkbox-mixed"/>
+  <use id="radio-normal" xlink:href="#_radio-off"/><use id="radio-focused" xlink:href="#_radio-focus"/>
+  <use id="radio-checked-normal" xlink:href="#_radio-on"/><use id="radio-checked-focused" xlink:href="#_radio-on"/>
+
+  <use id="arrow-right-normal" xlink:href="#_arrow-normal"/><use id="arrow-right-focused" xlink:href="#_arrow-focus"/>
+  <use id="arrow-right-pressed" xlink:href="#_arrow-light"/><use id="arrow-right-toggled" xlink:href="#_arrow-light"/>
+  <use id="arrow-right-disabled" xlink:href="#_arrow-disabled"/>
+  <use id="arrow-down-normal" xlink:href="#_arrow-normal" transform="rotate(90 5 5)"/><use id="arrow-down-focused" xlink:href="#_arrow-focus" transform="rotate(90 5 5)"/>
+  <use id="arrow-down-pressed" xlink:href="#_arrow-light" transform="rotate(90 5 5)"/><use id="arrow-down-toggled" xlink:href="#_arrow-light" transform="rotate(90 5 5)"/>
+  <use id="arrow-down-disabled" xlink:href="#_arrow-disabled" transform="rotate(90 5 5)"/>
+  <use id="arrow-left-normal" xlink:href="#_arrow-normal" transform="rotate(180 5 5)"/><use id="arrow-left-focused" xlink:href="#_arrow-focus" transform="rotate(180 5 5)"/>
+  <use id="arrow-left-pressed" xlink:href="#_arrow-light" transform="rotate(180 5 5)"/><use id="arrow-left-toggled" xlink:href="#_arrow-light" transform="rotate(180 5 5)"/>
+  <use id="arrow-left-disabled" xlink:href="#_arrow-disabled" transform="rotate(180 5 5)"/>
+  <use id="arrow-up-normal" xlink:href="#_arrow-normal" transform="rotate(270 5 5)"/><use id="arrow-up-focused" xlink:href="#_arrow-focus" transform="rotate(270 5 5)"/>
+  <use id="arrow-up-pressed" xlink:href="#_arrow-light" transform="rotate(270 5 5)"/><use id="arrow-up-toggled" xlink:href="#_arrow-light" transform="rotate(270 5 5)"/>
+  <use id="arrow-up-disabled" xlink:href="#_arrow-disabled" transform="rotate(270 5 5)"/>
+
+  <use id="tree-plus-normal" xlink:href="#_tree-plus"/><use id="tree-plus-focused" xlink:href="#_tree-plus"/><use id="tree-plus-disabled" xlink:href="#_tree-plus" opacity="0.55"/>
+  <use id="tree-minus-normal" xlink:href="#_tree-minus"/><use id="tree-minus-focused" xlink:href="#_tree-minus"/><use id="tree-minus-disabled" xlink:href="#_tree-minus" opacity="0.55"/>
+  <use id="menu-checkbox-normal" xlink:href="#_checkbox-off"/><use id="menu-checkbox-focused" xlink:href="#_checkbox-focus"/>
+  <use id="menu-checkbox-checked-focused" xlink:href="#_checkbox-on"/><use id="menu-checkbox-tristate-focused" xlink:href="#_checkbox-mixed"/>
+  <use id="menu-radio-normal" xlink:href="#_radio-off"/><use id="menu-radio-focused" xlink:href="#_radio-focus"/><use id="menu-radio-checked-focused" xlink:href="#_radio-on"/>
+  <g id="splitter-grip-normal" class="crisp"><rect class="mid" x="2" y="2" width="2" height="2"/><rect class="mid" x="7" y="7" width="2" height="2"/><rect class="mid" x="12" y="12" width="2" height="2"/></g>
+  <g id="splitter-grip-focused" class="crisp"><rect class="cyan" x="2" y="2" width="2" height="2"/><rect class="pink" x="7" y="7" width="2" height="2"/><rect class="magenta" x="12" y="12" width="2" height="2"/></g>
+  <use id="splitter-grip-pressed" xlink:href="#splitter-grip-focused"/><rect id="splitter-normal" class="mid crisp" width="1" height="16"/>
+  <g id="sizegrip-normal" class="crisp"><path class="dark" d="M12 2h2v2h-2zM8 6h2v2H8zm4 0h2v2h-2zM4 10h2v2H4zm4 0h2v2H8zm4 0h2v2h-2z"/></g>
+  <rect id="header-separator" class="dark crisp" width="1" height="16"/>
+  <rect id="toolbar-handle" class="mid crisp" width="2" height="14"/>
+  <rect id="window-normal" class="face crisp" width="16" height="16"/>
+  <rect id="titlebar-normal" class="dark crisp" width="16" height="16"/><rect id="titlebar-focused" class="magenta crisp" width="16" height="16"/>
+</svg>
