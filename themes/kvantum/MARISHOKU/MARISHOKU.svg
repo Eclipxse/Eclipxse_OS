@@ -3,20 +3,20 @@
      xmlns:xlink="http://www.w3.org/1999/xlink"
      width="64" height="64" viewBox="0 0 64 64">
   <title>MARISHOKU/OS Kvantum control atlas</title>
-  <desc>Original square-edged Qt controls using the MR-10 magenta, cyan, and lavender palette.</desc>
+  <desc>Original square-edged Qt controls using Win9x grey, navy, pink, and cyan.</desc>
   <defs>
     <style type="text/css"><![CDATA[
       .crisp { shape-rendering: crispEdges; }
-      .ink { fill: #201727; }
-      .face { fill: #d8cdd9; }
-      .base { fill: #fff3ff; }
-      .alt { fill: #e8dce9; }
-      .mid { fill: #8f7e94; }
-      .dark { fill: #56445e; }
-      .pink { fill: #d63bac; }
-      .magenta { fill: #8f276f; }
-      .violet { fill: #7241b8; }
-      .cyan { fill: #62dde4; }
+      .ink { fill: #101018; }
+      .face { fill: #c0c0ca; }
+      .base { fill: #f6f4fa; }
+      .alt { fill: #dadbe5; }
+      .mid { fill: #8a8a98; }
+      .dark { fill: #404050; }
+      .pink { fill: #ff2c9d; }
+      .magenta { fill: #000080; }
+      .violet { fill: #1239d0; }
+      .cyan { fill: #27dcec; }
     ]]></style>
 
     <!-- Flat interiors. -->
@@ -26,7 +26,7 @@
     <rect id="_fill-pressed" class="mid crisp" width="16" height="16"/>
     <rect id="_fill-selected" class="magenta crisp" width="16" height="16"/>
     <rect id="_fill-hot" class="pink crisp" width="16" height="16"/>
-    <rect id="_fill-dark" fill="#15101f" class="crisp" width="16" height="16"/>
+    <rect id="_fill-dark" fill="#080812" class="crisp" width="16" height="16"/>
 
     <!-- Raised two-pixel frame. -->
     <rect id="_raised-top" class="base crisp" width="16" height="2"/>
@@ -71,12 +71,12 @@
     <!-- One-pixel selection frame. -->
     <rect id="_select-top" class="cyan crisp" width="16" height="1"/>
     <rect id="_select-left" class="cyan crisp" width="1" height="16"/>
-    <rect id="_select-bottom" fill="#15101f" class="crisp" width="16" height="1"/>
-    <rect id="_select-right" fill="#15101f" class="crisp" width="1" height="16"/>
+    <rect id="_select-bottom" fill="#080812" class="crisp" width="16" height="1"/>
+    <rect id="_select-right" fill="#080812" class="crisp" width="1" height="16"/>
     <rect id="_select-tl" class="cyan crisp" width="1" height="1"/>
     <rect id="_select-tr" class="cyan crisp" width="1" height="1"/>
-    <rect id="_select-bl" fill="#15101f" class="crisp" width="1" height="1"/>
-    <rect id="_select-br" fill="#15101f" class="crisp" width="1" height="1"/>
+    <rect id="_select-bl" fill="#080812" class="crisp" width="1" height="1"/>
+    <rect id="_select-br" fill="#080812" class="crisp" width="1" height="1"/>
 
     <!-- Indicators. -->
     <g id="_arrow-normal" class="crisp"><path class="ink" d="M1 2h2v2h2v2h2v2H5v2H3V8H1z"/></g>
@@ -118,7 +118,7 @@
   <use id="button-toggled-bottom" xlink:href="#_pressed-bottom"/><use id="button-toggled-right" xlink:href="#_pressed-right"/>
   <use id="button-toggled-topleft" xlink:href="#_focus-tl"/><use id="button-toggled-topright" xlink:href="#_focus-tr"/>
   <use id="button-toggled-bottomleft" xlink:href="#_focus-bl"/><use id="button-toggled-bottomright" xlink:href="#_pressed-br"/>
-  <rect id="button-default-indicator" x="0.5" y="0.5" width="15" height="15" fill="none" stroke="#62dde4" stroke-width="1" class="crisp"/>
+  <rect id="button-default-indicator" x="0.5" y="0.5" width="15" height="15" fill="none" stroke="#27dcec" stroke-width="1" class="crisp"/>
 
   <!-- Line edits and generic content frames. -->
   <use id="lineedit-normal" xlink:href="#_fill-base"/>

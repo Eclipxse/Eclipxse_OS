@@ -20,7 +20,7 @@ palette.
 
 ## Current milestone
 
-Phase 1B is ready for visual review in the
+Phase 1C is ready for visual review in the
 Debian VM. This repository currently contains:
 
 - the approved visual and interaction specification;
@@ -30,6 +30,8 @@ Debian VM. This repository currently contains:
 - original Plasma shell SVGs for panels, dialogs, buttons, fields, tasks,
   selections, headings, arrows, separators, and tooltips;
 - an original Kvantum Qt 5/6 control atlas for application interiors;
+- a Win9x grey taskbar, classic launcher layout, navy title bars, and icon MVP;
+- two licensed, credited 1920x1080 London/cyber-goth wallpaper composites;
 - Noto Sans/Mono typography with Japanese glyph fallback;
 - installation and validation helpers.
 
@@ -47,7 +49,7 @@ themes/               Plasma, Qt, GTK, SDDM, boot, icon, and cursor themes
 tools/                Developer installation and validation helpers
 ```
 
-## Test the Phase 1B theme in a Plasma 6 VM
+## Test the Phase 1C desktop in a Plasma 6 VM
 
 First-time setup installs the official Debian Kvantum and Noto packages:
 
@@ -61,9 +63,25 @@ Later theme-only updates do not need sudo:
 ./tools/install-theme.sh --apply
 ```
 
+To deliberately rebuild the bottom taskbar and reset the wallpaper again:
+
+```bash
+./tools/install-theme.sh --apply --layout
+```
+
 Log out and back in once after the first application. The script installs into
 the current user's home directory. Only `--install-deps` modifies the base OS,
 through Debian's package manager.
+
+## Included wallpaper profiles
+
+![MARISHOKU Night Line](artwork/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png)
+
+![MARISHOKU Neon Velvet](artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png)
+
+The shipped composites use transformed Pexels photography and a public-domain
+ukiyo-e image. Full source links, authors, and terms are recorded in
+`ASSETS.yml`; the untouched source photos are not committed.
 
 ## Safety rule
 

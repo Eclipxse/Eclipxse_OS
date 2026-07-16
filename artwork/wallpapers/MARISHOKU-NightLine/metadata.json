@@ -1,0 +1,14 @@
+{
+  "KPlugin": {
+    "Authors": [
+      { "Name": "MARISHOKU/OS Project" },
+      { "Name": "Trev W. Adams / Pexels" },
+      { "Name": "Mikhail Nilov / Pexels" }
+    ],
+    "Description": "Rainy London, adult cyber-goth portrait, ukiyo-e wave, and CRT pixel treatment",
+    "Id": "MARISHOKU-NightLine",
+    "License": "LicenseRef-Pexels-and-Public-Domain",
+    "Name": "MARISHOKU Night Line",
+    "Version": "0.4.0"
+  }
+}

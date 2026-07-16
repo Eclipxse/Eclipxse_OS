@@ -6,6 +6,11 @@ enabled=false
 
 [ContrastEffect]
 enabled=false
+
+[Wallpaper]
+defaultWallpaperTheme=MARISHOKU-NightLine
+defaultFileSuffix=.png
+defaultWidth=1920
+defaultHeight=1080
 [Settings]
 FallbackTheme=default
-

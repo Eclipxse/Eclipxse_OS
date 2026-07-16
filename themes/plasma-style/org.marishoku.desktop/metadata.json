@@ -5,11 +5,11 @@
         "Name": "MARISHOKU/OS Project"
       }
     ],
-    "Description": "Hard-edged magenta and cyan Plasma 6 style for MARISHOKU/OS",
+    "Description": "Win9x grey-and-navy Plasma 6 chrome with MARISHOKU neon signals",
     "Id": "org.marishoku.desktop",
     "License": "GPL-3.0-or-later",
     "Name": "MARISHOKU/OS",
-    "Version": "0.3.0"
+    "Version": "0.4.0"
   },
   "X-Plasma-API-Minimum-Version": "6.0"
 }

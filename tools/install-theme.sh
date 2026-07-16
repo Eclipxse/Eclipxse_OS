@@ -4,13 +4,15 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 APPLY=false
 INSTALL_DEPS=false
+APPLY_LAYOUT=false
 
 usage() {
   cat <<'EOF'
-Usage: ./tools/install-theme.sh [--apply] [--install-deps]
+Usage: ./tools/install-theme.sh [--apply] [--layout] [--install-deps]
 
 Installs the MARISHOKU/OS Plasma 6 and Kvantum themes for the current user.
   --apply         Activate the complete theme and MARISHOKU typography.
+  --layout        Rebuild the classic taskbar and reapply the default wallpaper.
   --install-deps  Use apt/sudo to install Kvantum and Noto Japanese fonts.
 EOF
 }
@@ -18,6 +20,7 @@ EOF
 for arg in "$@"; do
   case "$arg" in
     --apply) APPLY=true ;;
+    --layout) APPLY_LAYOUT=true ;;
     --install-deps) INSTALL_DEPS=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf 'Unknown option: %s\n' "$arg" >&2; usage >&2; exit 2 ;;
@@ -56,6 +59,18 @@ mkdir -p "$HOME/.config/Kvantum"
 cp -a "$ROOT/themes/kvantum/MARISHOKU" \
   "$HOME/.config/Kvantum/"
 
+rm -rf "$HOME/.local/share/icons/MARISHOKU"
+mkdir -p "$HOME/.local/share/icons"
+cp -a "$ROOT/themes/icons/MARISHOKU" \
+  "$HOME/.local/share/icons/"
+
+for wallpaper in "$ROOT"/artwork/wallpapers/MARISHOKU-*; do
+  wallpaper_name="$(basename "$wallpaper")"
+  rm -rf "$HOME/.local/share/wallpapers/$wallpaper_name"
+  mkdir -p "$HOME/.local/share/wallpapers"
+  cp -a "$wallpaper" "$HOME/.local/share/wallpapers/"
+done
+
 rm -rf "$HOME/.cache/plasma"* 2>/dev/null || true
 
 if "$APPLY"; then
@@ -67,6 +82,7 @@ if "$APPLY"; then
 
   if command -v kwriteconfig6 >/dev/null 2>&1; then
     kwriteconfig6 --file kdeglobals --group General --key ColorScheme MARISHOKU
+    kwriteconfig6 --file kdeglobals --group Icons --key Theme MARISHOKU
     kwriteconfig6 --file plasmarc --group Theme --key name org.marishoku.desktop
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.kwin.aurorae
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme __aurorae__svg__MARISHOKU
@@ -101,11 +117,39 @@ if "$APPLY"; then
     qdbus6 org.kde.KWin /KWin reconfigure >/dev/null 2>&1 || true
   fi
 
+  layout_marker="$HOME/.config/marishoku/layout-v0.4.applied"
+  if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
+    applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    if [[ -f "$applet_config" && ! -f "${applet_config}.pre-marishoku.bak" ]]; then
+      cp -a "$applet_config" "${applet_config}.pre-marishoku.bak"
+    fi
+
+    wallpaper_uri="file://$HOME/.local/share/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png"
+    layout_script="$(sed "s|@WALLPAPER_URI@|$wallpaper_uri|g" "$ROOT/tools/apply-desktop-layout.js")"
+    layout_applied=false
+    if command -v qdbus6 >/dev/null 2>&1; then
+      qdbus6 org.kde.plasmashell /PlasmaShell \
+        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
+      layout_applied=true
+    elif command -v qdbus >/dev/null 2>&1; then
+      qdbus org.kde.plasmashell /PlasmaShell \
+        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
+      layout_applied=true
+    fi
+
+    if "$layout_applied"; then
+      mkdir -p "$(dirname "$layout_marker")"
+      touch "$layout_marker"
+    else
+      printf '%s\n' 'Plasma layout could not be applied because qdbus was unavailable.' >&2
+    fi
+  fi
+
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1B theme installed and selected.' \
+    'MARISHOKU/OS Phase 1C theme, wallpaper, icons, and classic taskbar installed.' \
     'Log out and back in once to refresh every Plasma component.'
 else
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1B theme installed for the current user.' \
+    'MARISHOKU/OS Phase 1C theme installed for the current user.' \
     'Run again with --apply, or select it in System Settings -> Colors & Themes -> Global Theme.'
 fi

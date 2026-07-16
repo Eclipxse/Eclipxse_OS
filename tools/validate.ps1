@@ -35,6 +35,13 @@ $required = @(
     'themes/kvantum/MARISHOKU/MARISHOKU.kvconfig',
     'themes/kvantum/MARISHOKU/MARISHOKU.svg',
     'themes/typography/MARISHOKU.conf'
+    'themes/icons/MARISHOKU/index.theme'
+    'themes/icons/MARISHOKU/scalable/apps/marishoku-start.svg'
+    'artwork/wallpapers/MARISHOKU-NightLine/metadata.json'
+    'artwork/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png'
+    'artwork/wallpapers/MARISHOKU-NeonVelvet/metadata.json'
+    'artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png'
+    'tools/apply-desktop-layout.js'
 )
 
 foreach ($path in $required) {
@@ -191,8 +198,8 @@ foreach ($setting in @(
     '(?m)^\[%General\]$',
     '(?m)^animate_states=false$',
     '(?m)^composite=false$',
-    '(?m)^window\.color=#D8CDD9$',
-    '(?m)^highlight\.color=#8F276F$',
+    '(?im)^window\.color=#C0C0CA$',
+    '(?im)^highlight\.color=#000080$',
     '(?m)^frame\.element=button$',
     '(?m)^frame\.element=lineedit$',
     '(?m)^frame\.element=itemview$'
@@ -238,8 +245,8 @@ function Get-ContrastRatio([string] $foreground, [string] $background) {
 
 $contrastPairs = @(
     @{ Name = 'light text on dark shell'; Foreground = $tokens.color.panel050; Background = $tokens.color.ink950 },
-    @{ Name = 'dark text on panel face'; Foreground = '#201727'; Background = $tokens.color.panel200 },
-    @{ Name = 'title text on active magenta'; Foreground = $tokens.color.panel050; Background = $tokens.color.magenta700 },
+    @{ Name = 'dark text on panel face'; Foreground = '#101018'; Background = $tokens.color.panel200 },
+    @{ Name = 'title text on active navy'; Foreground = $tokens.color.panel050; Background = $tokens.color.titleBlue },
     @{ Name = 'cyan focus on dark shell'; Foreground = $tokens.color.cyan400; Background = $tokens.color.ink950 }
 )
 
@@ -250,4 +257,4 @@ foreach ($pair in $contrastPairs) {
     }
 }
 
-Write-Host 'MARISHOKU/OS Phase 1B validation passed.' -ForegroundColor Magenta
+Write-Host 'MARISHOKU/OS Phase 1C validation passed.' -ForegroundColor Cyan
