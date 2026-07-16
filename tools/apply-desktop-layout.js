@@ -12,7 +12,7 @@ var taskbar = new Panel();
 taskbar.location = "bottom";
 taskbar.alignment = "left";
 taskbar.lengthMode = "fill";
-taskbar.height = 40;
+taskbar.height = 64;
 taskbar.hiding = "none";
 
 function addFirstWidget(candidates) {
@@ -27,13 +27,13 @@ function addFirstWidget(candidates) {
 var launcher = addFirstWidget(["org.kde.plasma.kicker", "org.kde.plasma.kickoff"]);
 if (launcher) {
     launcher.currentConfigGroup = ["General"];
-    launcher.writeConfig("icon", "marishoku-start");
+    launcher.writeConfig("icon", "marishoku-heart");
     launcher.writeConfig("showAppsByName", true);
 }
 
-addFirstWidget(["org.kde.plasma.pager"]);
 addFirstWidget(["org.kde.plasma.taskmanager", "org.kde.plasma.icontasks"]);
 addFirstWidget(["org.kde.plasma.panelspacer"]);
+taskbar.addWidget("org.marishoku.status");
 addFirstWidget(["org.kde.plasma.systemtray"]);
 
 var clock = addFirstWidget(["org.kde.plasma.digitalclock"]);
@@ -43,6 +43,16 @@ if (clock) {
     clock.writeConfig("showSeconds", false);
     clock.writeConfig("use24hFormat", 2);
 }
+
+var toolRail = new Panel();
+toolRail.location = "left";
+toolRail.alignment = "left";
+toolRail.lengthMode = "custom";
+toolRail.minimumLength = 510;
+toolRail.maximumLength = 510;
+toolRail.height = 52;
+toolRail.hiding = "none";
+toolRail.addWidget("org.marishoku.toolrail");
 
 var allDesktops = desktops();
 for (var desktopIndex = 0; desktopIndex < allDesktops.length; desktopIndex += 1) {

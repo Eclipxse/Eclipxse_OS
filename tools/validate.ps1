@@ -42,6 +42,19 @@ $required = @(
     'artwork/wallpapers/MARISHOKU-NeonVelvet/metadata.json'
     'artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png'
     'tools/apply-desktop-layout.js'
+    'artwork/wallpapers/MARISHOKU-URA/metadata.json'
+    'artwork/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png'
+    'themes/icons/MARISHOKU/scalable/apps/marishoku-heart.svg'
+    'themes/konsole/MARISHOKU.colorscheme'
+    'themes/konsole/MARISHOKU.profile'
+    'packages/plasma/applets/org.marishoku.status/metadata.json'
+    'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml'
+    'packages/plasma/applets/org.marishoku.toolrail/metadata.json'
+    'packages/plasma/applets/org.marishoku.toolrail/contents/ui/main.qml'
+    'packages/autostart/org.marishoku.system-ready.desktop'
+    'packages/applications/org.marishoku.dolphin.desktop'
+    'packages/applications/org.marishoku.konsole.desktop'
+    'tools/show-system-ready.sh'
 )
 
 foreach ($path in $required) {
@@ -198,8 +211,8 @@ foreach ($setting in @(
     '(?m)^\[%General\]$',
     '(?m)^animate_states=false$',
     '(?m)^composite=false$',
-    '(?im)^window\.color=#C0C0CA$',
-    '(?im)^highlight\.color=#000080$',
+    '(?im)^window\.color=#D8CDD9$',
+    '(?im)^highlight\.color=#8F276F$',
     '(?m)^frame\.element=button$',
     '(?m)^frame\.element=lineedit$',
     '(?m)^frame\.element=itemview$'
@@ -245,8 +258,8 @@ function Get-ContrastRatio([string] $foreground, [string] $background) {
 
 $contrastPairs = @(
     @{ Name = 'light text on dark shell'; Foreground = $tokens.color.panel050; Background = $tokens.color.ink950 },
-    @{ Name = 'dark text on panel face'; Foreground = '#101018'; Background = $tokens.color.panel200 },
-    @{ Name = 'title text on active navy'; Foreground = $tokens.color.panel050; Background = $tokens.color.titleBlue },
+    @{ Name = 'dark text on panel face'; Foreground = '#201727'; Background = $tokens.color.panel200 },
+    @{ Name = 'title text on active magenta'; Foreground = $tokens.color.panel050; Background = $tokens.color.titleMagenta },
     @{ Name = 'cyan focus on dark shell'; Foreground = $tokens.color.cyan400; Background = $tokens.color.ink950 }
 )
 
@@ -257,4 +270,4 @@ foreach ($pair in $contrastPairs) {
     }
 }
 
-Write-Host 'MARISHOKU/OS Phase 1C validation passed.' -ForegroundColor Cyan
+Write-Host 'MARISHOKU/OS Phase 1D concept-match validation passed.' -ForegroundColor Magenta

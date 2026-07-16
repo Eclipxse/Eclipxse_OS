@@ -10,6 +10,7 @@ policy:
     - GPL-compatible-software-assets
     - Pexels-License
     - Pexels-License-and-public-domain
+    - Pexels-License-and-CC-BY-SA-4.0
     - public-domain
   require_adult_subjects_for_explicit_content: true
 assets:
@@ -25,12 +26,12 @@ assets:
     type: ui-concept
     origin: original-ai-assisted-generation
     author: MARISHOKU/OS Project
-    license: prototype-only
-    distributable: false
+    license: CC-BY-SA-4.0
+    distributable: true
     notes: >-
       Generated with the built-in OpenAI image tool using the owner's four
-      supplied images as mood references only. This is a visual target, not a
-      final wallpaper or redistributable OS asset.
+      supplied images as mood references only. The owner approved this original
+      concept as distributable project artwork and as the exact Phase 1D target.
   - id: kvantum-marishoku-v0.1
     path: themes/kvantum/MARISHOKU/MARISHOKU.svg
     type: qt-control-atlas
@@ -77,3 +78,17 @@ assets:
       Original bus, roundel, blossoms, labels, palette reduction, rain, and CRT
       treatment were drawn by the MARISHOKU/OS Project. Untouched stock files
       are not redistributed.
+  - id: wallpaper-marishoku-ura-v0.5
+    path: artwork/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png
+    type: transformed-wallpaper-composite
+    origin: approved-project-concept-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams
+    license: Pexels-License-and-CC-BY-SA-4.0
+    subject_age_review: stylized-adult-character-approved-by-owner
+    distributable: true
+    notes: >-
+      Uses the clean character/signage crop from the approved project-owned
+      desktop concept and rebuilds the obscured left side from Trev W. Adams'
+      rainy London photograph
+      (https://www.pexels.com/photo/london-rainy-27585636/). The build is a
+      deterministic Pillow composite and uses no generative image model.

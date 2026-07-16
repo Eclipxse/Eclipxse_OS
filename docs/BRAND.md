@@ -1,4 +1,4 @@
-# MARISHOKU/OS visual system v0.4
+# MARISHOKU/OS visual system v0.5
 
 ## Brand construction
 
@@ -24,16 +24,17 @@ not over long passages of text.
 
 | Token | Hex | Use |
 |---|---:|---|
-| `ink-950` | `#080812` | Outlines and dark shell elements |
-| `night-900` | `#303040` | Tooltip and inactive depth |
-| `panel-200` | `#C0C0CA` | Win9x window, control, and taskbar faces |
-| `panel-050` | `#F6F4FA` | Bevel highlights and active text |
-| `panel-600` | `#404050` | Bevel shadows and inactive chrome |
-| `title-blue` | `#000080` | Active title bars and selection |
-| `electric-blue` | `#1239D0` | Active bevel and connected state |
-| `pink-500` | `#FF2C9D` | Attention and wallpaper signal color |
-| `cyan-400` | `#27DCEC` | Focus and informational state |
-| `error-400` | `#FF3366` | Destructive and URA emphasis |
+| `ink-950` | `#15101F` | Outlines and terminal darkness |
+| `night-900` | `#24162B` | Tooltip and inactive depth |
+| `panel-200` | `#D8CDD9` | Lavender Win9x window, control, and taskbar faces |
+| `panel-050` | `#FFF3FF` | Bevel highlights and active text |
+| `panel-600` | `#56445E` | Bevel shadows and inactive chrome |
+| `title-magenta` | `#C82E91` | Active title bars |
+| `deep-magenta` | `#8F276F` | Selection and pressed states |
+| `pink-500` | `#D63BAC` | Attention, hover, and heart identity |
+| `violet-500` | `#7241B8` | Secondary depth |
+| `cyan-400` | `#62DDE4` | Focus and informational state |
+| `error-400` | `#FF4C91` | Destructive and URA emphasis |
 
 ### Geometry
 
@@ -41,14 +42,14 @@ not over long passages of text.
 - One-pixel ink outline around interactive objects.
 - Two-stage bevel: light on top/left, shadow on bottom/right.
 - Title bars are 26 px at 100% scale and must pixel-snap.
-- Default desktop panel is 40 px at 100% scale.
+- Default desktop panel is 64 px at 100% scale to match the approved concept.
 - Icons are authored on 16, 24, 32, and 48 px grids.
 - Blur, glass, floating cards, and soft shadows are disabled by default.
 
 ### Contrast floor
 
 - Normal-size interface text must meet WCAG AA `4.5:1` contrast.
-- White title-bar and selection text sits on `title-blue` (well above `4.5:1`).
+- White title-bar text sits on `title-magenta` at a compliant contrast ratio.
 - `pink-500` remains a non-text accent unless paired with a compliant ink color
   at an approved size.
 

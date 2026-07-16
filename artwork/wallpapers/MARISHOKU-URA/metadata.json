@@ -1,0 +1,13 @@
+{
+  "KPlugin": {
+    "Authors": [
+      { "Name": "MARISHOKU/OS Project" },
+      { "Name": "Trev W. Adams / Pexels" }
+    ],
+    "Description": "Approved URA concept character in a rebuilt rainy neon city",
+    "Id": "MARISHOKU-URA",
+    "License": "LicenseRef-Project-Owned-and-Pexels",
+    "Name": "MARISHOKU URA",
+    "Version": "0.5.0"
+  }
+}

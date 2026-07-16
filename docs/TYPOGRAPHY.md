@@ -14,7 +14,7 @@ late-1990s Japanese messaging terminal without sacrificing daily usability.
 
 The Debian packages are `fonts-noto-core` and `fonts-noto-cjk`. The latter also
 includes `Noto Sans Mono CJK JP`, which keeps mixed Latin/Japanese terminal text
-aligned. Phase 1C installs both only when `--install-deps` is requested.
+aligned. Phase 1D installs both only when `--install-deps` is requested.
 
 The UI intentionally avoids synthetic italics and excessive bold text. The
 pixel character comes primarily from square geometry, two-pixel bevels, sharp

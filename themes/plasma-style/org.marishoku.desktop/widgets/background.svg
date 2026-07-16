@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-  <g id="topleft"><rect width="4" height="4" fill="#080812"/><path d="M1 4V1h3" fill="none" stroke="#f6f4fa"/><rect x="2" y="2" width="2" height="2" fill="#c0c0ca"/></g>
-  <g id="top"><rect x="4" width="40" height="4" fill="#080812"/><rect x="4" y="1" width="40" height="1" fill="#f6f4fa"/><rect x="4" y="2" width="40" height="2" fill="#c0c0ca"/></g>
-  <g id="topright"><rect x="44" width="4" height="4" fill="#080812"/><path d="M44 1h3v3" fill="none" stroke="#f6f4fa"/><rect x="44" y="2" width="2" height="2" fill="#c0c0ca"/></g>
-  <g id="left"><rect y="4" width="4" height="40" fill="#080812"/><rect x="1" y="4" width="1" height="40" fill="#f6f4fa"/><rect x="2" y="4" width="2" height="40" fill="#c0c0ca"/></g>
-  <rect id="center" x="4" y="4" width="40" height="40" fill="#c0c0ca"/>
-  <g id="right"><rect x="44" y="4" width="4" height="40" fill="#080812"/><rect x="44" y="4" width="2" height="40" fill="#8a8a98"/><rect x="46" y="4" width="1" height="40" fill="#404050"/></g>
-  <g id="bottomleft"><rect y="44" width="4" height="4" fill="#080812"/><path d="M1 44v3h3" fill="none" stroke="#f6f4fa"/><rect x="2" y="44" width="2" height="2" fill="#8a8a98"/></g>
-  <g id="bottom"><rect x="4" y="44" width="40" height="4" fill="#080812"/><rect x="4" y="44" width="40" height="2" fill="#8a8a98"/><rect x="4" y="46" width="40" height="1" fill="#404050"/></g>
-  <g id="bottomright"><rect x="44" y="44" width="4" height="4" fill="#080812"/><path d="M44 47h3v-3" fill="none" stroke="#404050"/><rect x="44" y="44" width="2" height="2" fill="#8a8a98"/></g>
+  <g id="topleft"><rect width="4" height="4" fill="#15101f"/><path d="M1 4V1h3" fill="none" stroke="#fff3ff"/><rect x="2" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="top"><rect x="4" width="40" height="4" fill="#15101f"/><rect x="4" y="1" width="40" height="1" fill="#fff3ff"/><rect x="4" y="2" width="40" height="2" fill="#d8cdd9"/></g>
+  <g id="topright"><rect x="44" width="4" height="4" fill="#15101f"/><path d="M44 1h3v3" fill="none" stroke="#fff3ff"/><rect x="44" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="left"><rect y="4" width="4" height="40" fill="#15101f"/><rect x="1" y="4" width="1" height="40" fill="#fff3ff"/><rect x="2" y="4" width="2" height="40" fill="#d8cdd9"/></g>
+  <rect id="center" x="4" y="4" width="40" height="40" fill="#d8cdd9"/>
+  <g id="right"><rect x="44" y="4" width="4" height="40" fill="#15101f"/><rect x="44" y="4" width="2" height="40" fill="#8f7e94"/><rect x="46" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="bottomleft"><rect y="44" width="4" height="4" fill="#15101f"/><path d="M1 44v3h3" fill="none" stroke="#fff3ff"/><rect x="2" y="44" width="2" height="2" fill="#8f7e94"/></g>
+  <g id="bottom"><rect x="4" y="44" width="40" height="4" fill="#15101f"/><rect x="4" y="44" width="40" height="2" fill="#8f7e94"/><rect x="4" y="46" width="40" height="1" fill="#56445e"/></g>
+  <g id="bottomright"><rect x="44" y="44" width="4" height="4" fill="#15101f"/><path d="M44 47h3v-3" fill="none" stroke="#56445e"/><rect x="44" y="44" width="2" height="2" fill="#8f7e94"/></g>
   <rect id="hint-stretch-borders" width="1" height="1" fill="#000"/>
   <rect id="hint-top-margin" width="1" height="5" fill="#000"/>
   <rect id="hint-right-margin" width="5" height="1" fill="#000"/>

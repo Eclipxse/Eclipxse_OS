@@ -25,6 +25,7 @@ approved colors.
   - [ ] Cursor set and remaining application categories.
 - [ ] Launcher, task switcher, notifications, OSD, and KRunner skin.
   - [x] Classic bottom taskbar, launcher identity, and task buttons.
+  - [x] Phase 1D left tool rail, status block, and URA greeting dialog.
   - [ ] Notifications, OSD, and KRunner-specific artwork.
 - [ ] SDDM, lock screen, and splash screen.
 - [ ] OMOTE/URA switcher.

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=ターミナル
+GenericName=MARISHOKU Terminal
+Comment=Open Konsole with the MARISHOKU profile
+Exec=konsole --profile MARISHOKU
+Icon=org.kde.konsole
+Categories=System;TerminalEmulator;
+StartupNotify=true

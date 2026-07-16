@@ -33,7 +33,7 @@ if "$INSTALL_DEPS"; then
     exit 1
   fi
   sudo apt-get update
-  sudo apt-get install -y qt-style-kvantum fonts-noto-core fonts-noto-cjk
+  sudo apt-get install -y qt-style-kvantum fonts-noto-core fonts-noto-cjk kdialog
 fi
 
 install -Dm644 "$ROOT/themes/colors/MARISHOKU.colors" \
@@ -64,6 +64,34 @@ mkdir -p "$HOME/.local/share/icons"
 cp -a "$ROOT/themes/icons/MARISHOKU" \
   "$HOME/.local/share/icons/"
 
+for applet in "$ROOT"/packages/plasma/applets/*; do
+  applet_name="$(basename "$applet")"
+  applet_target="$HOME/.local/share/plasma/plasmoids/$applet_name"
+  if command -v kpackagetool6 >/dev/null 2>&1; then
+    if [[ -d "$applet_target" ]]; then
+      kpackagetool6 --type Plasma/Applet --upgrade "$applet" >/dev/null 2>&1 || true
+    else
+      kpackagetool6 --type Plasma/Applet --install "$applet" >/dev/null 2>&1 || true
+    fi
+  fi
+  rm -rf "$applet_target"
+  mkdir -p "$HOME/.local/share/plasma/plasmoids"
+  cp -a "$applet" "$HOME/.local/share/plasma/plasmoids/"
+done
+
+install -Dm644 "$ROOT/themes/konsole/MARISHOKU.colorscheme" \
+  "$HOME/.local/share/konsole/MARISHOKU.colorscheme"
+install -Dm644 "$ROOT/themes/konsole/MARISHOKU.profile" \
+  "$HOME/.local/share/konsole/MARISHOKU.profile"
+install -Dm755 "$ROOT/tools/show-system-ready.sh" \
+  "$HOME/.local/bin/marishoku-system-ready"
+install -Dm644 "$ROOT/packages/autostart/org.marishoku.system-ready.desktop" \
+  "$HOME/.config/autostart/org.marishoku.system-ready.desktop"
+for application in "$ROOT"/packages/applications/*.desktop; do
+  install -Dm644 "$application" \
+    "$HOME/.local/share/applications/$(basename "$application")"
+done
+
 for wallpaper in "$ROOT"/artwork/wallpapers/MARISHOKU-*; do
   wallpaper_name="$(basename "$wallpaper")"
   rm -rf "$HOME/.local/share/wallpapers/$wallpaper_name"
@@ -83,6 +111,7 @@ if "$APPLY"; then
   if command -v kwriteconfig6 >/dev/null 2>&1; then
     kwriteconfig6 --file kdeglobals --group General --key ColorScheme MARISHOKU
     kwriteconfig6 --file kdeglobals --group Icons --key Theme MARISHOKU
+    kwriteconfig6 --file konsolerc --group 'Desktop Entry' --key DefaultProfile MARISHOKU.profile
     kwriteconfig6 --file plasmarc --group Theme --key name org.marishoku.desktop
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.kwin.aurorae
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme __aurorae__svg__MARISHOKU
@@ -117,14 +146,18 @@ if "$APPLY"; then
     qdbus6 org.kde.KWin /KWin reconfigure >/dev/null 2>&1 || true
   fi
 
-  layout_marker="$HOME/.config/marishoku/layout-v0.4.applied"
+  if command -v kbuildsycoca6 >/dev/null 2>&1; then
+    kbuildsycoca6 >/dev/null 2>&1 || true
+  fi
+
+  layout_marker="$HOME/.config/marishoku/layout-v0.5.applied"
   if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
     applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
-    if [[ -f "$applet_config" && ! -f "${applet_config}.pre-marishoku.bak" ]]; then
-      cp -a "$applet_config" "${applet_config}.pre-marishoku.bak"
+    if [[ -f "$applet_config" && ! -f "${applet_config}.pre-phase1d.bak" ]]; then
+      cp -a "$applet_config" "${applet_config}.pre-phase1d.bak"
     fi
 
-    wallpaper_uri="file://$HOME/.local/share/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png"
+    wallpaper_uri="file://$HOME/.local/share/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png"
     layout_script="$(sed "s|@WALLPAPER_URI@|$wallpaper_uri|g" "$ROOT/tools/apply-desktop-layout.js")"
     layout_applied=false
     if command -v qdbus6 >/dev/null 2>&1; then
@@ -146,10 +179,10 @@ if "$APPLY"; then
   fi
 
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1C theme, wallpaper, icons, and classic taskbar installed.' \
+    'MARISHOKU/OS Phase 1D concept-match desktop installed.' \
     'Log out and back in once to refresh every Plasma component.'
 else
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1C theme installed for the current user.' \
+    'MARISHOKU/OS Phase 1D desktop installed for the current user.' \
     'Run again with --apply, or select it in System Settings -> Colors & Themes -> Global Theme.'
 fi

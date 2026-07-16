@@ -1,31 +1,31 @@
 [Colors:Window]
-BackgroundNormal=192,192,202
-ForegroundNormal=16,16,24
+BackgroundNormal=216,205,217
+ForegroundNormal=32,23,39
 
 [Colors:Header]
-BackgroundNormal=0,0,128
-ForegroundNormal=246,244,250
+BackgroundNormal=143,39,111
+ForegroundNormal=255,243,255
 
 [Colors:View]
-BackgroundNormal=246,244,250
-ForegroundNormal=16,16,24
-DecorationFocus=39,220,236
-DecorationHover=255,44,157
+BackgroundNormal=255,243,255
+ForegroundNormal=32,23,39
+DecorationFocus=98,221,228
+DecorationHover=214,59,172
 
 [Colors:Button]
-BackgroundNormal=192,192,202
-ForegroundNormal=16,16,24
-DecorationFocus=39,220,236
-DecorationHover=255,44,157
+BackgroundNormal=216,205,217
+ForegroundNormal=32,23,39
+DecorationFocus=98,221,228
+DecorationHover=214,59,172
 
 [Colors:Selection]
-BackgroundNormal=0,0,128
-ForegroundNormal=246,244,250
+BackgroundNormal=143,39,111
+ForegroundNormal=255,243,255
 
 [Colors:Tooltip]
-BackgroundNormal=8,8,18
-ForegroundNormal=246,244,250
+BackgroundNormal=21,16,31
+ForegroundNormal=255,243,255
 
 [Colors:Complementary]
-BackgroundNormal=8,8,18
-ForegroundNormal=246,244,250
+BackgroundNormal=21,16,31
+ForegroundNormal=255,243,255

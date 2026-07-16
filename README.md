@@ -20,7 +20,7 @@ palette.
 
 ## Current milestone
 
-Phase 1C is ready for visual review in the
+Phase 1D is ready for exact-concept review in the
 Debian VM. This repository currently contains:
 
 - the approved visual and interaction specification;
@@ -30,7 +30,9 @@ Debian VM. This repository currently contains:
 - original Plasma shell SVGs for panels, dialogs, buttons, fields, tasks,
   selections, headings, arrows, separators, and tooltips;
 - an original Kvantum Qt 5/6 control atlas for application interiors;
-- a Win9x grey taskbar, classic launcher layout, navy title bars, and icon MVP;
+- the approved lavender Win9x taskbar, hot-magenta title bars, and heart launcher;
+- a left-side pixel tool rail and fixed MARISHOKU/OS taskbar status block;
+- a MARISHOKU Konsole profile and URA login-ready dialog;
 - two licensed, credited 1920x1080 London/cyber-goth wallpaper composites;
 - Noto Sans/Mono typography with Japanese glyph fallback;
 - installation and validation helpers.
@@ -49,7 +51,7 @@ themes/               Plasma, Qt, GTK, SDDM, boot, icon, and cursor themes
 tools/                Developer installation and validation helpers
 ```
 
-## Test the Phase 1C desktop in a Plasma 6 VM
+## Test the Phase 1D desktop in a Plasma 6 VM
 
 First-time setup installs the official Debian Kvantum and Noto packages:
 
@@ -75,13 +77,18 @@ through Debian's package manager.
 
 ## Included wallpaper profiles
 
+The default Phase 1D wallpaper is derived from the exact approved concept. Its
+baked fake windows were removed so the real Plasma windows can occupy the scene.
+
+![MARISHOKU URA](artwork/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png)
+
 ![MARISHOKU Night Line](artwork/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png)
 
 ![MARISHOKU Neon Velvet](artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png)
 
-The shipped composites use transformed Pexels photography and a public-domain
-ukiyo-e image. Full source links, authors, and terms are recorded in
-`ASSETS.yml`; the untouched source photos are not committed.
+The shipped composites use approved project artwork, transformed Pexels
+photography, and a public-domain ukiyo-e image. Full source links, authors, and
+terms are recorded in `ASSETS.yml`; untouched source photos are not committed.
 
 ## Safety rule
 
