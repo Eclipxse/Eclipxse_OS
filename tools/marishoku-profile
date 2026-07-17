@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: marishoku-profile omote|ura|--status
+
+Applies a complete MARISHOKU/OS desktop profile for the current user.
+EOF
+}
+
+if [[ ${1:-} == "--status" ]]; then
+  if [[ -f "$HOME/.config/marishoku/profile" ]]; then
+    cat "$HOME/.config/marishoku/profile"
+  else
+    printf '%s\n' 'ura'
+  fi
+  exit 0
+fi
+
+profile="${1:-}"
+profile="${profile,,}"
+if [[ $profile != "omote" && $profile != "ura" ]]; then
+  usage >&2
+  exit 2
+fi
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "$script_dir/.." 2>/dev/null && pwd || true)"
+if [[ -d "$repo_root/artwork/wallpapers" ]]; then
+  wallpaper_root="$repo_root/artwork/wallpapers"
+elif [[ -d "$HOME/.local/share/wallpapers/MARISHOKU-URA-V1" ]]; then
+  wallpaper_root="$HOME/.local/share/wallpapers"
+else
+  wallpaper_root="/usr/share/wallpapers"
+fi
+
+if [[ $profile == "omote" ]]; then
+  scheme="MARISHOKU-OMOTE"
+  wallpaper_name="MARISHOKU-OMOTE"
+else
+  scheme="MARISHOKU"
+  wallpaper_name="MARISHOKU-URA-V1"
+fi
+
+wallpaper="$wallpaper_root/$wallpaper_name/contents/images/1920x1080.png"
+if [[ ! -f $wallpaper ]]; then
+  printf 'Profile wallpaper is missing: %s\n' "$wallpaper" >&2
+  exit 1
+fi
+
+if command -v plasma-apply-colorscheme >/dev/null 2>&1; then
+  plasma-apply-colorscheme "$scheme" >/dev/null
+fi
+
+if command -v kwriteconfig6 >/dev/null 2>&1; then
+  kwriteconfig6 --file kdeglobals --group General --key ColorScheme "$scheme"
+  kwriteconfig6 --file kscreenlockerrc --group Greeter --key WallpaperPlugin org.kde.image
+  kwriteconfig6 --file kscreenlockerrc --group Greeter --group Wallpaper \
+    --group org.kde.image --group General --key Image "file://$wallpaper"
+fi
+
+wallpaper_uri="file://$wallpaper"
+read -r -d '' layout_script <<EOF || true
+var ds = desktops();
+for (var i = 0; i < ds.length; i++) {
+    ds[i].wallpaperPlugin = "org.kde.image";
+    ds[i].currentConfigGroup = ["Wallpaper", "org.kde.image", "General"];
+    ds[i].writeConfig("Image", "$wallpaper_uri");
+    ds[i].writeConfig("FillMode", 2);
+}
+EOF
+
+if command -v qdbus6 >/dev/null 2>&1; then
+  qdbus6 org.kde.plasmashell /PlasmaShell \
+    org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
+elif command -v qdbus >/dev/null 2>&1; then
+  qdbus org.kde.plasmashell /PlasmaShell \
+    org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
+fi
+
+mkdir -p "$HOME/.config/marishoku"
+printf '%s\n' "$profile" > "$HOME/.config/marishoku/profile"
+
+if command -v qdbus6 >/dev/null 2>&1; then
+  qdbus6 org.kde.KWin /KWin reconfigure >/dev/null 2>&1 || true
+fi
+
+printf 'MARISHOKU profile active: %s\n' "${profile^^}"

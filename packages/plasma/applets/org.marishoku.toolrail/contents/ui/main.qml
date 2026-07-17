@@ -8,16 +8,16 @@ PlasmoidItem {
     compactRepresentation: fullRepresentation
 
     property var tools: [
-        { glyph: "♥", url: "applications:org.kde.dolphin.desktop", color: "#d63bac" },
-        { glyph: "✎", url: "applications:org.kde.kate.desktop", color: "#201727" },
-        { glyph: "⚒", url: "applications:systemsettings.desktop", color: "#201727" },
-        { glyph: "□", url: "applications:org.kde.spectacle.desktop", color: "#201727" },
-        { glyph: "A", url: "", color: "#201727" },
-        { glyph: "╱", url: "applications:org.marishoku.konsole.desktop", color: "#201727" },
-        { glyph: "▣", url: "applications:org.kde.dolphin.desktop", color: "#201727" },
-        { glyph: "○", url: "applications:firefox-esr.desktop", color: "#201727" },
-        { glyph: "☝", url: "", color: "#201727" },
-        { glyph: "▦", url: "applications:org.kde.plasma-systemmonitor.desktop", color: "#201727" }
+        { glyph: "\u2665", url: "applications:org.marishoku.welcome.desktop", color: "#d63bac" },
+        { glyph: "TXT", url: "applications:org.kde.kate.desktop", color: "#201727" },
+        { glyph: "CFG", url: "applications:org.marishoku.center.desktop", color: "#201727" },
+        { glyph: "[ ]", url: "applications:org.kde.spectacle.desktop", color: "#201727" },
+        { glyph: "\u3042", url: "applications:org.fcitx.Fcitx5.desktop", color: "#8f276f" },
+        { glyph: ">_", url: "applications:org.marishoku.konsole.desktop", color: "#201727" },
+        { glyph: "DIR", url: "applications:org.kde.dolphin.desktop", color: "#201727" },
+        { glyph: "NET", url: "applications:firefox-esr.desktop", color: "#201727" },
+        { glyph: "O/U", url: "applications:org.marishoku.profile-omote.desktop", color: "#7141b8" },
+        { glyph: "DSK", url: "applications:org.marishoku.storage.desktop", color: "#201727" }
     ]
 
     fullRepresentation: Item {
@@ -55,7 +55,7 @@ PlasmoidItem {
                         text: modelData.glyph
                         color: modelData.color
                         font.family: "Noto Sans Mono"
-                        font.pixelSize: 23
+                        font.pixelSize: modelData.glyph.length > 1 ? 11 : 23
                         font.bold: true
                         renderType: Text.NativeRendering
                     }

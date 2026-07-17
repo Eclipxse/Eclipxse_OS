@@ -25,3 +25,7 @@ theme=__aurorae__svg__MARISHOKU
 
 [kwinrc][Plugins]
 blurEnabled=false
+
+[kcminputrc][Mouse]
+cursorTheme=MARISHOKU-cursors
+cursorSize=32

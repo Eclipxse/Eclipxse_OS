@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome to MARISHOKU/OS
+Name[ja]=MARISHOKU/OS へようこそ
+Comment=Profiles and first steps
+Exec=marishoku-center --page welcome
+Icon=marishoku-heart
+Categories=System;
+Terminal=false

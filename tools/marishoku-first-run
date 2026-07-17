@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+marker="$HOME/.config/marishoku/welcome-v1.seen"
+if [[ -f $marker ]]; then
+  exit 0
+fi
+
+mkdir -p "$(dirname "$marker")"
+touch "$marker"
+exec marishoku-center --page welcome

@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=MARISHOKU BIOS
+Description=Pixel faux-BIOS hand-off for MARISHOKU/OS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/marishoku
+ScriptFile=/usr/share/plymouth/themes/marishoku/marishoku.script

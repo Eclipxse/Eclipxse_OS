@@ -1,0 +1,21 @@
+#!/bin/sh
+set -eu
+
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    plymouth-set-default-theme marishoku
+fi
+
+if [ -f /etc/calamares/settings.conf ]; then
+    sed -ri 's/^([[:space:]]*branding:).*/\1 marishoku/' /etc/calamares/settings.conf
+fi
+
+if command -v update-initramfs >/dev/null 2>&1; then
+    update-initramfs -u
+fi
+
+mkdir -p /etc/skel/Desktop
+cp /usr/share/applications/org.marishoku.install.desktop \
+    /etc/skel/Desktop/Install-MARISHOKU.desktop
+chmod 0755 /etc/skel/Desktop/Install-MARISHOKU.desktop
+
+printf '%s\n' 'MARISHOKU/OS V1 live image configured.'

@@ -92,3 +92,49 @@ assets:
       rainy London photograph
       (https://www.pexels.com/photo/london-rainy-27585636/). The build is a
       deterministic Pillow composite and uses no generative image model.
+  - id: wallpaper-marishoku-omote-v1
+    path: artwork/wallpapers/MARISHOKU-OMOTE/contents/images/1920x1080.png
+    type: deterministic-pixel-wallpaper
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC0-1.0
+    distributable: true
+    notes: >-
+      Drawn entirely from Pillow primitives by tools/build-v1-assets.py. Momo,
+      Kuro, blossoms, stars, window chrome, and copy are original. The builder
+      does not read any mood-board image.
+  - id: wallpaper-marishoku-ura-v1
+    path: artwork/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png
+    type: deterministic-pixel-wallpaper
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC0-1.0
+    distributable: true
+    notes: >-
+      Drawn entirely from Pillow primitives. The heart-eye and broken-LCD
+      geometry are original abstractions, not crops from supplied manga art.
+  - id: marishoku-v1-boot-and-login
+    path: themes/boot
+    type: generated-system-artwork-family
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+    notes: >-
+      Faux BIOS, Plymouth controls, SDDM background, and GRUB selection pieces
+      are deterministic code-native assets.
+  - id: marishoku-v1-cursors
+    path: themes/cursors/MARISHOKU
+    type: generated-cursor-theme
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+  - id: marishoku-v1-sounds
+    path: artwork/sounds/MARISHOKU
+    type: synthesized-ui-sound-theme
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC0-1.0
+    distributable: true
+    notes: Generated from simple synthesized tones by tools/build-v1-assets.py.

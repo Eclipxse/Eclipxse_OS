@@ -9,8 +9,16 @@ $required = @(
     'docs/HARDWARE-TARGET.md',
     'docs/ROADMAP.md',
     'docs/TYPOGRAPHY.md',
+    'docs/V1-VISUAL-SPEC.md',
+    'docs/ARCHITECTURE.md',
+    'docs/VM-TEST-CHECKLIST.md',
     'themes/TOKENS.json',
     'themes/colors/MARISHOKU.colors',
+    'themes/colors/MARISHOKU-OMOTE.colors',
+    'themes/gtk/MARISHOKU/gtk-3.0/gtk.css',
+    'themes/gtk/MARISHOKU/gtk-4.0/gtk.css',
+    'themes/cursors/MARISHOKU/index.theme',
+    'themes/cursors/MARISHOKU/src/left_ptr.cursor',
     'themes/plasma-style/org.marishoku.desktop/metadata.json',
     'themes/plasma-style/org.marishoku.desktop/dialogs/background.svg',
     'themes/plasma-style/org.marishoku.desktop/widgets/arrows.svg',
@@ -25,6 +33,8 @@ $required = @(
     'themes/plasma-style/org.marishoku.desktop/widgets/viewitem.svg',
     'themes/global/org.marishoku.os/manifest.json',
     'themes/global/org.marishoku.os/contents/defaults',
+    'themes/global/org.marishoku.os/contents/splash/Splash.qml',
+    'themes/global/org.marishoku.os/contents/splash/images/background.png',
     'themes/aurorae/MARISHOKU/metadata.desktop',
     'themes/aurorae/MARISHOKU/MARISHOKUrc',
     'themes/aurorae/MARISHOKU/decoration.svg',
@@ -49,14 +59,40 @@ $required = @(
     'themes/konsole/MARISHOKU.profile'
     'themes/fastfetch/config.jsonc'
     'themes/fastfetch/marishoku-heart.txt'
+    'themes/boot/grub/theme.txt'
+    'themes/boot/grub/background.png'
+    'themes/boot/plymouth/marishoku/marishoku.plymouth'
+    'themes/boot/plymouth/marishoku/marishoku.script'
+    'themes/sddm/MARISHOKU/metadata.desktop'
+    'themes/sddm/MARISHOKU/Main.qml'
+    'themes/sddm/MARISHOKU/background.png'
+    'profiles/omote/profile.conf'
+    'profiles/ura/profile.conf'
+    'artwork/wallpapers/MARISHOKU-OMOTE/contents/images/1920x1080.png'
+    'artwork/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png'
+    'artwork/sounds/MARISHOKU/index.theme'
     'packages/plasma/applets/org.marishoku.status/metadata.json'
     'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml'
     'packages/plasma/applets/org.marishoku.toolrail/metadata.json'
     'packages/plasma/applets/org.marishoku.toolrail/contents/ui/main.qml'
-    'packages/autostart/org.marishoku.system-ready.desktop'
+    'packages/autostart/org.marishoku.first-run.desktop'
     'packages/applications/org.marishoku.dolphin.desktop'
     'packages/applications/org.marishoku.konsole.desktop'
-    'tools/show-system-ready.sh'
+    'packages/system-apps/marishoku_center.py'
+    'packages/installer/branding/marishoku/branding.desc'
+    'packages/debian/control'
+    'tools/build-v1-assets.py'
+    'tools/build-cursors.sh'
+    'tools/marishoku-profile'
+    'tools/marishoku-first-run'
+    'tools/stage-rootfs.sh'
+    'tools/build-package.sh'
+    'tools/stage-live-build.sh'
+    'iso/auto/config'
+    'iso/auto/build'
+    'iso/config/package-lists/marishoku-desktop.list.chroot'
+    'iso/config/hooks/live/0100-marishoku.hook.chroot'
+    'iso/build.sh'
 )
 
 foreach ($path in $required) {
@@ -95,6 +131,38 @@ if ($fastfetchLogo -notmatch '\$1' -or $fastfetchLogo -notmatch 'MARISHOKU/OS') 
 $globalDefaults = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/global/org.marishoku.os/contents/defaults')
 if ($globalDefaults -match '(?im)^widgetStyle=kvantum\s*$' -and -not (Test-Path (Join-Path $root 'themes/kvantum'))) {
     throw 'Global Theme selects Kvantum before a Kvantum theme is included.'
+}
+
+if ($tokens.version -ne '1.0.0') {
+    throw 'V1 validation expects themes/TOKENS.json version 1.0.0.'
+}
+
+$osRelease = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/branding/os-release')
+foreach ($identity in @('ID=marishoku', 'ID_LIKE=debian', 'VERSION_ID="1.0"')) {
+    if ($osRelease -notmatch [regex]::Escape($identity)) {
+        throw "Missing OS identity: $identity"
+    }
+}
+
+$isoPackages = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/config/package-lists/marishoku-desktop.list.chroot')
+foreach ($package in @('task-kde-desktop', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
+    if ($isoPackages -notmatch "(?m)^$([regex]::Escape($package))$") {
+        throw "Live image is missing required package: $package"
+    }
+}
+
+$sddm = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'themes/sddm/MARISHOKU/Main.qml')
+foreach ($contract in @('sddm.login', 'sddm.reboot', 'sddm.powerOff', 'onLoginFailed')) {
+    if ($sddm -notmatch [regex]::Escape($contract)) {
+        throw "SDDM theme is missing its $contract contract."
+    }
+}
+
+$profileTool = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/marishoku-profile')
+foreach ($profile in @('MARISHOKU-OMOTE', 'MARISHOKU-URA-V1')) {
+    if ($profileTool -notmatch [regex]::Escape($profile)) {
+        throw "Profile switcher does not reference $profile."
+    }
 }
 
 $auroraeRc = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/aurorae/MARISHOKU/MARISHOKUrc')
@@ -284,4 +352,4 @@ foreach ($pair in $contrastPairs) {
     }
 }
 
-Write-Host 'MARISHOKU/OS Phase 1D concept-match validation passed.' -ForegroundColor Magenta
+Write-Host 'MARISHOKU/OS V1 repository validation passed.' -ForegroundColor Magenta

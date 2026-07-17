@@ -1,4 +1,4 @@
-* text=auto
+* text=auto eol=lf
 
 *.sh text eol=lf
 *.ps1 text eol=lf
@@ -9,6 +9,16 @@
 *.desktop text eol=lf
 *.rc text eol=lf
 *.svg text eol=lf
+*.qml text eol=lf
+*.conf text eol=lf
+*.cursor text eol=lf
+
+iso/auto/* text eol=lf
+iso/config/hooks/*/* text eol=lf
+tools/marishoku-* text eol=lf
+tools/stage-* text eol=lf
+tools/build-package.sh text eol=lf
+packages/debian/postinst text eol=lf
 
 *.png binary
-
+*.wav binary

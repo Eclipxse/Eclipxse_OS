@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=OMOTE Profile
+Name[ja]=表プロファイル
+Comment=Apply the public pastel MARISHOKU profile
+Exec=marishoku-profile omote
+Icon=marishoku-heart
+Categories=Settings;System;
+Terminal=false

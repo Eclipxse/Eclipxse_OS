@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Storage Care
+Name[ja]=ストレージケア
+Comment=Preview cache storage without deleting files
+Exec=marishoku-center --page storage
+Icon=drive-harddisk
+Categories=System;Utility;
+Terminal=false

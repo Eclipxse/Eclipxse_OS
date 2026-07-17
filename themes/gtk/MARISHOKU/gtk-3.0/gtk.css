@@ -1,0 +1,75 @@
+@define-color ms_ink #201727;
+@define-color ms_panel #d8cdd9;
+@define-color ms_view #fff3ff;
+@define-color ms_hi #fff9ff;
+@define-color ms_shadow #56445e;
+@define-color ms_active #c82e91;
+@define-color ms_cyan #62dde4;
+
+* {
+  border-radius: 0;
+  box-shadow: none;
+  font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+  font-size: 10pt;
+}
+
+window, dialog, messagedialog, .background {
+  color: @ms_ink;
+  background-color: @ms_panel;
+}
+
+headerbar, .titlebar {
+  min-height: 26px;
+  color: @ms_hi;
+  background-color: @ms_active;
+  background-image: none;
+  border: 1px solid @ms_ink;
+  padding: 2px 5px;
+}
+
+button, entry, spinbutton, combobox box, notebook > header > tabs > tab {
+  color: @ms_ink;
+  background-color: @ms_panel;
+  background-image: none;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @ms_hi @ms_shadow @ms_shadow @ms_hi;
+  padding: 5px 8px;
+}
+
+button:active, button:checked, notebook > header > tabs > tab:checked {
+  border-color: @ms_shadow @ms_hi @ms_hi @ms_shadow;
+  background-color: #c8b9cc;
+}
+
+entry:focus, spinbutton:focus, treeview:selected, text selection {
+  border-color: @ms_cyan;
+  background-color: #8f276f;
+  color: @ms_hi;
+}
+
+view, textview, treeview, list, iconview {
+  color: @ms_ink;
+  background-color: @ms_view;
+}
+
+menu, popover, tooltip {
+  color: @ms_ink;
+  background-color: @ms_panel;
+  border: 2px solid @ms_shadow;
+}
+
+scrollbar slider {
+  min-width: 13px;
+  min-height: 13px;
+  background-color: #b7a5bd;
+  border: 1px solid @ms_shadow;
+}
+
+progressbar trough {
+  min-height: 14px;
+  background-color: @ms_view;
+  border: 1px solid @ms_shadow;
+}
+
+progressbar progress { background-color: @ms_active; }

@@ -1,100 +1,126 @@
 # 魔理蝕 // MARISHOKU/OS
 
-`MARISHOKU/OS` is an installable Debian 13 remix built around KDE Plasma 6.
-Its visual language combines hard-edged 1990s desktop chrome, handheld
-messaging interfaces, pixel manga, CRT texture, and a magenta/cyan after-dark
-palette.
+MARISHOKU/OS is a Debian 13 operating-system remix with KDE Plasma 6. V1
+rebuilds the complete visible path—boot hand-off, sign-in, desktop, Qt/GTK
+applications, profiles, utilities, Japanese input, and installer—in one square
+2x pixel language.
 
-![MARISHOKU/OS Phase 0 desktop concept](artwork/concepts/desktop-v0.1.png)
-
-## Identity
-
-- Display name: `魔理蝕 // MARISHOKU/OS`
 - System code: `MR-10`
 - Device identity: `ECLIPXSE`
-- Clean profile: `表 / OMOTE`
-- After Dark profile: `裏 / URA`
-- Primary architecture: `amd64`
-- Base: Debian 13 stable
-- Desktop: KDE Plasma 6 on Wayland
+- Profiles: `表 / OMOTE` and `裏 / URA`
+- Architecture: `amd64`
 
-## Current milestone
+## V1 direction
 
-Phase 1D is ready for exact-concept review in the
-Debian VM. This repository currently contains:
+- Windows 9x-style bevels and 26 px active titlebars
+- handheld Japanese messaging UI
+- cyber-kawaii color with soft-goth contrast
+- intentional CRT/LCD texture on transitional surfaces only
+- original Momo/Kuro heart-spirit mascots
+- no fake windows baked into wallpaper
+- no unlicensed mood-board images in the public repository or ISO
 
-- the approved visual and interaction specification;
-- hardware and content-profile requirements;
-- a contrast-checked Plasma 6 color system;
-- a Global Theme and Aurorae window decoration;
-- original Plasma shell SVGs for panels, dialogs, buttons, fields, tasks,
-  selections, headings, arrows, separators, and tooltips;
-- an original Kvantum Qt 5/6 control atlas for application interiors;
-- the approved lavender Win9x taskbar, hot-magenta title bars, and heart launcher;
-- a left-side pixel tool rail and fixed MARISHOKU/OS taskbar status block;
-- a MARISHOKU Konsole profile, pink-heart Fastfetch identity, and URA dialog;
-- two licensed, credited 1920x1080 London/cyber-goth wallpaper composites;
-- Noto Sans/Mono typography with Japanese glyph fallback;
-- installation and validation helpers.
+![OMOTE profile](artwork/wallpapers/MARISHOKU-OMOTE/contents/images/1920x1080.png)
 
-The first ISO will be built only after the desktop theme passes visual review
-inside a virtual machine.
+![URA profile](artwork/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png)
+
+![MARISHOKU faux BIOS](themes/boot/grub/background.png)
+
+## What is implemented
+
+- Plasma 6 Global Theme, Plasma Style, Aurorae, Kvantum, GTK 3/4, icons, and
+  generated 32 px pixel cursors
+- deterministic original OMOTE, URA, boot, login, installer, cursor, and sound
+  assets
+- reversible GRUB and Plymouth faux-BIOS sequence
+- custom SDDM sign-in and Plasma splash; lock screen uses the selected profile
+  wallpaper while retaining Plasma's audited authentication component
+- atomic `marishoku-profile omote|ura` switcher
+- Control Center, first-run Welcome, read-only system summary, safe Storage Care,
+  and Japanese input guide
+- Fcitx 5 + Mozc defaults while keeping the normal US keyboard as default
+- Debian package builder and Debian live-build configuration
+- Calamares installer branding based on Debian's maintained installer settings
+- VirtualBox, QEMU/SPICE, firmware, UEFI, and Secure Boot build support
+
+## Update the existing development VM
+
+From the checked-out repository in Debian:
+
+```bash
+git fetch origin
+git switch agent/marishoku-v1
+git pull --ff-only
+./tools/install-theme.sh --install-deps --apply --layout
+```
+
+Log out and back in once. Then test:
+
+```bash
+fastfetch
+marishoku-profile omote
+marishoku-profile ura
+marishoku-center --page welcome
+marishoku-center --page storage
+```
+
+The user installer changes only the current account, except when
+`--install-deps` explicitly calls Debian's package manager. It does not touch
+the VM bootloader or SDDM. Those system surfaces are tested through the package
+or live ISO.
+
+## Build the package
+
+On Debian 13:
+
+```bash
+sudo apt update
+sudo apt install --yes python3-pil xcursorgen dpkg-dev
+python3 tools/build-v1-assets.py
+./tools/build-package.sh
+```
+
+The result is `build/packages/marishoku-system_1.0.0-1_all.deb`.
+
+## Build the live ISO
+
+See [`iso/README.md`](iso/README.md). Short version:
+
+```bash
+sudo ./iso/build.sh
+```
+
+The build must run on Debian 13 with live-build installed. This Windows
+workstation can validate the source and render every deterministic asset, but
+it cannot execute the Debian chroot or honestly claim an ISO boot test.
 
 ## Repository map
 
 ```text
-artwork/              Original source artwork and exports
-docs/                 Product, visual, content, and hardware specifications
-iso/                  Debian live-build configuration (Phase 2)
-packages/             Debian packaging sources (Phase 2)
-themes/               Plasma, Qt, GTK, SDDM, boot, icon, and cursor themes
-tools/                Developer installation and validation helpers
+artwork/              Original generated wallpaper, sound, and source assets
+docs/                 Visual specification, architecture, roadmap, and policy
+iso/                  Debian live-build and Calamares image configuration
+packages/             System apps, defaults, branding, and package metadata
+profiles/             OMOTE and URA profile declarations
+themes/               Boot, SDDM, Plasma, Qt, GTK, icon, cursor, and terminal UI
+tools/                Asset, package, install, profile, layout, and validation tools
 ```
 
-## Test the Phase 1D desktop in a Plasma 6 VM
+## Validate
 
-First-time setup installs the official Debian Kvantum, Fastfetch, and Noto packages:
+On Windows:
 
-```bash
-./tools/install-theme.sh --install-deps --apply
+```powershell
+python tools/build-v1-assets.py
+python -m py_compile tools/build-v1-assets.py packages/system-apps/marishoku_center.py
+powershell -ExecutionPolicy Bypass -File tools/validate.ps1
 ```
 
-Later theme-only updates do not need sudo:
+On Debian, also build the cursor/package and run `shellcheck` on `tools/*.sh`,
+`iso/*.sh`, and `iso/auto/*` before producing a release image.
 
-```bash
-./tools/install-theme.sh --apply
-```
+## Safety
 
-To deliberately rebuild the bottom taskbar and reset the wallpaper again:
-
-```bash
-./tools/install-theme.sh --apply --layout
-```
-
-Log out and back in once after the first application. The script installs into
-the current user's home directory. Only `--install-deps` modifies the base OS,
-through Debian's package manager.
-
-After installation, plain `fastfetch` displays the MARISHOKU/OS pink pixel
-heart instead of Debian's stock logo. If a personal Fastfetch config already
-exists, the installer preserves it once as `config.jsonc.pre-marishoku.bak`.
-
-## Included wallpaper profiles
-
-The default Phase 1D wallpaper is derived from the exact approved concept. Its
-baked fake windows were removed so the real Plasma windows can occupy the scene.
-
-![MARISHOKU URA](artwork/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png)
-
-![MARISHOKU Night Line](artwork/wallpapers/MARISHOKU-NightLine/contents/images/1920x1080.png)
-
-![MARISHOKU Neon Velvet](artwork/wallpapers/MARISHOKU-NeonVelvet/contents/images/1920x1080.png)
-
-The shipped composites use approved project artwork, transformed Pexels
-photography, and a public-domain ukiyo-e image. Full source links, authors, and
-terms are recorded in `ASSETS.yml`; untouched source photos are not committed.
-
-## Safety rule
-
-Development is VM-first. No repartitioning, dual boot, NVIDIA driver changes,
-or bootloader changes are performed on the ECLIPXSE host during theme development.
+Development stays VM-first. Do not repartition the ECLIPXSE Windows drive,
+change its bootloader, or install the experimental image on the host until the
+VM install checklist passes twice and recovery media exists.

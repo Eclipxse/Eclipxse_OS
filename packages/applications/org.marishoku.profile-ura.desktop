@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=URA Profile
+Name[ja]=裏プロファイル
+Comment=Apply the after-dark MARISHOKU profile
+Exec=marishoku-profile ura
+Icon=marishoku-heart
+Categories=Settings;System;
+Terminal=false

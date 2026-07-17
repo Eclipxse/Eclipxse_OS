@@ -34,11 +34,14 @@ if "$INSTALL_DEPS"; then
   fi
   sudo apt-get update
   sudo apt-get install -y \
-    qt-style-kvantum fonts-noto-core fonts-noto-cjk kdialog fastfetch
+    qt-style-kvantum fonts-noto-core fonts-noto-cjk fastfetch \
+    python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt xcursorgen
 fi
 
-install -Dm644 "$ROOT/themes/colors/MARISHOKU.colors" \
-  "$HOME/.local/share/color-schemes/MARISHOKU.colors"
+for scheme in "$ROOT"/themes/colors/*.colors; do
+  install -Dm644 "$scheme" \
+    "$HOME/.local/share/color-schemes/$(basename "$scheme")"
+done
 
 rm -rf "$HOME/.local/share/plasma/desktoptheme/org.marishoku.desktop"
 mkdir -p "$HOME/.local/share/plasma/desktoptheme"
@@ -64,6 +67,17 @@ rm -rf "$HOME/.local/share/icons/MARISHOKU"
 mkdir -p "$HOME/.local/share/icons"
 cp -a "$ROOT/themes/icons/MARISHOKU" \
   "$HOME/.local/share/icons/"
+
+if command -v xcursorgen >/dev/null 2>&1; then
+  "$ROOT/tools/build-cursors.sh"
+fi
+rm -rf "$HOME/.local/share/icons/MARISHOKU-cursors"
+cp -a "$ROOT/themes/cursors/MARISHOKU" \
+  "$HOME/.local/share/icons/MARISHOKU-cursors"
+
+rm -rf "$HOME/.local/share/themes/MARISHOKU"
+mkdir -p "$HOME/.local/share/themes"
+cp -a "$ROOT/themes/gtk/MARISHOKU" "$HOME/.local/share/themes/"
 
 for applet in "$ROOT"/packages/plasma/applets/*; do
   applet_name="$(basename "$applet")"
@@ -96,10 +110,19 @@ install -Dm644 "$ROOT/themes/fastfetch/config.jsonc" \
   "$HOME/.config/fastfetch/config.jsonc"
 install -Dm644 "$ROOT/themes/fastfetch/marishoku-heart.txt" \
   "$HOME/.config/fastfetch/marishoku-heart.txt"
-install -Dm755 "$ROOT/tools/show-system-ready.sh" \
+install -Dm755 "$ROOT/tools/marishoku-profile" \
+  "$HOME/.local/bin/marishoku-profile"
+install -Dm755 "$ROOT/tools/marishoku-first-run" \
+  "$HOME/.local/bin/marishoku-first-run"
+install -Dm755 "$ROOT/packages/system-apps/marishoku_center.py" \
+  "$HOME/.local/bin/marishoku-center"
+for autostart in "$ROOT"/packages/autostart/*.desktop; do
+  install -Dm644 "$autostart" \
+    "$HOME/.config/autostart/$(basename "$autostart")"
+done
+# Remove the Phase 1D every-login prototype dialog.
+rm -f "$HOME/.config/autostart/org.marishoku.system-ready.desktop" \
   "$HOME/.local/bin/marishoku-system-ready"
-install -Dm644 "$ROOT/packages/autostart/org.marishoku.system-ready.desktop" \
-  "$HOME/.config/autostart/org.marishoku.system-ready.desktop"
 for application in "$ROOT"/packages/applications/*.desktop; do
   install -Dm644 "$application" \
     "$HOME/.local/share/applications/$(basename "$application")"
@@ -110,6 +133,24 @@ for wallpaper in "$ROOT"/artwork/wallpapers/MARISHOKU-*; do
   rm -rf "$HOME/.local/share/wallpapers/$wallpaper_name"
   mkdir -p "$HOME/.local/share/wallpapers"
   cp -a "$wallpaper" "$HOME/.local/share/wallpapers/"
+done
+
+rm -rf "$HOME/.local/share/sounds/MARISHOKU"
+mkdir -p "$HOME/.local/share/sounds"
+cp -a "$ROOT/artwork/sounds/MARISHOKU" "$HOME/.local/share/sounds/"
+
+install -Dm644 "$ROOT/packages/defaults/environment.d/90-marishoku-input.conf" \
+  "$HOME/.config/environment.d/90-marishoku-input.conf"
+if [[ ! -f "$HOME/.config/fcitx5/profile" ]]; then
+  install -Dm644 "$ROOT/packages/defaults/fcitx5/profile" \
+    "$HOME/.config/fcitx5/profile"
+fi
+for gtk_version in 3.0 4.0; do
+  settings="$HOME/.config/gtk-$gtk_version/settings.ini"
+  if [[ -f $settings && ! -f "$settings.pre-marishoku.bak" ]]; then
+    cp -a "$settings" "$settings.pre-marishoku.bak"
+  fi
+  install -Dm644 "$ROOT/packages/defaults/gtk-$gtk_version/settings.ini" "$settings"
 done
 
 rm -rf "$HOME/.cache/plasma"* 2>/dev/null || true
@@ -129,6 +170,8 @@ if "$APPLY"; then
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.kwin.aurorae
     kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme __aurorae__svg__MARISHOKU
     kwriteconfig6 --file kwinrc --group Plugins --key blurEnabled false
+    kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme MARISHOKU-cursors
+    kwriteconfig6 --file kcminputrc --group Mouse --key cursorSize 32
 
     kwriteconfig6 --file kdeglobals --group General --key font \
       'Noto Sans,10,-1,5,50,0,0,0,0,0'
@@ -191,11 +234,13 @@ if "$APPLY"; then
     fi
   fi
 
+  "$HOME/.local/bin/marishoku-profile" ura || true
+
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1D concept-match desktop installed.' \
-    'Log out and back in once to refresh every Plasma component.'
+    'MARISHOKU/OS V1 desktop installed.' \
+    'Log out and back in once to refresh the shell and input method.'
 else
   printf '%s\n' \
-    'MARISHOKU/OS Phase 1D desktop installed for the current user.' \
+    'MARISHOKU/OS V1 desktop installed for the current user.' \
     'Run again with --apply, or select it in System Settings -> Colors & Themes -> Global Theme.'
 fi

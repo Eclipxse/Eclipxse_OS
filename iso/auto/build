@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
+cd "$ROOT"
+python3 tools/build-v1-assets.py
+tools/build-cursors.sh
+tools/build-package.sh
+tools/stage-live-build.sh
+cd iso
+lb build

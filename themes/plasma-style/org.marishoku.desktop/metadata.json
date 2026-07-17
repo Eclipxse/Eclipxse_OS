@@ -5,11 +5,11 @@
         "Name": "MARISHOKU/OS Project"
       }
     ],
-    "Description": "Lavender Win9x Plasma 6 chrome with hot-magenta MARISHOKU title bars",
+    "Description": "Square 2x pixel chrome for MARISHOKU OMOTE and URA",
     "Id": "org.marishoku.desktop",
     "License": "GPL-3.0-or-later",
     "Name": "MARISHOKU/OS",
-    "Version": "0.5.1"
+    "Version": "1.0.0"
   },
   "X-Plasma-API-Minimum-Version": "6.0"
 }
