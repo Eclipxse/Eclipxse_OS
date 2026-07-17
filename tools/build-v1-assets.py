@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Generate original MARISHOKU/OS V1 raster assets.
+"""Build MARISHOKU/OS V1 raster assets.
 
-The generator is deterministic, uses only Pillow drawing primitives, and never
-reads the mood-board images. Assets are authored at 960x540 and enlarged 2x.
+Boot controls, cursors, sound, OMOTE, and recovery fallbacks are deterministic.
+The canonical URA release path preserves the curated project-owned master art
+instead of attempting to redraw detailed character art with Pillow primitives.
 """
 
 from __future__ import annotations
 
 import math
 import random
+import shutil
 import struct
 import wave
 from pathlib import Path
@@ -17,6 +19,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
+URA_MASTER = ROOT / "artwork/source/ura-v1-master.png"
 LOW = (960, 540)
 FINAL = (1920, 1080)
 INK = "#130D1A"
@@ -361,32 +364,66 @@ def cursor_assets(root: Path) -> None:
         wait.save(root / name)
 
 
-def write_package(root: Path, name: str, image: Image.Image, title: str) -> None:
+def write_package(
+    root: Path,
+    name: str,
+    image: Image.Image,
+    title: str,
+    license_id: str = "CC0-1.0",
+) -> None:
     save_2x(image, root / name / "contents/images/1920x1080.png")
     metadata = root / name / "metadata.json"
     metadata.parent.mkdir(parents=True, exist_ok=True)
     metadata.write_text(
         '{\n  "KPlugin": {\n'
         f'    "Id": "{name}",\n    "Name": "{title}",\n'
-        '    "License": "CC0-1.0",\n    "Version": "1.0.0"\n  }\n}\n',
+        f'    "License": "{license_id}",\n    "Version": "1.0.0"\n  }}\n}}\n',
         encoding="utf-8",
     )
+
+
+def install_ura_master(*targets: Path) -> bool:
+    """Install the approved high-detail URA artwork without redrawing it.
+
+    The primitive URA renderer remains a deterministic recovery fallback for
+    source-only builds. Release builds ship the curated master and must never
+    replace it with the old flat placeholder portrait.
+    """
+    if not URA_MASTER.is_file():
+        return False
+    for target in targets:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(URA_MASTER, target)
+    return True
 
 
 def main() -> None:
     wallpaper_root = ROOT / "artwork/wallpapers"
     write_package(wallpaper_root, "MARISHOKU-OMOTE", omote(), "MARISHOKU OMOTE")
-    write_package(wallpaper_root, "MARISHOKU-URA-V1", ura(), "MARISHOKU URA V1")
+    write_package(
+        wallpaper_root,
+        "MARISHOKU-URA-V1",
+        ura(),
+        "MARISHOKU URA V1",
+        "CC-BY-SA-4.0",
+    )
+    install_ura_master(
+        wallpaper_root / "MARISHOKU-URA-V1/contents/images/1920x1080.png",
+    )
     grub_root = ROOT / "themes/boot/grub"
     save_2x(boot(), grub_root / "background.png")
     grub_assets(grub_root)
     plymouth_root = ROOT / "themes/boot/plymouth/marishoku"
     save_2x(boot(), plymouth_root / "background.png")
     plymouth_assets(plymouth_root)
-    save_2x(login(), ROOT / "themes/sddm/MARISHOKU/background.png")
-    save_2x(login(), ROOT / "themes/global/org.marishoku.os/contents/splash/images/background.png")
+    login_background = ROOT / "themes/sddm/MARISHOKU/background.png"
+    splash_background = ROOT / "themes/global/org.marishoku.os/contents/splash/images/background.png"
+    if not install_ura_master(login_background, splash_background):
+        save_2x(login(), login_background)
+        save_2x(login(), splash_background)
     sounds(ROOT / "artwork/sounds/MARISHOKU")
     installer_assets(ROOT / "packages/installer/branding/marishoku")
+    install_ura_master(ROOT / "packages/installer/branding/marishoku/welcome.png")
     live_boot_assets(ROOT / "iso/artwork")
     cursor_assets(ROOT / "themes/cursors/MARISHOKU/src")
 

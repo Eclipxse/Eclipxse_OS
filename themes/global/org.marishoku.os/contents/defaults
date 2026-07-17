@@ -1,16 +1,16 @@
 [kdeglobals][General]
 ColorScheme=MARISHOKU
 font=Noto Sans,10,-1,5,50,0,0,0,0,0
-fixed=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
-menuFont=Noto Sans Mono,9,-1,5,50,0,0,0,0,0
+fixed=Terminus,12,-1,5,50,0,0,0,0,0
+menuFont=Terminus,10,-1,5,50,0,0,0,0,0
 smallestReadableFont=Noto Sans,8,-1,5,50,0,0,0,0,0
-toolBarFont=Noto Sans Mono,9,-1,5,50,0,0,0,0,0
+toolBarFont=Terminus,10,-1,5,50,0,0,0,0,0
 
 [kdeglobals][KDE]
 widgetStyle=kvantum
 
 [kdeglobals][WM]
-activeFont=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
+activeFont=Terminus,11,-1,5,50,0,0,0,0,0
 
 [plasmarc][Theme]
 name=org.marishoku.desktop

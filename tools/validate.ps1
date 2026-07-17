@@ -45,6 +45,8 @@ $required = @(
     'themes/kvantum/MARISHOKU/MARISHOKU.kvconfig',
     'themes/kvantum/MARISHOKU/MARISHOKU.svg',
     'themes/typography/MARISHOKU.conf'
+    'artwork/source/ura-v1-master.png'
+    'artwork/concepts/desktop-v1-approved.png'
     'themes/icons/MARISHOKU/index.theme'
     'themes/icons/MARISHOKU/scalable/apps/marishoku-start.svg'
     'artwork/wallpapers/MARISHOKU-NightLine/metadata.json'
@@ -75,10 +77,14 @@ $required = @(
     'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml'
     'packages/plasma/applets/org.marishoku.toolrail/metadata.json'
     'packages/plasma/applets/org.marishoku.toolrail/contents/ui/main.qml'
+    'packages/plasma/applets/org.marishoku.toolrail/contents/images/heart.svg'
+    'packages/plasma/applets/org.marishoku.toolrail/contents/images/terminal.svg'
+    'packages/plasma/applets/org.marishoku.toolrail/contents/images/kana.svg'
     'packages/autostart/org.marishoku.first-run.desktop'
     'packages/applications/org.marishoku.dolphin.desktop'
     'packages/applications/org.marishoku.konsole.desktop'
     'packages/system-apps/marishoku_center.py'
+    'packages/bin/neofetch'
     'packages/installer/branding/marishoku/branding.desc'
     'packages/debian/control'
     'tools/build-v1-assets.py'

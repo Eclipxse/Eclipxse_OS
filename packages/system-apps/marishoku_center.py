@@ -15,6 +15,7 @@ from PyQt6.QtCore import Qt, QUrl
 from PyQt6.QtGui import QDesktopServices, QFont
 from PyQt6.QtWidgets import (
     QApplication,
+    QDialog,
     QFrame,
     QGridLayout,
     QHBoxLayout,
@@ -32,7 +33,7 @@ APP_STYLE = """
 QWidget {
     background: #D8CDD9;
     color: #201727;
-    font-family: "Noto Sans Mono";
+    font-family: "Terminus";
     font-size: 13px;
 }
 QFrame#titlebar {
@@ -136,6 +137,68 @@ class Page(QFrame):
         return frame, layout
 
 
+class WelcomeDialog(QDialog):
+    """Compact first-run hand-off matching the approved desktop concept."""
+
+    def __init__(self):
+        super().__init__()
+        self.setObjectName("welcome")
+        self.setWindowTitle("MARISHOKU/OS システム")
+        self.setFixedSize(540, 280)
+        self.setStyleSheet(APP_STYLE)
+
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(30, 28, 30, 24)
+        outer.setSpacing(14)
+
+        content = QHBoxLayout()
+        content.setSpacing(28)
+        mark = QLabel("♥")
+        mark.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        mark.setFixedSize(104, 104)
+        mark.setStyleSheet(
+            "font-family: 'Terminus'; font-size: 72px; font-weight: 700; "
+            "color: #D63BAC; background: transparent;"
+        )
+        content.addWidget(mark)
+
+        copy = QVBoxLayout()
+        copy.setSpacing(7)
+        ready = QLabel("SYSTEM READY.")
+        ready.setStyleSheet(
+            "font-family: 'Terminus'; font-size: 25px; "
+            "font-weight: 700; color: #201727;"
+        )
+        profile = QLabel(f"PROFILE:  {current_profile()}")
+        profile.setStyleSheet(
+            "font-family: 'Terminus'; font-size: 19px; "
+            "font-weight: 700; color: #56445E;"
+        )
+        signal = QLabel("ECLIPXSE LINK // MR-10")
+        signal.setStyleSheet(
+            "font-family: 'Terminus'; font-size: 11px; "
+            "font-weight: 700; color: #8F276F;"
+        )
+        copy.addStretch()
+        copy.addWidget(ready)
+        copy.addWidget(profile)
+        copy.addWidget(signal)
+        copy.addStretch()
+        content.addLayout(copy, 1)
+        outer.addLayout(content)
+
+        enter = QPushButton("ENTER")
+        enter.setObjectName("accent")
+        enter.setFixedSize(180, 48)
+        enter.clicked.connect(self.accept)
+        outer.addWidget(enter, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        hint = QLabel("裏 // URA MODE ACTIVE  ·  日本語 INPUT READY")
+        hint.setObjectName("muted")
+        hint.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        outer.addWidget(hint)
+
+
 class Center(QMainWindow):
     PAGES = ("WELCOME", "SYSTEM", "PROFILES", "STORAGE", "JAPANESE", "ABOUT")
 
@@ -196,7 +259,7 @@ class Center(QMainWindow):
         self.stack.setCurrentIndex(self.PAGES.index(initial_page))
 
     def welcome_page(self) -> Page:
-        page = Page("SYSTEM READY.", "Welcome to a clean Japanese Y2K pixel desktop. Nothing here is baked into the wallpaper; every window is real.")
+        page = Page("SYSTEM READY.", "Welcome to the Japanese cyber-goth desktop built for ECLIPXSE.")
         _, layout = page.card()
         message = QLabel("YOU ARE STILL HERE.\nTHAT COUNTS.\n\nChoose OMOTE for the pearl daytime profile or URA for the after-dark profile.")
         message.setObjectName("metric")
@@ -318,7 +381,11 @@ def main() -> int:
     args = parser.parse_args()
     app = QApplication(sys.argv)
     app.setApplicationName("MARISHOKU Control Center")
-    app.setFont(QFont("Noto Sans Mono", 10))
+    app.setFont(QFont("Terminus", 11))
+    if args.page == "welcome":
+        dialog = WelcomeDialog()
+        return dialog.exec()
+
     window = Center(args.page.upper())
     window.show()
     return app.exec()

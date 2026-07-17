@@ -34,7 +34,7 @@ if "$INSTALL_DEPS"; then
   fi
   sudo apt-get update
   sudo apt-get install -y \
-    qt-style-kvantum fonts-noto-core fonts-noto-cjk fastfetch \
+    qt-style-kvantum fonts-noto-core fonts-noto-cjk fonts-terminus fastfetch \
     python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt xcursorgen
 fi
 
@@ -114,6 +114,8 @@ install -Dm755 "$ROOT/tools/marishoku-profile" \
   "$HOME/.local/bin/marishoku-profile"
 install -Dm755 "$ROOT/tools/marishoku-first-run" \
   "$HOME/.local/bin/marishoku-first-run"
+install -Dm755 "$ROOT/packages/bin/neofetch" \
+  "$HOME/.local/bin/neofetch"
 install -Dm755 "$ROOT/packages/system-apps/marishoku_center.py" \
   "$HOME/.local/bin/marishoku-center"
 for autostart in "$ROOT"/packages/autostart/*.desktop; do
@@ -176,15 +178,15 @@ if "$APPLY"; then
     kwriteconfig6 --file kdeglobals --group General --key font \
       'Noto Sans,10,-1,5,50,0,0,0,0,0'
     kwriteconfig6 --file kdeglobals --group General --key fixed \
-      'Noto Sans Mono,10,-1,5,50,0,0,0,0,0'
+      'Terminus,12,-1,5,50,0,0,0,0,0'
     kwriteconfig6 --file kdeglobals --group General --key menuFont \
-      'Noto Sans Mono,9,-1,5,50,0,0,0,0,0'
+      'Terminus,10,-1,5,50,0,0,0,0,0'
     kwriteconfig6 --file kdeglobals --group General --key smallestReadableFont \
       'Noto Sans,8,-1,5,50,0,0,0,0,0'
     kwriteconfig6 --file kdeglobals --group General --key toolBarFont \
-      'Noto Sans Mono,9,-1,5,50,0,0,0,0,0'
+      'Terminus,10,-1,5,50,0,0,0,0,0'
     kwriteconfig6 --file kdeglobals --group WM --key activeFont \
-      'Noto Sans Mono,10,-1,5,50,0,0,0,0,0'
+      'Terminus,11,-1,5,50,0,0,0,0,0'
 
     if command -v kvantummanager >/dev/null 2>&1 \
       || command -v kvantummanager6 >/dev/null 2>&1 \
@@ -206,14 +208,14 @@ if "$APPLY"; then
     kbuildsycoca6 >/dev/null 2>&1 || true
   fi
 
-  layout_marker="$HOME/.config/marishoku/layout-v0.5.applied"
+  layout_marker="$HOME/.config/marishoku/layout-v1.0.applied"
   if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
     applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [[ -f "$applet_config" && ! -f "${applet_config}.pre-phase1d.bak" ]]; then
       cp -a "$applet_config" "${applet_config}.pre-phase1d.bak"
     fi
 
-    wallpaper_uri="file://$HOME/.local/share/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png"
+    wallpaper_uri="file://$HOME/.local/share/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png"
     layout_script="$(sed "s|@WALLPAPER_URI@|$wallpaper_uri|g" "$ROOT/tools/apply-desktop-layout.js")"
     layout_applied=false
     if command -v qdbus6 >/dev/null 2>&1; then

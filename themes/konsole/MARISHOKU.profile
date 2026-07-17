@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=MARISHOKU
-Font=Noto Sans Mono,10,-1,5,50,0,0,0,0,0
+Font=Terminus,12,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]

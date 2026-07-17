@@ -3,22 +3,46 @@ import QtQuick
 import org.kde.plasma.plasmoid
 
 PlasmoidItem {
-    id: root
     preferredRepresentation: fullRepresentation
     compactRepresentation: fullRepresentation
 
     fullRepresentation: Item {
-        implicitWidth: 156
-        implicitHeight: 52
+        implicitWidth: 202
+        implicitHeight: 54
 
-        Text {
+        Row {
             anchors.centerIn: parent
-            text: "MARISHOKU/OS"
-            color: "#fff3ff"
-            font.family: "Noto Sans Mono"
-            font.pixelSize: 15
-            font.bold: true
-            renderType: Text.NativeRendering
+            spacing: 9
+
+            Rectangle {
+                width: 9
+                height: 9
+                anchors.verticalCenter: parent.verticalCenter
+                color: "#D63BAC"
+                border.color: "#15101F"
+                border.width: 1
+            }
+
+            Column {
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 1
+                Text {
+                    text: "MARISHOKU/OS"
+                    color: "#FFF3FF"
+                    font.family: "Terminus"
+                    font.pixelSize: 14
+                    font.bold: true
+                    renderType: Text.NativeRendering
+                }
+                Text {
+                    text: "裏 // URA  ·  MR-10"
+                    color: "#62DDE4"
+                    font.family: "Terminus"
+                    font.pixelSize: 9
+                    font.bold: true
+                    renderType: Text.NativeRendering
+                }
+            }
         }
     }
 }

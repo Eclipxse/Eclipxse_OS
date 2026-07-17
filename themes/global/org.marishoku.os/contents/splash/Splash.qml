@@ -27,7 +27,7 @@ Rectangle {
             anchors.top: parent.top; anchors.topMargin: 17
             text: "STARTING DESKTOP // STAGE " + root.stage + "/5"
             color: "#25172C"
-            font.family: "Noto Sans Mono"; font.pixelSize: 17; font.bold: true
+            font.family: "Terminus"; font.pixelSize: 19; font.bold: true
         }
         Row {
             anchors.left: parent.left; anchors.leftMargin: 22

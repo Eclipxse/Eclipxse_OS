@@ -1,0 +1,3 @@
+#!/bin/sh
+# Compatibility entry point: MARISHOKU/OS uses maintained Fastfetch underneath.
+exec fastfetch "$@"

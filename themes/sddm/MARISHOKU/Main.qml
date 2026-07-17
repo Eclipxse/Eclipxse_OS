@@ -60,7 +60,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 text: "♡  MARISHOKU/OS // SIGN IN"
                 color: "#FFF3FF"
-                font.family: "Noto Sans Mono"; font.pixelSize: 20; font.bold: true
+                font.family: "Terminus"; font.pixelSize: 22; font.bold: true
             }
             Rectangle {
                 width: 36; height: 36; anchors.right: parent.right; anchors.rightMargin: 8
@@ -74,10 +74,10 @@ Rectangle {
             x: 64; y: 91
             text: "魔理蝕 // ECLIPXSE SYSTEMS // MR-10"
             color: "#7141C1"
-            font.family: "Noto Sans Mono"; font.pixelSize: 18; font.bold: true
+            font.family: "Terminus"; font.pixelSize: 20; font.bold: true
         }
 
-        Text { x: 64; y: 148; text: "USER"; color: ink; font.family: "Noto Sans Mono"; font.pixelSize: 17; font.bold: true }
+        Text { x: 64; y: 148; text: "USER"; color: ink; font.family: "Terminus"; font.pixelSize: 19; font.bold: true }
         Rectangle {
             x: 210; y: 132; width: 470; height: 54
             color: "#FFF9FF"; border.color: panelShadow; border.width: 2
@@ -86,12 +86,12 @@ Rectangle {
                 anchors.fill: parent; anchors.margins: 12
                 text: userModel.lastUser
                 color: ink; selectionColor: active
-                font.family: "Noto Sans Mono"; font.pixelSize: 18
+                font.family: "Terminus"; font.pixelSize: 20
                 Keys.onReturnPressed: password.forceActiveFocus()
             }
         }
 
-        Text { x: 64; y: 221; text: "PASSWORD"; color: ink; font.family: "Noto Sans Mono"; font.pixelSize: 17; font.bold: true }
+        Text { x: 64; y: 221; text: "PASSWORD"; color: ink; font.family: "Terminus"; font.pixelSize: 19; font.bold: true }
         Rectangle {
             x: 210; y: 205; width: 470; height: 54
             color: "#FFF9FF"; border.color: password.activeFocus ? active : panelShadow; border.width: 2
@@ -100,7 +100,7 @@ Rectangle {
                 anchors.fill: parent; anchors.margins: 12
                 echoMode: TextInput.Password
                 color: ink; selectionColor: active
-                font.family: "Noto Sans Mono"; font.pixelSize: 18
+                font.family: "Terminus"; font.pixelSize: 20
                 focus: true
                 Keys.onReturnPressed: root.login()
             }
@@ -112,7 +112,7 @@ Rectangle {
             color: loginMouse.pressed ? "#8F276F" : active
             border.color: ink; border.width: 2
             Rectangle { x: 3; y: 3; width: parent.width - 6; height: 2; color: "#FF8BC8" }
-            Text { anchors.centerIn: parent; text: "ENTER // ログイン"; color: "#FFF3FF"; font.family: "Noto Sans Mono"; font.pixelSize: 18; font.bold: true }
+            Text { anchors.centerIn: parent; text: "ENTER // ログイン"; color: "#FFF3FF"; font.family: "Terminus"; font.pixelSize: 20; font.bold: true }
             MouseArea { id: loginMouse; anchors.fill: parent; onClicked: root.login() }
         }
 
@@ -120,14 +120,14 @@ Rectangle {
             x: 64; y: 375; width: parent.width - 128
             text: statusMessage
             color: statusMessage.indexOf("FAILED") >= 0 ? "#B00050" : "#7141C1"
-            font.family: "Noto Sans Mono"; font.pixelSize: 15; font.bold: true
+            font.family: "Terminus"; font.pixelSize: 17; font.bold: true
         }
 
         Row {
             x: 64; y: 416; spacing: 24
-            Text { text: "[RESTART]"; color: ink; font.family: "Noto Sans Mono"; font.pixelSize: 15; MouseArea { anchors.fill: parent; onClicked: sddm.reboot() } }
-            Text { text: "[POWER OFF]"; color: ink; font.family: "Noto Sans Mono"; font.pixelSize: 15; MouseArea { anchors.fill: parent; onClicked: sddm.powerOff() } }
-            Text { text: Qt.formatDateTime(new Date(), "HH:mm  ddd dd MMM"); color: ink; font.family: "Noto Sans Mono"; font.pixelSize: 15 }
+            Text { text: "[RESTART]"; color: ink; font.family: "Terminus"; font.pixelSize: 17; MouseArea { anchors.fill: parent; onClicked: sddm.reboot() } }
+            Text { text: "[POWER OFF]"; color: ink; font.family: "Terminus"; font.pixelSize: 17; MouseArea { anchors.fill: parent; onClicked: sddm.powerOff() } }
+            Text { text: Qt.formatDateTime(new Date(), "HH:mm  ddd dd MMM"); color: ink; font.family: "Terminus"; font.pixelSize: 17 }
         }
     }
 

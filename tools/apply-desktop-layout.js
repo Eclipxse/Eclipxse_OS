@@ -12,7 +12,7 @@ var taskbar = new Panel();
 taskbar.location = "bottom";
 taskbar.alignment = "left";
 taskbar.lengthMode = "fill";
-taskbar.height = 64;
+taskbar.height = 58;
 taskbar.hiding = "none";
 
 function addFirstWidget(candidates) {
@@ -48,9 +48,9 @@ var toolRail = new Panel();
 toolRail.location = "left";
 toolRail.alignment = "left";
 toolRail.lengthMode = "custom";
-toolRail.minimumLength = 510;
-toolRail.maximumLength = 510;
-toolRail.height = 52;
+toolRail.minimumLength = 522;
+toolRail.maximumLength = 522;
+toolRail.height = 56;
 toolRail.hiding = "none";
 toolRail.addWidget("org.marishoku.toolrail");
 

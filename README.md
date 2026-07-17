@@ -16,7 +16,7 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 - handheld Japanese messaging UI
 - cyber-kawaii color with soft-goth contrast
 - intentional CRT/LCD texture on transitional surfaces only
-- original Momo/Kuro heart-spirit mascots
+- original adult gothic-anime heroine and 16-bit heart identity
 - no fake windows baked into wallpaper
 - no unlicensed mood-board images in the public repository or ISO
 
@@ -30,8 +30,8 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 
 - Plasma 6 Global Theme, Plasma Style, Aurorae, Kvantum, GTK 3/4, icons, and
   generated 32 px pixel cursors
-- deterministic original OMOTE, URA, boot, login, installer, cursor, and sound
-  assets
+- curated high-detail URA master plus deterministic OMOTE, recovery, cursor,
+  boot-control, and sound assets
 - reversible GRUB and Plymouth faux-BIOS sequence
 - custom SDDM sign-in and Plasma splash; lock screen uses the selected profile
   wallpaper while retaining Plasma's audited authentication component
@@ -97,7 +97,7 @@ it cannot execute the Debian chroot or honestly claim an ISO boot test.
 ## Repository map
 
 ```text
-artwork/              Original generated wallpaper, sound, and source assets
+artwork/              Approved master art, wallpapers, sound, and source assets
 docs/                 Visual specification, architecture, roadmap, and policy
 iso/                  Debian live-build and Calamares image configuration
 packages/             System apps, defaults, branding, and package metadata

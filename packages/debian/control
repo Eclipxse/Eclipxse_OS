@@ -4,7 +4,7 @@ Section: x11
 Priority: optional
 Architecture: all
 Maintainer: MARISHOKU/OS Project <eclipxse@users.noreply.github.com>
-Depends: plasma-desktop, plasma-workspace, plasma-workspace-wayland, sddm, plymouth, python3-pyqt6, qt-style-kvantum, fastfetch, fonts-noto-core, fonts-noto-cjk, fcitx5, fcitx5-mozc, fcitx5-config-qt
+Depends: plasma-desktop, plasma-workspace, plasma-workspace-wayland, sddm, plymouth, python3-pyqt6, qt-style-kvantum, fastfetch, fonts-noto-core, fonts-noto-cjk, fonts-terminus, fcitx5, fcitx5-mozc, fcitx5-config-qt
 Recommends: calamares, calamares-settings-debian, konsole, dolphin
 Description: MARISHOKU/OS V1 identity, profiles, themes, and utilities
  Installs the MARISHOKU boot hand-off, Plasma shell, OMOTE and URA profiles,
