@@ -1,0 +1,14 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [{ "Name": "MARISHOKU/OS Project" }],
+    "Category": "System Information",
+    "Description": "Fixed MARISHOKU/OS identity block for the classic taskbar",
+    "EnabledByDefault": true,
+    "Id": "org.marishoku.status",
+    "License": "GPL-3.0-or-later",
+    "Name": "MARISHOKU Status",
+    "Version": "1.0.0"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

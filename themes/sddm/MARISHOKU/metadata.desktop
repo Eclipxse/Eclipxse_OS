@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=MARISHOKU/OS
+Description=MARISHOKU/OS pixel sign-in screen
+Author=MARISHOKU/OS Project
+Copyright=(c) 2026 MARISHOKU/OS Project
+License=GPL-3.0-or-later
+Type=sddm-theme
+Version=1.0.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=MARISHOKU
+Theme-API=2.0

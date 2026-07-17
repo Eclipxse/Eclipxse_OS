@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Install MARISHOKU/OS
+Name[ja]=MARISHOKU/OS をインストール
+Comment=Install the live system to disk
+Exec=pkexec calamares
+Icon=marishoku-heart
+Categories=System;
+Terminal=false
+Keywords=installer;system;install;

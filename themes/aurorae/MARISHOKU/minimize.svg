@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="96" height="24" viewBox="0 0 96 24">
-  <g id="active-center"><rect width="24" height="24" fill="#c0c0ca" stroke="#080812" stroke-width="2"/><path d="M6 16h12" stroke="#080812" stroke-width="2"/></g>
-  <g id="inactive-center" transform="translate(24)"><rect width="24" height="24" fill="#6f7080" stroke="#080812" stroke-width="2"/><path d="M6 16h12" stroke="#c0c0ca" stroke-width="2"/></g>
-  <g id="hover-center" transform="translate(48)"><rect width="24" height="24" fill="#27dcec" stroke="#080812" stroke-width="2"/><path d="M6 16h12" stroke="#080812" stroke-width="2"/></g>
-  <g id="pressed-center" transform="translate(72)"><rect width="24" height="24" fill="#404050" stroke="#080812" stroke-width="2"/><path d="M7 17h12" stroke="#f6f4fa" stroke-width="2"/></g>
+  <g id="active-center"><rect width="24" height="24" fill="#d8cdd9" stroke="#15101f" stroke-width="2"/><path d="M6 16h12" stroke="#15101f" stroke-width="2"/></g>
+  <g id="inactive-center" transform="translate(24)"><rect width="24" height="24" fill="#8c7b92" stroke="#15101f" stroke-width="2"/><path d="M6 16h12" stroke="#d8cdd9" stroke-width="2"/></g>
+  <g id="hover-center" transform="translate(48)"><rect width="24" height="24" fill="#62dde4" stroke="#15101f" stroke-width="2"/><path d="M6 16h12" stroke="#15101f" stroke-width="2"/></g>
+  <g id="pressed-center" transform="translate(72)"><rect width="24" height="24" fill="#56445e" stroke="#15101f" stroke-width="2"/><path d="M7 17h12" stroke="#fff3ff" stroke-width="2"/></g>
 </svg>
 

@@ -2,59 +2,59 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48">
   <!-- normal: raised taskbar button -->
-  <g id="normal-topleft"><rect width="4" height="4" fill="#080812"/><path d="M1 4V1h3" fill="none" stroke="#f6f4fa"/><rect x="2" y="2" width="2" height="2" fill="#c0c0ca"/></g>
-  <g id="normal-top"><rect x="4" width="40" height="4" fill="#080812"/><rect x="4" y="1" width="40" height="1" fill="#f6f4fa"/><rect x="4" y="2" width="40" height="2" fill="#c0c0ca"/></g>
-  <g id="normal-topright"><rect x="44" width="4" height="4" fill="#080812"/><rect x="44" y="2" width="2" height="2" fill="#c0c0ca"/></g>
-  <g id="normal-left"><rect y="4" width="4" height="40" fill="#080812"/><rect x="1" y="4" width="1" height="40" fill="#f6f4fa"/><rect x="2" y="4" width="2" height="40" fill="#c0c0ca"/></g>
-  <rect id="normal-center" x="4" y="4" width="40" height="40" fill="#c0c0ca"/>
-  <g id="normal-right"><rect x="44" y="4" width="4" height="40" fill="#080812"/><rect x="44" y="4" width="2" height="40" fill="#8a8a98"/><rect x="46" y="4" width="1" height="40" fill="#404050"/></g>
-  <g id="normal-bottomleft"><rect y="44" width="4" height="4" fill="#080812"/><rect x="2" y="44" width="2" height="2" fill="#8a8a98"/></g>
-  <g id="normal-bottom"><rect x="4" y="44" width="40" height="4" fill="#080812"/><rect x="4" y="44" width="40" height="2" fill="#8a8a98"/></g>
-  <g id="normal-bottomright"><rect x="44" y="44" width="4" height="4" fill="#080812"/></g>
+  <g id="normal-topleft"><rect width="4" height="4" fill="#15101f"/><path d="M1 4V1h3" fill="none" stroke="#fff3ff"/><rect x="2" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-top"><rect x="4" width="40" height="4" fill="#15101f"/><rect x="4" y="1" width="40" height="1" fill="#fff3ff"/><rect x="4" y="2" width="40" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-topright"><rect x="44" width="4" height="4" fill="#15101f"/><rect x="44" y="2" width="2" height="2" fill="#d8cdd9"/></g>
+  <g id="normal-left"><rect y="4" width="4" height="40" fill="#15101f"/><rect x="1" y="4" width="1" height="40" fill="#fff3ff"/><rect x="2" y="4" width="2" height="40" fill="#d8cdd9"/></g>
+  <rect id="normal-center" x="4" y="4" width="40" height="40" fill="#d8cdd9"/>
+  <g id="normal-right"><rect x="44" y="4" width="4" height="40" fill="#15101f"/><rect x="44" y="4" width="2" height="40" fill="#8f7e94"/><rect x="46" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="normal-bottomleft"><rect y="44" width="4" height="4" fill="#15101f"/><rect x="2" y="44" width="2" height="2" fill="#8f7e94"/></g>
+  <g id="normal-bottom"><rect x="4" y="44" width="40" height="4" fill="#15101f"/><rect x="4" y="44" width="40" height="2" fill="#8f7e94"/></g>
+  <g id="normal-bottomright"><rect x="44" y="44" width="4" height="4" fill="#15101f"/></g>
 
   <!-- hover: raised with a cyan signal line -->
-  <g id="hover-topleft"><rect x="48" width="4" height="4" fill="#080812"/><path d="M49 4V1h3" fill="none" stroke="#27dcec"/></g>
-  <g id="hover-top"><rect x="52" width="40" height="4" fill="#080812"/><rect x="52" y="1" width="40" height="1" fill="#27dcec"/><rect x="52" y="2" width="40" height="2" fill="#dadbe5"/></g>
-  <g id="hover-topright"><rect x="92" width="4" height="4" fill="#080812"/><path d="M92 1h3v3" fill="none" stroke="#27dcec"/></g>
-  <g id="hover-left"><rect x="48" y="4" width="4" height="40" fill="#080812"/><rect x="49" y="4" width="1" height="40" fill="#27dcec"/></g>
-  <rect id="hover-center" x="52" y="4" width="40" height="40" fill="#dadbe5"/>
-  <g id="hover-right"><rect x="92" y="4" width="4" height="40" fill="#080812"/><rect x="94" y="4" width="1" height="40" fill="#404050"/></g>
-  <g id="hover-bottomleft"><rect x="48" y="44" width="4" height="4" fill="#080812"/></g>
-  <g id="hover-bottom"><rect x="52" y="44" width="40" height="4" fill="#080812"/><rect x="52" y="44" width="40" height="2" fill="#8a8a98"/></g>
-  <g id="hover-bottomright"><rect x="92" y="44" width="4" height="4" fill="#080812"/></g>
+  <g id="hover-topleft"><rect x="48" width="4" height="4" fill="#15101f"/><path d="M49 4V1h3" fill="none" stroke="#62dde4"/></g>
+  <g id="hover-top"><rect x="52" width="40" height="4" fill="#15101f"/><rect x="52" y="1" width="40" height="1" fill="#62dde4"/><rect x="52" y="2" width="40" height="2" fill="#e8dce9"/></g>
+  <g id="hover-topright"><rect x="92" width="4" height="4" fill="#15101f"/><path d="M92 1h3v3" fill="none" stroke="#62dde4"/></g>
+  <g id="hover-left"><rect x="48" y="4" width="4" height="40" fill="#15101f"/><rect x="49" y="4" width="1" height="40" fill="#62dde4"/></g>
+  <rect id="hover-center" x="52" y="4" width="40" height="40" fill="#e8dce9"/>
+  <g id="hover-right"><rect x="92" y="4" width="4" height="40" fill="#15101f"/><rect x="94" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="hover-bottomleft"><rect x="48" y="44" width="4" height="4" fill="#15101f"/></g>
+  <g id="hover-bottom"><rect x="52" y="44" width="40" height="4" fill="#15101f"/><rect x="52" y="44" width="40" height="2" fill="#8f7e94"/></g>
+  <g id="hover-bottomright"><rect x="92" y="44" width="4" height="4" fill="#15101f"/></g>
 
   <!-- focus: recessed active-task button with navy identity -->
-  <g id="focus-topleft"><rect x="96" width="4" height="4" fill="#080812"/><path d="M97 4V1h3" fill="none" stroke="#404050"/><rect x="98" y="2" width="2" height="2" fill="#000080"/></g>
-  <g id="focus-top"><rect x="100" width="40" height="4" fill="#080812"/><rect x="100" y="1" width="40" height="1" fill="#000080"/><rect x="100" y="2" width="40" height="2" fill="#8a8a98"/></g>
-  <g id="focus-topright"><rect x="140" width="4" height="4" fill="#080812"/><rect x="140" y="2" width="2" height="2" fill="#8a8a98"/></g>
-  <g id="focus-left"><rect x="96" y="4" width="4" height="40" fill="#080812"/><rect x="97" y="4" width="1" height="40" fill="#404050"/><rect x="98" y="4" width="2" height="40" fill="#8a8a98"/></g>
-  <rect id="focus-center" x="100" y="4" width="40" height="40" fill="#b0b0ba"/>
-  <g id="focus-right"><rect x="140" y="4" width="4" height="40" fill="#080812"/><rect x="140" y="4" width="2" height="40" fill="#f6f4fa"/></g>
-  <g id="focus-bottomleft"><rect x="96" y="44" width="4" height="4" fill="#080812"/><rect x="98" y="44" width="2" height="2" fill="#b0b0ba"/></g>
-  <g id="focus-bottom"><rect x="100" y="44" width="40" height="4" fill="#080812"/><rect x="100" y="44" width="40" height="2" fill="#f6f4fa"/></g>
-  <g id="focus-bottomright"><rect x="140" y="44" width="4" height="4" fill="#080812"/><path d="M140 47h3v-3" fill="none" stroke="#f6f4fa"/></g>
+  <g id="focus-topleft"><rect x="96" width="4" height="4" fill="#15101f"/><path d="M97 4V1h3" fill="none" stroke="#56445e"/><rect x="98" y="2" width="2" height="2" fill="#8f276f"/></g>
+  <g id="focus-top"><rect x="100" width="40" height="4" fill="#15101f"/><rect x="100" y="1" width="40" height="1" fill="#8f276f"/><rect x="100" y="2" width="40" height="2" fill="#8f7e94"/></g>
+  <g id="focus-topright"><rect x="140" width="4" height="4" fill="#15101f"/><rect x="140" y="2" width="2" height="2" fill="#8f7e94"/></g>
+  <g id="focus-left"><rect x="96" y="4" width="4" height="40" fill="#15101f"/><rect x="97" y="4" width="1" height="40" fill="#56445e"/><rect x="98" y="4" width="2" height="40" fill="#8f7e94"/></g>
+  <rect id="focus-center" x="100" y="4" width="40" height="40" fill="#c8b9cc"/>
+  <g id="focus-right"><rect x="140" y="4" width="4" height="40" fill="#15101f"/><rect x="140" y="4" width="2" height="40" fill="#fff3ff"/></g>
+  <g id="focus-bottomleft"><rect x="96" y="44" width="4" height="4" fill="#15101f"/><rect x="98" y="44" width="2" height="2" fill="#c8b9cc"/></g>
+  <g id="focus-bottom"><rect x="100" y="44" width="40" height="4" fill="#15101f"/><rect x="100" y="44" width="40" height="2" fill="#fff3ff"/></g>
+  <g id="focus-bottomright"><rect x="140" y="44" width="4" height="4" fill="#15101f"/><path d="M140 47h3v-3" fill="none" stroke="#fff3ff"/></g>
 
   <!-- attention: the one intentionally loud shell state -->
-  <g id="attention-topleft"><rect x="144" width="4" height="4" fill="#080812"/><path d="M145 4V1h3" fill="none" stroke="#f6f4fa"/></g>
-  <g id="attention-top"><rect x="148" width="40" height="4" fill="#080812"/><rect x="148" y="1" width="40" height="1" fill="#f6f4fa"/><rect x="148" y="2" width="40" height="2" fill="#ff2c9d"/></g>
-  <g id="attention-topright"><rect x="188" width="4" height="4" fill="#080812"/></g>
-  <g id="attention-left"><rect x="144" y="4" width="4" height="40" fill="#080812"/><rect x="145" y="4" width="1" height="40" fill="#f6f4fa"/></g>
-  <rect id="attention-center" x="148" y="4" width="40" height="40" fill="#ff2c9d"/>
-  <g id="attention-right"><rect x="188" y="4" width="4" height="40" fill="#080812"/><rect x="190" y="4" width="1" height="40" fill="#404050"/></g>
-  <g id="attention-bottomleft"><rect x="144" y="44" width="4" height="4" fill="#080812"/></g>
-  <g id="attention-bottom"><rect x="148" y="44" width="40" height="4" fill="#080812"/><rect x="148" y="44" width="40" height="2" fill="#000080"/></g>
-  <g id="attention-bottomright"><rect x="188" y="44" width="4" height="4" fill="#080812"/></g>
+  <g id="attention-topleft"><rect x="144" width="4" height="4" fill="#15101f"/><path d="M145 4V1h3" fill="none" stroke="#fff3ff"/></g>
+  <g id="attention-top"><rect x="148" width="40" height="4" fill="#15101f"/><rect x="148" y="1" width="40" height="1" fill="#fff3ff"/><rect x="148" y="2" width="40" height="2" fill="#d63bac"/></g>
+  <g id="attention-topright"><rect x="188" width="4" height="4" fill="#15101f"/></g>
+  <g id="attention-left"><rect x="144" y="4" width="4" height="40" fill="#15101f"/><rect x="145" y="4" width="1" height="40" fill="#fff3ff"/></g>
+  <rect id="attention-center" x="148" y="4" width="40" height="40" fill="#d63bac"/>
+  <g id="attention-right"><rect x="188" y="4" width="4" height="40" fill="#15101f"/><rect x="190" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="attention-bottomleft"><rect x="144" y="44" width="4" height="4" fill="#15101f"/></g>
+  <g id="attention-bottom"><rect x="148" y="44" width="40" height="4" fill="#15101f"/><rect x="148" y="44" width="40" height="2" fill="#8f276f"/></g>
+  <g id="attention-bottomright"><rect x="188" y="44" width="4" height="4" fill="#15101f"/></g>
 
   <!-- minimized -->
-  <g id="minimized-topleft"><rect x="192" width="4" height="4" fill="#080812"/><rect x="193" y="1" width="3" height="1" fill="#dadbe5"/></g>
-  <g id="minimized-top"><rect x="196" width="40" height="4" fill="#080812"/><rect x="196" y="1" width="40" height="1" fill="#dadbe5"/></g>
-  <g id="minimized-topright"><rect x="236" width="4" height="4" fill="#080812"/></g>
-  <g id="minimized-left"><rect x="192" y="4" width="4" height="40" fill="#080812"/><rect x="193" y="4" width="1" height="40" fill="#dadbe5"/></g>
-  <rect id="minimized-center" x="196" y="4" width="40" height="40" fill="#a6a7b2"/>
-  <g id="minimized-right"><rect x="236" y="4" width="4" height="40" fill="#080812"/><rect x="238" y="4" width="1" height="40" fill="#404050"/></g>
-  <g id="minimized-bottomleft"><rect x="192" y="44" width="4" height="4" fill="#080812"/></g>
-  <g id="minimized-bottom"><rect x="196" y="44" width="40" height="4" fill="#080812"/><rect x="196" y="46" width="40" height="1" fill="#404050"/></g>
-  <g id="minimized-bottomright"><rect x="236" y="44" width="4" height="4" fill="#080812"/></g>
+  <g id="minimized-topleft"><rect x="192" width="4" height="4" fill="#15101f"/><rect x="193" y="1" width="3" height="1" fill="#e8dce9"/></g>
+  <g id="minimized-top"><rect x="196" width="40" height="4" fill="#15101f"/><rect x="196" y="1" width="40" height="1" fill="#e8dce9"/></g>
+  <g id="minimized-topright"><rect x="236" width="4" height="4" fill="#15101f"/></g>
+  <g id="minimized-left"><rect x="192" y="4" width="4" height="40" fill="#15101f"/><rect x="193" y="4" width="1" height="40" fill="#e8dce9"/></g>
+  <rect id="minimized-center" x="196" y="4" width="40" height="40" fill="#b9aabd"/>
+  <g id="minimized-right"><rect x="236" y="4" width="4" height="40" fill="#15101f"/><rect x="238" y="4" width="1" height="40" fill="#56445e"/></g>
+  <g id="minimized-bottomleft"><rect x="192" y="44" width="4" height="4" fill="#15101f"/></g>
+  <g id="minimized-bottom"><rect x="196" y="44" width="40" height="4" fill="#15101f"/><rect x="196" y="46" width="40" height="1" fill="#56445e"/></g>
+  <g id="minimized-bottomright"><rect x="236" y="44" width="4" height="4" fill="#15101f"/></g>
 
   <rect id="normal-hint-top-margin" width="1" height="4" fill="#000"/>
   <rect id="normal-hint-right-margin" width="4" height="1" fill="#000"/>

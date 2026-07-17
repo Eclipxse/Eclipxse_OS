@@ -1,0 +1,11 @@
+PRETTY_NAME="MARISHOKU/OS 1.0"
+NAME="MARISHOKU/OS"
+VERSION_ID="1.0"
+VERSION="1.0 (Trixie)"
+VERSION_CODENAME=trixie
+ID=marishoku
+ID_LIKE=debian
+HOME_URL="https://github.com/Eclipxse/Eclipxse_OS"
+SUPPORT_URL="https://github.com/Eclipxse/Eclipxse_OS/issues"
+BUG_REPORT_URL="https://github.com/Eclipxse/Eclipxse_OS/issues"
+LOGO=marishoku-heart

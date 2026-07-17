@@ -1,0 +1,37 @@
+# MARISHOKU/OS faux BIOS GRUB theme
+desktop-image: "background.png"
+desktop-color: "#07040c"
+title-text: ""
+message-font: "Unifont Regular 16"
+message-color: "#fff3ff"
+message-bg-color: "#130d1a"
+terminal-font: "Unifont Regular 16"
+terminal-box: "0 0 0 0"
+
++ boot_menu {
+  left = 19%
+  top = 69%
+  width = 62%
+  height = 18%
+  item_font = "Unifont Regular 18"
+  item_color = "#2a1c30"
+  selected_item_color = "#fff3ff"
+  selected_item_pixmap_style = "select_*.png"
+  item_height = 34
+  item_padding = 8
+  item_spacing = 4
+  icon_width = 24
+  icon_height = 24
+  scrollbar = false
+}
+
++ label {
+  id = "footer"
+  text = "ENTER: START   E: EDIT   C: CONSOLE"
+  left = 20%
+  top = 91%
+  width = 60%
+  align = "center"
+  font = "Unifont Regular 14"
+  color = "#62dde4"
+}

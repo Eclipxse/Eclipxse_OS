@@ -1,0 +1,14 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [{ "Name": "MARISHOKU/OS Project" }],
+    "Category": "Application Launchers",
+    "Description": "V1 pixel tool rail for core MARISHOKU utilities",
+    "EnabledByDefault": true,
+    "Id": "org.marishoku.toolrail",
+    "License": "GPL-3.0-or-later",
+    "Name": "MARISHOKU Tool Rail",
+    "Version": "1.0.0"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

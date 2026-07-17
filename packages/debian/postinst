@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    plymouth-set-default-theme marishoku || true
+fi
+
+if command -v update-initramfs >/dev/null 2>&1; then
+    update-initramfs -u || true
+fi
+
+if command -v update-grub >/dev/null 2>&1 && [ -d /boot/grub ]; then
+    update-grub || true
+fi
+
+if [ -f /etc/calamares/settings.conf ]; then
+    sed -ri 's/^([[:space:]]*branding:).*/\1 marishoku/' /etc/calamares/settings.conf || true
+fi
+
+exit 0

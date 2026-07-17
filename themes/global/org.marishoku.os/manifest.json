@@ -6,10 +6,10 @@
         "Name": "MARISHOKU/OS Project"
       }
     ],
-    "Description": "The MR-10 global desktop identity",
+    "Description": "MARISHOKU V1 pixel desktop, splash, profiles, and session identity",
     "Id": "org.marishoku.os",
     "License": "GPL-3.0-or-later",
     "Name": "魔理蝕 // MARISHOKU/OS",
-    "Version": "0.4.0"
+    "Version": "1.0.0"
   }
 }

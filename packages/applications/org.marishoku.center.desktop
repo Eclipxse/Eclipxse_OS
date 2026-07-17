@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=MARISHOKU Control Center
+Name[ja]=MARISHOKU コントロールセンター
+Comment=System, profiles, storage, and Japanese input
+Exec=marishoku-center --page system
+Icon=marishoku-heart
+Categories=Settings;System;
+Terminal=false

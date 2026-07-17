@@ -10,6 +10,7 @@ policy:
     - GPL-compatible-software-assets
     - Pexels-License
     - Pexels-License-and-public-domain
+    - Pexels-License-and-CC-BY-SA-4.0
     - public-domain
   require_adult_subjects_for_explicit_content: true
 assets:
@@ -25,12 +26,24 @@ assets:
     type: ui-concept
     origin: original-ai-assisted-generation
     author: MARISHOKU/OS Project
-    license: prototype-only
-    distributable: false
+    license: CC-BY-SA-4.0
+    distributable: true
     notes: >-
       Generated with the built-in OpenAI image tool using the owner's four
-      supplied images as mood references only. This is a visual target, not a
-      final wallpaper or redistributable OS asset.
+      supplied images as mood references only. The owner approved this original
+      concept as distributable project artwork and as the exact Phase 1D target.
+  - id: desktop-concept-v1-approved
+    path: artwork/concepts/desktop-v1-approved.png
+    type: approved-ui-master-concept
+    origin: original-ai-assisted-generation
+    author: MARISHOKU/OS Project
+    license: CC-BY-SA-4.0
+    subject_age_review: original-adult-character-in-her-twenties
+    distributable: true
+    notes: >-
+      Approved V1 art direction: dense Japanese cyber-goth pixel artwork,
+      authentic square Win9x chrome, a rainy neon city, and an original adult
+      heroine. Supplied images were used as mood references only.
   - id: kvantum-marishoku-v0.1
     path: themes/kvantum/MARISHOKU/MARISHOKU.svg
     type: qt-control-atlas
@@ -77,3 +90,66 @@ assets:
       Original bus, roundel, blossoms, labels, palette reduction, rain, and CRT
       treatment were drawn by the MARISHOKU/OS Project. Untouched stock files
       are not redistributed.
+  - id: wallpaper-marishoku-ura-v0.5
+    path: artwork/wallpapers/MARISHOKU-URA/contents/images/1920x1080.png
+    type: transformed-wallpaper-composite
+    origin: approved-project-concept-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams
+    license: Pexels-License-and-CC-BY-SA-4.0
+    subject_age_review: stylized-adult-character-approved-by-owner
+    distributable: true
+    notes: >-
+      Uses the clean character/signage crop from the approved project-owned
+      desktop concept and rebuilds the obscured left side from Trev W. Adams'
+      rainy London photograph
+      (https://www.pexels.com/photo/london-rainy-27585636/). The build is a
+      deterministic Pillow composite and uses no generative image model.
+  - id: wallpaper-marishoku-omote-v1
+    path: artwork/wallpapers/MARISHOKU-OMOTE/contents/images/1920x1080.png
+    type: deterministic-pixel-wallpaper
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC0-1.0
+    distributable: true
+    notes: >-
+      Drawn entirely from Pillow primitives by tools/build-v1-assets.py. Momo,
+      Kuro, blossoms, stars, window chrome, and copy are original. The builder
+      does not read any mood-board image.
+  - id: wallpaper-marishoku-ura-v1
+    path: artwork/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png
+    type: curated-pixel-wallpaper
+    origin: approved-project-concept-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams
+    license: Pexels-License-and-CC-BY-SA-4.0
+    subject_age_review: original-adult-character-in-her-twenties
+    distributable: true
+    notes: >-
+      Canonical clean wallpaper plate derived from the approved V1 direction
+      and the documented Phase 1D rainy-London composite. The primitive
+      renderer remains only as a recovery fallback and cannot overwrite this
+      master when artwork/source/ura-v1-master.png is present.
+  - id: marishoku-v1-boot-and-login
+    path: themes/boot
+    type: generated-system-artwork-family
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+    notes: >-
+      Faux BIOS, Plymouth controls, SDDM background, and GRUB selection pieces
+      are deterministic code-native assets.
+  - id: marishoku-v1-cursors
+    path: themes/cursors/MARISHOKU
+    type: generated-cursor-theme
+    origin: original
+    author: MARISHOKU/OS Project
+    license: GPL-3.0-or-later
+    distributable: true
+  - id: marishoku-v1-sounds
+    path: artwork/sounds/MARISHOKU
+    type: synthesized-ui-sound-theme
+    origin: original
+    author: MARISHOKU/OS Project
+    license: CC0-1.0
+    distributable: true
+    notes: Generated from simple synthesized tones by tools/build-v1-assets.py.

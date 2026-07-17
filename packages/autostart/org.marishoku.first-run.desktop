@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=MARISHOKU First Run
+Exec=marishoku-first-run
+Icon=marishoku-heart
+OnlyShowIn=KDE;
+X-KDE-autostart-after=panel
+X-GNOME-Autostart-enabled=true

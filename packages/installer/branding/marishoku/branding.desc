@@ -1,0 +1,28 @@
+---
+componentName: marishoku
+welcomeStyleCalamares: true
+
+strings:
+    productName:         MARISHOKU/OS
+    shortProductName:    MARISHOKU
+    version:             1.0
+    shortVersion:        V1
+    versionedName:       MARISHOKU/OS V1
+    shortVersionedName:  MARISHOKU V1
+    bootloaderEntryName: MARISHOKU/OS
+    productUrl:          https://github.com/Eclipxse/Eclipxse_OS
+    supportUrl:          https://github.com/Eclipxse/Eclipxse_OS/issues
+    knownIssuesUrl:      https://github.com/Eclipxse/Eclipxse_OS/issues
+    releaseNotesUrl:     https://github.com/Eclipxse/Eclipxse_OS/releases
+
+images:
+    productLogo:         "marishoku-logo.png"
+    productIcon:         "marishoku-logo.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+
+style:
+    sidebarBackground:   "#130D1A"
+    sidebarText:         "#FFF3FF"
+    sidebarTextSelect:   "#62DDE4"

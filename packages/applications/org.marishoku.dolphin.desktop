@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=ファイルマネージャー
+GenericName=MARISHOKU File Manager
+Comment=Open Dolphin with Japanese interface strings where available
+Exec=env LANGUAGE=ja_JP:ja dolphin %U
+Icon=org.kde.dolphin
+Categories=System;FileTools;FileManager;
+MimeType=inode/directory;
+StartupNotify=true

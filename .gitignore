@@ -4,6 +4,13 @@ iso/cache/
 iso/chroot/
 iso/binary/
 iso/.stage/
+iso/config/bootloaders/
+iso/config/includes.binary/
+iso/config/includes.chroot/
+iso/config/packages.chroot/
+build/
+tools/__pycache__/
+themes/cursors/MARISHOKU/cursors/
 
 # Virtual machine and disk images
 *.iso
@@ -25,4 +32,4 @@ iso/.stage/
 Thumbs.db
 *.swp
 *.tmp
-
+*.pyc

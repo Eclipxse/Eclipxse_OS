@@ -1,0 +1,6 @@
+[Greeter]
+WallpaperPlugin=org.kde.image
+
+[Greeter][Wallpaper][org.kde.image][General]
+FillMode=2
+Image=file:///usr/share/wallpapers/MARISHOKU-URA-V1/contents/images/1920x1080.png
