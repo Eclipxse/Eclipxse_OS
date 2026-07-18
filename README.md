@@ -14,6 +14,8 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 
 - Windows 9x-style bevels and 26 px active titlebars
 - duplicate-safe single tool rail and responsive 1280/1920 taskbar geometry
+- custom command launcher and classic Control Center instead of a stock-KDE
+  first impression
 - handheld Japanese messaging UI
 - cyber-kawaii color with soft-goth contrast
 - intentional CRT/LCD texture on transitional surfaces only
@@ -39,8 +41,8 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 - custom SDDM sign-in and Plasma splash; lock screen uses the selected profile
   wallpaper while retaining Plasma's audited authentication component
 - atomic `marishoku-profile omote|ura` switcher
-- Control Center, first-run Welcome, read-only system summary, safe Storage Care,
-  and Japanese input guide
+- MARISHOKU command launcher, classic Control Center, first-run Welcome,
+  read-only system summary, safe Storage Care, and Japanese input guide
 - Fcitx 5 + Mozc defaults while keeping the normal US keyboard as default
 - optional Japanese KDE localisation through Debian's maintained desktop task
 - Debian package builder and Debian live-build configuration
@@ -53,7 +55,7 @@ From the checked-out repository in Debian:
 
 ```bash
 git fetch origin
-git switch agent/marishoku-v1
+git switch main
 git pull --ff-only
 ./tools/install-theme.sh --install-deps --apply --layout
 ```
@@ -84,7 +86,8 @@ python3 tools/build-v1-assets.py
 ./tools/build-package.sh
 ```
 
-The result is `build/packages/marishoku-system_1.0.0-1_all.deb`.
+The package filename is derived from `packages/debian/control`, currently
+`build/packages/marishoku-system_1.3.0-1_all.deb`.
 
 ## Build the live ISO
 

@@ -29,12 +29,9 @@ function addFirstWidget(candidates) {
     return null;
 }
 
-var launcher = addFirstWidget(["org.kde.plasma.kicker", "org.kde.plasma.kickoff"]);
-if (launcher) {
-    launcher.currentConfigGroup = ["General"];
-    launcher.writeConfig("icon", "marishoku-heart");
-    launcher.writeConfig("showAppsByName", true);
-}
+// Use the MARISHOKU command launcher as the primary shell surface. Keep the
+// KDE launchers as a recovery fallback if the custom package is unavailable.
+addFirstWidget(["org.marishoku.launcher", "org.kde.plasma.kicker", "org.kde.plasma.kickoff"]);
 
 addFirstWidget(["org.kde.plasma.taskmanager", "org.kde.plasma.icontasks"]);
 addFirstWidget(["org.kde.plasma.panelspacer"]);

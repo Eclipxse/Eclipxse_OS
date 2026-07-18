@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Japanese Input
+Name[ja]=日本語入力
+Comment=Configure Fcitx 5 and Mozc input
+Exec=marishoku-center --page japanese
+Icon=preferences-desktop-locale
+Categories=Settings;System;
+Terminal=false
