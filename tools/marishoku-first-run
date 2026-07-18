@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-marker="$HOME/.config/marishoku/welcome-v1.seen"
+marker="$HOME/.config/marishoku/welcome-v1.1.seen"
 if [[ -f $marker ]]; then
   exit 0
 fi
@@ -12,10 +12,12 @@ touch "$marker"
 # Compose the approved first-login scene with real applications. These launch
 # only once; subsequent sessions stay exactly as the user left them.
 if command -v dolphin >/dev/null 2>&1; then
-  dolphin "$HOME" >/dev/null 2>&1 &
+  env LANGUAGE=ja_JP:ja dolphin --new-window "$HOME" >/dev/null 2>&1 &
 fi
 if command -v konsole >/dev/null 2>&1; then
-  konsole --profile MARISHOKU -e bash -lc 'fastfetch; exec bash -l' \
+  konsole --separate --profile MARISHOKU \
+    -e bash --noprofile --norc -c 'fastfetch; exec bash -l' \
     >/dev/null 2>&1 &
 fi
+sleep 1
 exec marishoku-center --page welcome

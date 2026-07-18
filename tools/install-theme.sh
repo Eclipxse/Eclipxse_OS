@@ -83,15 +83,18 @@ for applet in "$ROOT"/packages/plasma/applets/*; do
   applet_name="$(basename "$applet")"
   applet_target="$HOME/.local/share/plasma/plasmoids/$applet_name"
   if command -v kpackagetool6 >/dev/null 2>&1; then
-    if [[ -d "$applet_target" ]]; then
-      kpackagetool6 --type Plasma/Applet --upgrade "$applet" >/dev/null 2>&1 || true
-    else
-      kpackagetool6 --type Plasma/Applet --install "$applet" >/dev/null 2>&1 || true
-    fi
+    # Plasma caches applet packages by id/version. Remove the registration
+    # before installing so an older system copy cannot win resolution.
+    kpackagetool6 --type Plasma/Applet --remove "$applet_name" >/dev/null 2>&1 || true
   fi
   rm -rf "$applet_target"
   mkdir -p "$HOME/.local/share/plasma/plasmoids"
-  cp -a "$applet" "$HOME/.local/share/plasma/plasmoids/"
+  if command -v kpackagetool6 >/dev/null 2>&1 \
+    && kpackagetool6 --type Plasma/Applet --install "$applet" >/dev/null 2>&1; then
+    :
+  else
+    cp -a "$applet" "$HOME/.local/share/plasma/plasmoids/"
+  fi
 done
 
 install -Dm644 "$ROOT/themes/konsole/MARISHOKU.colorscheme" \
@@ -156,6 +159,9 @@ for gtk_version in 3.0 4.0; do
 done
 
 rm -rf "$HOME/.cache/plasma"* 2>/dev/null || true
+if command -v kbuildsycoca6 >/dev/null 2>&1; then
+  kbuildsycoca6 --noincremental >/dev/null 2>&1 || true
+fi
 
 if "$APPLY"; then
   if command -v plasma-apply-lookandfeel >/dev/null 2>&1; then
@@ -208,7 +214,7 @@ if "$APPLY"; then
     kbuildsycoca6 >/dev/null 2>&1 || true
   fi
 
-  layout_marker="$HOME/.config/marishoku/layout-v1.0.applied"
+  layout_marker="$HOME/.config/marishoku/layout-v1.1.applied"
   if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
     applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [[ -f "$applet_config" && ! -f "${applet_config}.pre-phase1d.bak" ]]; then
@@ -237,6 +243,10 @@ if "$APPLY"; then
   fi
 
   "$HOME/.local/bin/marishoku-profile" ura || true
+
+  if "$APPLY_LAYOUT" && command -v systemctl >/dev/null 2>&1; then
+    systemctl --user restart plasma-plasmashell.service >/dev/null 2>&1 || true
+  fi
 
   printf '%s\n' \
     'MARISHOKU/OS V1 desktop installed.' \
