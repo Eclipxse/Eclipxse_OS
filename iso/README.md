@@ -14,17 +14,28 @@ VM is supported. Windows cannot run live-build directly.
 ```bash
 sudo apt update
 sudo apt install --yes live-build debootstrap squashfs-tools xorriso \
-  isolinux syslinux-common python3-pil dpkg-dev
-sudo apt install --yes xcursorgen
+  isolinux syslinux-common grub-efi-amd64-bin grub-pc-bin shim-signed \
+  mtools dosfstools rsync python3-pil dpkg-dev xcursorgen
 git clone https://github.com/Eclipxse/Eclipxse_OS.git
 cd Eclipxse_OS
-git switch agent/marishoku-v1
+git switch main
 sudo ./iso/build.sh
 ```
 
-The result is `iso/marishoku-os-v1-amd64.hybrid.iso`. `sudo` is required only
+The result is `iso/marishoku-os-v1.3-amd64.hybrid.iso`. `sudo` is required only
 for the chroot/image build. Theme development still uses the unprivileged
 `tools/install-theme.sh` workflow.
+
+The wrapper checks that it is running on Debian 13, that required build tools
+exist, and that at least 30 GiB is free before downloading packages. On a
+retry after a failed live-build run, clean its chroot first:
+
+```bash
+cd iso
+sudo ./auto/clean
+cd ..
+sudo ./iso/build.sh
+```
 
 ## Test safely
 
