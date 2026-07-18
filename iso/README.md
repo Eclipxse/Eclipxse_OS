@@ -15,7 +15,7 @@ VM is supported. Windows cannot run live-build directly.
 sudo apt update
 sudo apt install --yes live-build debootstrap squashfs-tools xorriso \
   isolinux syslinux-common grub-efi-amd64-bin grub-pc-bin shim-signed \
-  mtools dosfstools rsync python3-pil dpkg-dev xcursorgen
+  mtools dosfstools rsync python3-pil dpkg-dev x11-apps
 git clone https://github.com/Eclipxse/Eclipxse_OS.git
 cd Eclipxse_OS
 git switch main

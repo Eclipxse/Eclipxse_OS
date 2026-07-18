@@ -180,6 +180,15 @@ foreach ($buildContract in @('Debian 13 \(trixie\)', '30 GiB required', 'sudo: s
     }
 }
 
+$isoReadme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/README.md')
+if ($isoReadme -notmatch '(?m)\bx11-apps\b' -or $isoReadme -match '(?m)dpkg-dev xcursorgen') {
+    throw 'Debian 13 ISO instructions must install x11-apps as the xcursorgen provider.'
+}
+$themeInstaller = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/install-theme.sh')
+if ($themeInstaller -notmatch '(?m)fcitx5-config-qt x11-apps') {
+    throw 'Theme dependency installation must use Debian 13 package x11-apps.'
+}
+
 $sddm = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'themes/sddm/MARISHOKU/Main.qml')
 foreach ($contract in @('sddm.login', 'sddm.reboot', 'sddm.powerOff', 'onLoginFailed')) {
     if ($sddm -notmatch [regex]::Escape($contract)) {

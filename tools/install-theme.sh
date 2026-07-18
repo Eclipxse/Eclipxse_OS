@@ -36,7 +36,7 @@ if "$INSTALL_DEPS"; then
   sudo apt-get install -y \
     qt-style-kvantum fonts-noto-core fonts-noto-cjk fonts-terminus fastfetch \
     task-japanese-kde-desktop \
-    python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt xcursorgen
+    python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt x11-apps
 fi
 
 for scheme in "$ROOT"/themes/colors/*.colors; do
