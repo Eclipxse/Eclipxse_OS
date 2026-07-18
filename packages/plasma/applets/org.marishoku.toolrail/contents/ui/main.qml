@@ -9,16 +9,16 @@ PlasmoidItem {
     compactRepresentation: fullRepresentation
 
     property var tools: [
-        { icon: "heart.svg", label: "MARISHOKU", url: "applications:org.marishoku.welcome.desktop" },
-        { icon: "note.svg", label: "TEXT", url: "applications:org.kde.kate.desktop" },
-        { icon: "controls.svg", label: "CONTROL", url: "applications:org.marishoku.center.desktop" },
-        { icon: "select.svg", label: "CAPTURE", url: "applications:org.kde.spectacle.desktop" },
-        { icon: "kana.svg", label: "日本語 / MOZC", url: "applications:org.marishoku.japanese.desktop" },
-        { icon: "terminal.svg", label: "TERMINAL", url: "applications:org.marishoku.konsole.desktop" },
-        { icon: "folder.svg", label: "FILES", url: "applications:org.kde.dolphin.desktop" },
-        { icon: "network.svg", label: "NETWORK", url: "applications:firefox-esr.desktop" },
-        { icon: "profile.svg", label: "OMOTE / URA", url: "applications:org.marishoku.profile-omote.desktop" },
-        { icon: "disk.svg", label: "STORAGE", url: "applications:org.marishoku.storage.desktop" }
+        { icon: "heart.svg", label: "MARISHOKU", url: "marishoku:org.marishoku.welcome.desktop" },
+        { icon: "note.svg", label: "TEXT", url: "marishoku:org.kde.kate.desktop" },
+        { icon: "controls.svg", label: "CONTROL", url: "marishoku:org.marishoku.center.desktop" },
+        { icon: "select.svg", label: "CAPTURE", url: "marishoku:org.kde.spectacle.desktop" },
+        { icon: "kana.svg", label: "日本語 / MOZC", url: "marishoku:org.marishoku.japanese.desktop" },
+        { icon: "terminal.svg", label: "TERMINAL", url: "marishoku:org.marishoku.konsole.desktop" },
+        { icon: "folder.svg", label: "FILES", url: "marishoku:org.kde.dolphin.desktop" },
+        { icon: "network.svg", label: "NETWORK", url: "marishoku:firefox-esr.desktop" },
+        { icon: "profile.svg", label: "OMOTE / URA", url: "marishoku:org.marishoku.profile-omote.desktop" },
+        { icon: "disk.svg", label: "STORAGE", url: "marishoku:org.marishoku.storage.desktop" }
     ]
 
     fullRepresentation: Item {

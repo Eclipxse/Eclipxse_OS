@@ -14,6 +14,9 @@ firefox-esr
 plasma-discover
 plasma-discover-backend-flatpak
 flatpak
+libglib2.0-bin
+desktop-file-utils
+xdg-utils
 network-manager
 plasma-nm
 pipewire-audio

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=MARISHOKU Application Link
+Comment=Launch verified desktop entries from MARISHOKU Plasma surfaces
+Exec=marishoku-launch %u
+TryExec=marishoku-launch
+Icon=marishoku-heart
+NoDisplay=true
+Terminal=false
+MimeType=x-scheme-handler/marishoku;
+Categories=System;

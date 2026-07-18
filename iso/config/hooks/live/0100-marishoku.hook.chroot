@@ -13,6 +13,10 @@ if command -v update-initramfs >/dev/null 2>&1; then
     update-initramfs -u
 fi
 
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database /usr/share/applications
+fi
+
 mkdir -p /etc/skel/Desktop
 cp /usr/share/applications/org.marishoku.install.desktop \
     /etc/skel/Desktop/Install-MARISHOKU.desktop

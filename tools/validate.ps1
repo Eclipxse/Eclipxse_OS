@@ -88,6 +88,7 @@ $required = @(
     'packages/applications/org.marishoku.konsole.desktop'
     'packages/applications/org.marishoku.japanese.desktop'
     'packages/applications/org.marishoku.session.desktop'
+    'packages/applications/org.marishoku.url-handler.desktop'
     'packages/system-apps/marishoku_center.py'
     'packages/bin/neofetch'
     'packages/installer/branding/marishoku/branding.desc'
@@ -96,6 +97,7 @@ $required = @(
     'tools/build-cursors.sh'
     'tools/marishoku-profile'
     'tools/marishoku-first-run'
+    'tools/marishoku-launch'
     'tools/stage-rootfs.sh'
     'tools/build-package.sh'
     'tools/stage-live-build.sh'
@@ -220,9 +222,9 @@ if ($layoutTool -match 'var oldPanels = panelIds') {
 }
 
 $appletVersions = @{
-    'org.marishoku.launcher' = '1.3.1'
-    'org.marishoku.status' = '1.3.0'
-    'org.marishoku.toolrail' = '1.3.0'
+    'org.marishoku.launcher' = '1.3.2'
+    'org.marishoku.status' = '1.3.1'
+    'org.marishoku.toolrail' = '1.3.1'
 }
 foreach ($applet in $appletVersions.Keys) {
     $metadataPath = Join-Path $root "packages/plasma/applets/$applet/metadata.json"
@@ -235,9 +237,9 @@ foreach ($applet in $appletVersions.Keys) {
 $launcherQml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/plasma/applets/org.marishoku.launcher/contents/ui/main.qml')
 foreach ($launcherContract in @(
     'MARISHOKU/OS // COMMAND',
-    'applications:org\.marishoku\.center\.desktop',
-    'applications:org\.marishoku\.japanese\.desktop',
-    'applications:org\.marishoku\.session\.desktop',
+    'marishoku:org\.marishoku\.center\.desktop',
+    'marishoku:org\.marishoku\.japanese\.desktop',
+    'marishoku:org\.marishoku\.session\.desktop',
     'root\.expanded = !root\.expanded',
     'function launchCommand\(url\)',
     'Qt\.callLater\(function\(\) \{ root\.expanded = false \}\)'
@@ -248,6 +250,21 @@ foreach ($launcherContract in @(
 }
 if ($launcherQml -match 'root\.expanded = false\s+Qt\.openUrlExternally') {
     throw 'Launcher must not destroy its popup before reading a delegate URL.'
+}
+
+$appletQml = @(
+    'packages/plasma/applets/org.marishoku.launcher/contents/ui/main.qml',
+    'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml',
+    'packages/plasma/applets/org.marishoku.toolrail/contents/ui/main.qml'
+)
+foreach ($qmlPath in $appletQml) {
+    $qml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root $qmlPath)
+    if ($qml -match 'applications:') {
+        throw "Plasma applet uses the invalid KIO applications: launch scheme: $qmlPath"
+    }
+    if ($qml -notmatch 'marishoku:') {
+        throw "Plasma applet does not use the registered MARISHOKU launch scheme: $qmlPath"
+    }
 }
 
 $statusQml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml')
@@ -268,6 +285,7 @@ $desktopContracts = @{
     'packages/applications/org.marishoku.center.desktop' = 'Exec=marishoku-center --page home'
     'packages/applications/org.marishoku.japanese.desktop' = 'Exec=marishoku-center --page japanese'
     'packages/applications/org.marishoku.session.desktop' = 'Exec=qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptAll'
+    'packages/applications/org.marishoku.url-handler.desktop' = 'MimeType=x-scheme-handler/marishoku;'
 }
 foreach ($entry in $desktopContracts.GetEnumerator()) {
     $desktopFile = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root $entry.Key)
@@ -285,12 +303,27 @@ foreach ($installerContract in @('cp -a "\$applet" "\$applet_target"', 'cmp -s "
         throw "Hardened V1.3 installer is missing contract: $installerContract"
     }
 }
+foreach ($launchInstallerContract in @('marishoku-launch', 'update-desktop-database', 'xdg-mime default org\.marishoku\.url-handler\.desktop x-scheme-handler/marishoku')) {
+    if ($installer -notmatch $launchInstallerContract) {
+        throw "Installer does not register the MARISHOKU application scheme: $launchInstallerContract"
+    }
+}
+
+$launchHelper = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/marishoku-launch')
+foreach ($launchContract in @('^#!/usr/bin/env bash', 'desktop_id=.*marishoku:', 'gio launch "\$desktop_file"')) {
+    if ($launchHelper -notmatch $launchContract) {
+        throw "Application launch helper is missing contract: $launchContract"
+    }
+}
+if (-not $launchHelper.Contains('^[A-Za-z0-9._-]+\.desktop$')) {
+    throw 'Application launch helper does not restrict desktop-entry identifiers.'
+}
 $firstRun = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/marishoku-first-run')
 if ($firstRun -notmatch 'welcome-v1\.3\.seen') {
     throw 'First-run launcher does not use the V1.3 marker.'
 }
 $debianControl = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/debian/control')
-if ($debianControl -notmatch '(?m)^Version: 1\.3\.0-1$') {
+if ($debianControl -notmatch '(?m)^Version: 1\.3\.1-1$') {
     throw 'Debian package version is not V1.3.'
 }
 $packageBuilder = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/build-package.sh')

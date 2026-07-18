@@ -87,7 +87,7 @@ python3 tools/build-v1-assets.py
 ```
 
 The package filename is derived from `packages/debian/control`, currently
-`build/packages/marishoku-system_1.3.0-1_all.deb`.
+`build/packages/marishoku-system_1.3.1-1_all.deb`.
 
 ## Build the live ISO
 
