@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+uri=${1:-}
+desktop_id=${uri#marishoku:}
+desktop_id=${desktop_id#//}
+
+if [[ -z $desktop_id || $desktop_id == "$uri" ]]; then
+  printf 'Usage: marishoku-launch marishoku:APPLICATION.desktop\n' >&2
+  exit 2
+fi
+
+if [[ $desktop_id != *.desktop ]]; then
+  desktop_id="${desktop_id}.desktop"
+fi
+if [[ ! $desktop_id =~ ^[A-Za-z0-9._-]+\.desktop$ ]]; then
+  printf 'Refusing invalid desktop id: %s\n' "$desktop_id" >&2
+  exit 2
+fi
+
+data_home=${XDG_DATA_HOME:-$HOME/.local/share}
+data_dirs=${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
+desktop_file=
+
+IFS=: read -r -a roots <<< "$data_home:$data_dirs"
+for root in "${roots[@]}"; do
+  candidate="$root/applications/$desktop_id"
+  if [[ -f $candidate ]]; then
+    desktop_file=$candidate
+    break
+  fi
+done
+
+if [[ -z $desktop_file ]]; then
+  message="Unknown MARISHOKU application: $desktop_id"
+  printf '%s\n' "$message" >&2
+  if command -v kdialog >/dev/null 2>&1; then
+    kdialog --error "$message" --title 'MARISHOKU/OS // LAUNCH ERROR' || true
+  fi
+  exit 1
+fi
+
+if command -v gio >/dev/null 2>&1; then
+  exec gio launch "$desktop_file"
+fi
+if command -v gtk-launch >/dev/null 2>&1; then
+  exec gtk-launch "${desktop_id%.desktop}"
+fi
+
+printf '%s\n' 'No desktop-entry launcher is installed. Install libglib2.0-bin.' >&2
+exit 1

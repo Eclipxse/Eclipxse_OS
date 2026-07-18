@@ -63,7 +63,7 @@ PlasmoidItem {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: Qt.openUrlExternally("applications:org.marishoku.japanese.desktop")
+            onClicked: Qt.openUrlExternally("marishoku:org.marishoku.japanese.desktop")
         }
     }
 }

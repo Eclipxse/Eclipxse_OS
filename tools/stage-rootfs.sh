@@ -48,6 +48,7 @@ install -Dm644 "$ROOT/themes/fastfetch/marishoku-heart.txt" \
 install -Dm755 "$ROOT/tools/marishoku-profile" "$DEST/usr/bin/marishoku-profile"
 install -Dm755 "$ROOT/packages/system-apps/marishoku_center.py" "$DEST/usr/bin/marishoku-center"
 install -Dm755 "$ROOT/tools/marishoku-first-run" "$DEST/usr/bin/marishoku-first-run"
+install -Dm755 "$ROOT/tools/marishoku-launch" "$DEST/usr/bin/marishoku-launch"
 install -Dm755 "$ROOT/packages/bin/neofetch" "$DEST/usr/bin/neofetch"
 
 for application in "$ROOT"/packages/applications/*.desktop; do

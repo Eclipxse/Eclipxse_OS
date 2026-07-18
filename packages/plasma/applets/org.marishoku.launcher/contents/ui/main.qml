@@ -28,12 +28,12 @@ PlasmoidItem {
     }
 
     property var commands: [
-        { code: "SYS", title: "CONTROL CENTER", detail: "SYSTEM / PROFILE", url: "applications:org.marishoku.center.desktop" },
-        { code: "DIR", title: "FILES", detail: "HOME DIRECTORY", url: "applications:org.marishoku.dolphin.desktop" },
-        { code: ">_", title: "TERMINAL", detail: "KONSOLE LINK", url: "applications:org.marishoku.konsole.desktop" },
-        { code: "NET", title: "WEB", detail: "FIREFOX ESR", url: "applications:firefox-esr.desktop" },
-        { code: "PKG", title: "SOFTWARE", detail: "DISCOVER", url: "applications:org.kde.discover.desktop" },
-        { code: "あ", title: "JAPANESE", detail: "MOZC / FCITX 5", url: "applications:org.marishoku.japanese.desktop" }
+        { code: "SYS", title: "CONTROL CENTER", detail: "SYSTEM / PROFILE", url: "marishoku:org.marishoku.center.desktop" },
+        { code: "DIR", title: "FILES", detail: "HOME DIRECTORY", url: "marishoku:org.marishoku.dolphin.desktop" },
+        { code: ">_", title: "TERMINAL", detail: "KONSOLE LINK", url: "marishoku:org.marishoku.konsole.desktop" },
+        { code: "NET", title: "WEB", detail: "FIREFOX ESR", url: "marishoku:firefox-esr.desktop" },
+        { code: "PKG", title: "SOFTWARE", detail: "DISCOVER", url: "marishoku:org.kde.discover.desktop" },
+        { code: "あ", title: "JAPANESE", detail: "MOZC / FCITX 5", url: "marishoku:org.marishoku.japanese.desktop" }
     ]
 
     compactRepresentation: Item {
@@ -294,9 +294,9 @@ PlasmoidItem {
 
                 Repeater {
                     model: [
-                        { label: "OMOTE / 表", url: "applications:org.marishoku.profile-omote.desktop" },
-                        { label: "URA / 裏", url: "applications:org.marishoku.profile-ura.desktop" },
-                        { label: "SESSION...", url: "applications:org.marishoku.session.desktop" }
+                        { label: "OMOTE / 表", url: "marishoku:org.marishoku.profile-omote.desktop" },
+                        { label: "URA / 裏", url: "marishoku:org.marishoku.profile-ura.desktop" },
+                        { label: "SESSION...", url: "marishoku:org.marishoku.session.desktop" }
                     ]
                     delegate: Rectangle {
                         required property var modelData

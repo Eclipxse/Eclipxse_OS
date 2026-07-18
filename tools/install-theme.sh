@@ -36,7 +36,8 @@ if "$INSTALL_DEPS"; then
   sudo apt-get install -y \
     qt-style-kvantum fonts-noto-core fonts-noto-cjk fonts-terminus fastfetch \
     task-japanese-kde-desktop \
-    python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt x11-apps
+    python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt x11-apps \
+    libglib2.0-bin desktop-file-utils xdg-utils
 fi
 
 for scheme in "$ROOT"/themes/colors/*.colors; do
@@ -118,6 +119,8 @@ install -Dm755 "$ROOT/tools/marishoku-profile" \
   "$HOME/.local/bin/marishoku-profile"
 install -Dm755 "$ROOT/tools/marishoku-first-run" \
   "$HOME/.local/bin/marishoku-first-run"
+install -Dm755 "$ROOT/tools/marishoku-launch" \
+  "$HOME/.local/bin/marishoku-launch"
 install -Dm755 "$ROOT/packages/bin/neofetch" \
   "$HOME/.local/bin/neofetch"
 install -Dm755 "$ROOT/packages/system-apps/marishoku_center.py" \
@@ -133,6 +136,12 @@ for application in "$ROOT"/packages/applications/*.desktop; do
   install -Dm644 "$application" \
     "$HOME/.local/share/applications/$(basename "$application")"
 done
+if command -v update-desktop-database >/dev/null 2>&1; then
+  update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1 || true
+fi
+if command -v xdg-mime >/dev/null 2>&1; then
+  xdg-mime default org.marishoku.url-handler.desktop x-scheme-handler/marishoku
+fi
 
 for wallpaper in "$ROOT"/artwork/wallpapers/MARISHOKU-*; do
   wallpaper_name="$(basename "$wallpaper")"
