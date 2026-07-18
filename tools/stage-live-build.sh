@@ -45,9 +45,10 @@ for grub_config in "$BOOTLOADERS"/grub-*/grub.cfg; do
   sed -i '1i if [ -f /boot/grub/themes/marishoku/theme.txt ]; then\n  set theme=/boot/grub/themes/marishoku/theme.txt\n  export theme\nfi' "$grub_config"
 done
 
-package="$ROOT/build/packages/marishoku-system_1.0.0-1_all.deb"
+package_version="$(awk '/^Version:/ { print $2; exit }' "$ROOT/packages/debian/control")"
+package="$ROOT/build/packages/marishoku-system_${package_version}_all.deb"
 if [[ ! -f $package ]]; then
-  printf 'Missing package. Run tools/build-package.sh first.\n' >&2
+  printf 'Missing package: %s\nRun tools/build-package.sh first.\n' "$package" >&2
   exit 1
 fi
 cp "$package" "$PACKAGES/"

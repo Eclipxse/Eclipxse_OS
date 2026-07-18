@@ -103,6 +103,7 @@ $required = @(
     'iso/auto/build'
     'iso/config/package-lists/marishoku-desktop.list.chroot'
     'iso/config/hooks/live/0100-marishoku.hook.chroot'
+    'iso/artwork/splash.png'
     'iso/build.sh'
 )
 
@@ -156,9 +157,26 @@ foreach ($identity in @('ID=marishoku', 'ID_LIKE=debian', 'VERSION_ID="1.0"')) {
 }
 
 $isoPackages = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/config/package-lists/marishoku-desktop.list.chroot')
-foreach ($package in @('task-kde-desktop', 'task-japanese-kde-desktop', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
+foreach ($package in @('task-kde-desktop', 'task-japanese-kde-desktop', 'plasma-discover', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
     if ($isoPackages -notmatch "(?m)^$([regex]::Escape($package))$") {
         throw "Live image is missing required package: $package"
+    }
+}
+if ($isoPackages -match '(?m)^discover$') {
+    throw "Live image selects Debian's hardware-identification package 'discover' instead of KDE Plasma Discover."
+}
+
+$liveStaging = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/stage-live-build.sh')
+foreach ($stagingContract in @('packages/debian/control', 'marishoku-system_\$\{package_version\}_all\.deb')) {
+    if ($liveStaging -notmatch $stagingContract) {
+        throw "Live-image staging does not derive the V1.3 package filename: $stagingContract"
+    }
+}
+
+$isoBuild = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/build.sh')
+foreach ($buildContract in @('Debian 13 \(trixie\)', '30 GiB required', 'sudo: sudo ./iso/build\.sh')) {
+    if ($isoBuild -notmatch $buildContract) {
+        throw "ISO build preflight is missing contract: $buildContract"
     }
 }
 
