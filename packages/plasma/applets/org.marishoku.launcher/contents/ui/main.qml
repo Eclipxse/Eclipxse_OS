@@ -14,6 +14,19 @@ PlasmoidItem {
     property color pink: "#D63BAC"
     property color cyan: "#62DDE4"
 
+    // Never destroy the popup representation from inside one of its delegate
+    // click handlers. Copy and launch the URL first, then collapse the popup
+    // on the next event-loop turn so Plasma cannot invalidate modelData while
+    // the handler is still executing.
+    function launchCommand(url) {
+        var target = String(url)
+        if (target.length === 0) {
+            return
+        }
+        Qt.openUrlExternally(target)
+        Qt.callLater(function() { root.expanded = false })
+    }
+
     property var commands: [
         { code: "SYS", title: "CONTROL CENTER", detail: "SYSTEM / PROFILE", url: "applications:org.marishoku.center.desktop" },
         { code: "DIR", title: "FILES", detail: "HOME DIRECTORY", url: "applications:org.marishoku.dolphin.desktop" },
@@ -256,10 +269,7 @@ PlasmoidItem {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                root.expanded = false
-                                Qt.openUrlExternally(modelData.url)
-                            }
+                            onClicked: root.launchCommand(modelData.url)
                         }
                     }
                 }
@@ -308,10 +318,7 @@ PlasmoidItem {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                root.expanded = false
-                                Qt.openUrlExternally(modelData.url)
-                            }
+                            onClicked: root.launchCommand(modelData.url)
                         }
                     }
                 }
