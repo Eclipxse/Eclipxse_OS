@@ -9,12 +9,19 @@ if [[ ${EUID:-$(id -u)} -ne 0 ]]; then
 fi
 
 missing=()
-for command in lb debootstrap mksquashfs xorriso dpkg-deb python3 xcursorgen; do
+for command in lb debootstrap mksquashfs xorriso dpkg-deb python3 xcursorgen \
+  grub-mkstandalone mformat mkfs.vfat rsync; do
   command -v "$command" >/dev/null 2>&1 || missing+=("$command")
 done
 if (( ${#missing[@]} > 0 )); then
   printf 'Missing ISO build tools: %s\n' "${missing[*]}" >&2
   printf '%s\n' 'Install the dependencies listed in iso/README.md and retry.' >&2
+  exit 1
+fi
+
+if [[ ! -d /usr/lib/grub/x86_64-efi ]]; then
+  printf '%s\n' \
+    'Missing amd64 UEFI GRUB modules. Install grub-efi-amd64-bin and retry.' >&2
   exit 1
 fi
 

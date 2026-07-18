@@ -174,7 +174,7 @@ foreach ($stagingContract in @('packages/debian/control', 'marishoku-system_\$\{
 }
 
 $isoBuild = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/build.sh')
-foreach ($buildContract in @('Debian 13 \(trixie\)', '30 GiB required', 'sudo: sudo ./iso/build\.sh')) {
+foreach ($buildContract in @('Debian 13 \(trixie\)', '30 GiB required', 'sudo: sudo ./iso/build\.sh', 'grub-mkstandalone', '/usr/lib/grub/x86_64-efi')) {
     if ($isoBuild -notmatch $buildContract) {
         throw "ISO build preflight is missing contract: $buildContract"
     }
