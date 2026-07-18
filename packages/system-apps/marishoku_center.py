@@ -145,6 +145,7 @@ class WelcomeDialog(QDialog):
         self.setObjectName("welcome")
         self.setWindowTitle("MARISHOKU/OS システム")
         self.setFixedSize(540, 280)
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, True)
         self.setStyleSheet(APP_STYLE)
 
         outer = QVBoxLayout(self)

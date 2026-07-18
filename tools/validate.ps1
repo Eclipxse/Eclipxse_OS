@@ -151,7 +151,7 @@ foreach ($identity in @('ID=marishoku', 'ID_LIKE=debian', 'VERSION_ID="1.0"')) {
 }
 
 $isoPackages = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/config/package-lists/marishoku-desktop.list.chroot')
-foreach ($package in @('task-kde-desktop', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
+foreach ($package in @('task-kde-desktop', 'task-japanese-kde-desktop', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
     if ($isoPackages -notmatch "(?m)^$([regex]::Escape($package))$") {
         throw "Live image is missing required package: $package"
     }
@@ -168,6 +168,29 @@ $profileTool = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'to
 foreach ($profile in @('MARISHOKU-OMOTE', 'MARISHOKU-URA-V1')) {
     if ($profileTool -notmatch [regex]::Escape($profile)) {
         throw "Profile switcher does not reference $profile."
+    }
+}
+
+$layoutTool = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/apply-desktop-layout.js')
+foreach ($layoutContract in @(
+    'var oldPanels = \[\]',
+    'for \(var index = oldPanels\.length - 1; index >= 0; index -= 1\)',
+    'taskbar\.height = 54',
+    'clock\.writeConfig\("fontFamily", "Terminus"\)'
+)) {
+    if ($layoutTool -notmatch $layoutContract) {
+        throw "Responsive V1.2 layout is missing contract: $layoutContract"
+    }
+}
+if ($layoutTool -match 'var oldPanels = panelIds') {
+    throw 'Layout must not iterate the live panelIds collection while removing panels.'
+}
+
+foreach ($applet in @('org.marishoku.status', 'org.marishoku.toolrail')) {
+    $metadataPath = Join-Path $root "packages/plasma/applets/$applet/metadata.json"
+    $metadata = Get-Content -Raw -Encoding UTF8 -LiteralPath $metadataPath | ConvertFrom-Json
+    if ($metadata.KPlugin.Version -ne '1.2.0') {
+        throw "V1.2 applet package version drifted for $applet."
     }
 }
 

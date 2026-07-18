@@ -1,7 +1,12 @@
 // MARISHOKU/OS Plasma 6 desktop layout. @WALLPAPER_URI@ is replaced at install time.
 
-var oldPanels = panelIds;
-for (var index = 0; index < oldPanels.length; index += 1) {
+// panelIds is live. Copy it first and remove in reverse order; iterating the
+// live collection skipped every second panel and produced duplicate rails.
+var oldPanels = [];
+for (var panelIndex = 0; panelIndex < panelIds.length; panelIndex += 1) {
+    oldPanels.push(panelIds[panelIndex]);
+}
+for (var index = oldPanels.length - 1; index >= 0; index -= 1) {
     var oldPanel = panelById(oldPanels[index]);
     if (oldPanel) {
         oldPanel.remove();
@@ -12,7 +17,7 @@ var taskbar = new Panel();
 taskbar.location = "bottom";
 taskbar.alignment = "left";
 taskbar.lengthMode = "fill";
-taskbar.height = 58;
+taskbar.height = 54;
 taskbar.hiding = "none";
 
 function addFirstWidget(candidates) {
@@ -42,15 +47,19 @@ if (clock) {
     clock.writeConfig("showDate", false);
     clock.writeConfig("showSeconds", false);
     clock.writeConfig("use24hFormat", 2);
+    clock.writeConfig("autoFontAndSize", false);
+    clock.writeConfig("fontFamily", "Terminus");
+    clock.writeConfig("fontSize", 14);
+    clock.writeConfig("boldText", true);
 }
 
 var toolRail = new Panel();
 toolRail.location = "left";
 toolRail.alignment = "left";
 toolRail.lengthMode = "custom";
-toolRail.minimumLength = 522;
-toolRail.maximumLength = 522;
-toolRail.height = 56;
+toolRail.minimumLength = 500;
+toolRail.maximumLength = 500;
+toolRail.height = 52;
 toolRail.hiding = "none";
 toolRail.addWidget("org.marishoku.toolrail");
 

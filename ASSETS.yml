@@ -11,6 +11,7 @@ policy:
     - Pexels-License
     - Pexels-License-and-public-domain
     - Pexels-License-and-CC-BY-SA-4.0
+    - Pexels-License-and-GPL-3.0-or-later
     - public-domain
   require_adult_subjects_for_explicit_content: true
 assets:
@@ -130,14 +131,14 @@ assets:
       master when artwork/source/ura-v1-master.png is present.
   - id: marishoku-v1-boot-and-login
     path: themes/boot
-    type: generated-system-artwork-family
-    origin: original
-    author: MARISHOKU/OS Project
-    license: GPL-3.0-or-later
+    type: generated-system-artwork-family-with-approved-master
+    origin: approved-project-concept-with-licensed-stock
+    author: MARISHOKU/OS Project; Trev W. Adams
+    license: Pexels-License-and-GPL-3.0-or-later
     distributable: true
     notes: >-
       Faux BIOS, Plymouth controls, SDDM background, and GRUB selection pieces
-      are deterministic code-native assets.
+      use deterministic code-native UI over the approved rainy-city URA master.
   - id: marishoku-v1-cursors
     path: themes/cursors/MARISHOKU
     type: generated-cursor-theme

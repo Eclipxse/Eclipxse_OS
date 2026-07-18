@@ -42,7 +42,8 @@ not over long passages of text.
 - One-pixel ink outline around interactive objects.
 - Two-stage bevel: light on top/left, shadow on bottom/right.
 - Title bars are 26 px at 100% scale and must pixel-snap.
-- Default desktop panel is 64 px at 100% scale to match the approved concept.
+- Default desktop panel is 54 px at 100% scale, with compact responsive status
+  geometry for both the 1280x800 VM and the 1920x1080 release target.
 - Icons are authored on 16, 24, 32, and 48 px grids.
 - Blur, glass, floating cards, and soft shadows are disabled by default.
 

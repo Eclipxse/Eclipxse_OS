@@ -7,16 +7,16 @@ PlasmoidItem {
     compactRepresentation: fullRepresentation
 
     fullRepresentation: Item {
-        implicitWidth: 202
-        implicitHeight: 54
+        implicitWidth: 164
+        implicitHeight: 48
 
         Row {
             anchors.centerIn: parent
-            spacing: 9
+            spacing: 7
 
             Rectangle {
-                width: 9
-                height: 9
+                width: 8
+                height: 8
                 anchors.verticalCenter: parent.verticalCenter
                 color: "#D63BAC"
                 border.color: "#15101F"
@@ -25,20 +25,20 @@ PlasmoidItem {
 
             Column {
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 1
+                spacing: 0
                 Text {
                     text: "MARISHOKU/OS"
                     color: "#FFF3FF"
                     font.family: "Terminus"
-                    font.pixelSize: 14
+                    font.pixelSize: 12
                     font.bold: true
                     renderType: Text.NativeRendering
                 }
                 Text {
-                    text: "裏 // URA  ·  MR-10"
+                    text: "裏 / URA · MR-10"
                     color: "#62DDE4"
                     font.family: "Terminus"
-                    font.pixelSize: 9
+                    font.pixelSize: 8
                     font.bold: true
                     renderType: Text.NativeRendering
                 }
