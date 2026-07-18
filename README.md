@@ -81,7 +81,7 @@ On Debian 13:
 
 ```bash
 sudo apt update
-sudo apt install --yes python3-pil xcursorgen dpkg-dev
+sudo apt install --yes python3-pil x11-apps dpkg-dev
 python3 tools/build-v1-assets.py
 ./tools/build-package.sh
 ```
