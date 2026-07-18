@@ -219,10 +219,15 @@ if ($layoutTool -match 'var oldPanels = panelIds') {
     throw 'Layout must not iterate the live panelIds collection while removing panels.'
 }
 
-foreach ($applet in @('org.marishoku.launcher', 'org.marishoku.status', 'org.marishoku.toolrail')) {
+$appletVersions = @{
+    'org.marishoku.launcher' = '1.3.1'
+    'org.marishoku.status' = '1.3.0'
+    'org.marishoku.toolrail' = '1.3.0'
+}
+foreach ($applet in $appletVersions.Keys) {
     $metadataPath = Join-Path $root "packages/plasma/applets/$applet/metadata.json"
     $metadata = Get-Content -Raw -Encoding UTF8 -LiteralPath $metadataPath | ConvertFrom-Json
-    if ($metadata.KPlugin.Version -ne '1.3.0') {
+    if ($metadata.KPlugin.Version -ne $appletVersions[$applet]) {
         throw "V1.3 applet package version drifted for $applet."
     }
 }
@@ -233,11 +238,16 @@ foreach ($launcherContract in @(
     'applications:org\.marishoku\.center\.desktop',
     'applications:org\.marishoku\.japanese\.desktop',
     'applications:org\.marishoku\.session\.desktop',
-    'root\.expanded = !root\.expanded'
+    'root\.expanded = !root\.expanded',
+    'function launchCommand\(url\)',
+    'Qt\.callLater\(function\(\) \{ root\.expanded = false \}\)'
 )) {
     if ($launcherQml -notmatch $launcherContract) {
         throw "V1.3 command launcher is missing contract: $launcherContract"
     }
+}
+if ($launcherQml -match 'root\.expanded = false\s+Qt\.openUrlExternally') {
+    throw 'Launcher must not destroy its popup before reading a delegate URL.'
 }
 
 $statusQml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml')
