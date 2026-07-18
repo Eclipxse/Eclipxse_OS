@@ -35,6 +35,7 @@ if "$INSTALL_DEPS"; then
   sudo apt-get update
   sudo apt-get install -y \
     qt-style-kvantum fonts-noto-core fonts-noto-cjk fonts-terminus fastfetch \
+    task-japanese-kde-desktop \
     python3-pyqt6 fcitx5 fcitx5-mozc fcitx5-config-qt xcursorgen
 fi
 
@@ -214,7 +215,7 @@ if "$APPLY"; then
     kbuildsycoca6 >/dev/null 2>&1 || true
   fi
 
-  layout_marker="$HOME/.config/marishoku/layout-v1.1.applied"
+  layout_marker="$HOME/.config/marishoku/layout-v1.2.applied"
   if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
     applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [[ -f "$applet_config" && ! -f "${applet_config}.pre-phase1d.bak" ]]; then

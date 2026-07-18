@@ -13,6 +13,7 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 ## V1 direction
 
 - Windows 9x-style bevels and 26 px active titlebars
+- duplicate-safe single tool rail and responsive 1280/1920 taskbar geometry
 - handheld Japanese messaging UI
 - cyber-kawaii color with soft-goth contrast
 - intentional CRT/LCD texture on transitional surfaces only
@@ -33,12 +34,15 @@ applications, profiles, utilities, Japanese input, and installer—in one square
 - curated high-detail URA master plus deterministic OMOTE, recovery, cursor,
   boot-control, and sound assets
 - reversible GRUB and Plymouth faux-BIOS sequence
+- approved rainy-city master behind the CRT BIOS diagnostics instead of a flat
+  placeholder background
 - custom SDDM sign-in and Plasma splash; lock screen uses the selected profile
   wallpaper while retaining Plasma's audited authentication component
 - atomic `marishoku-profile omote|ura` switcher
 - Control Center, first-run Welcome, read-only system summary, safe Storage Care,
   and Japanese input guide
 - Fcitx 5 + Mozc defaults while keeping the normal US keyboard as default
+- optional Japanese KDE localisation through Debian's maintained desktop task
 - Debian package builder and Debian live-build configuration
 - Calamares installer branding based on Debian's maintained installer settings
 - VirtualBox, QEMU/SPICE, firmware, UEFI, and Secure Boot build support

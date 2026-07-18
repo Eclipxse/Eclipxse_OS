@@ -208,9 +208,19 @@ def ura(with_message: bool = False) -> Image.Image:
 
 
 def boot() -> Image.Image:
-    im = Image.new("RGB", LOW, "#07040C")
+    if URA_MASTER.is_file():
+        master = Image.open(URA_MASTER).convert("RGB").resize(LOW, Image.Resampling.NEAREST)
+        veil = Image.new("RGB", LOW, "#08040E")
+        im = Image.blend(master, veil, 0.58)
+    else:
+        im = Image.new("RGB", LOW, "#07040C")
     d = ImageDraw.Draw(im)
-    grid(d, "#160A1C", 24)
+    # A sparse diagnostic grid and scanline pass keep the approved background
+    # legible while making the boot boundary read as a CRT/faux-BIOS surface.
+    for x in range(0, LOW[0], 48):
+        d.line((x, 0, x, LOW[1]), fill="#1B1022")
+    for y in range(0, LOW[1], 48):
+        d.line((0, y, LOW[0], y), fill="#1B1022")
     for x, y, c in ((80, 60, PINK), (850, 70, CYAN), (740, 460, VIOLET), (120, 480, WHITE)):
         pixel_star(d, x, y, c, 5)
     content = window(d, (128, 64, 832, 476), "MARISHOKU BIOS v1.0", VIOLET)
