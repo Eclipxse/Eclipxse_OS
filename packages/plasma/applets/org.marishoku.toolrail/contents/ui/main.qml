@@ -13,7 +13,7 @@ PlasmoidItem {
         { icon: "note.svg", label: "TEXT", url: "applications:org.kde.kate.desktop" },
         { icon: "controls.svg", label: "CONTROL", url: "applications:org.marishoku.center.desktop" },
         { icon: "select.svg", label: "CAPTURE", url: "applications:org.kde.spectacle.desktop" },
-        { icon: "kana.svg", label: "日本語", url: "applications:org.fcitx.Fcitx5.desktop" },
+        { icon: "kana.svg", label: "日本語 / MOZC", url: "applications:org.marishoku.japanese.desktop" },
         { icon: "terminal.svg", label: "TERMINAL", url: "applications:org.marishoku.konsole.desktop" },
         { icon: "folder.svg", label: "FILES", url: "applications:org.kde.dolphin.desktop" },
         { icon: "network.svg", label: "NETWORK", url: "applications:firefox-esr.desktop" },

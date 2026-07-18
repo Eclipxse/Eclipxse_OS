@@ -5,7 +5,7 @@ drive.
 
 ## Theme update test
 
-- [ ] Pull `agent/marishoku-v1` with a clean worktree.
+- [ ] Fetch the current test branch with a clean worktree and verify its commit.
 - [ ] Run `./tools/install-theme.sh --install-deps --apply --layout`.
 - [ ] Log out and back in.
 - [ ] Confirm the Phase 1D every-login dialog is gone.
@@ -14,6 +14,11 @@ drive.
 - [ ] Run `marishoku-profile omote`, then `marishoku-profile ura`.
 - [ ] Lock after each profile and confirm its wallpaper.
 - [ ] Open Control Center, Welcome, Storage Care, and each tool-rail shortcut.
+- [ ] Open the heart launcher; verify all six command tiles, both profiles, and
+      the Session button launch the intended real applications.
+- [ ] Confirm the taskbar JP status opens the MARISHOKU Japanese Input page.
+- [ ] Open Display, Audio, Network, and Input from Control Center; confirm each
+      hands off to the correct maintained KDE hardware module.
 - [ ] Confirm Storage Care never offers deletion.
 - [ ] Add Mozc in Fcitx and switch EN/JA with Ctrl+Space.
 

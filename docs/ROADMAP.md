@@ -26,6 +26,7 @@ approved colors.
 - [x] Launcher, task switcher, notifications, OSD, and KRunner share the V1 shell.
   - [x] Classic bottom taskbar, launcher identity, and task buttons.
   - [x] Phase 1D left tool rail, status block, and URA greeting dialog.
+  - [x] V1.3 command launcher, classic Control Center, and clickable JP status.
   - [x] Notification and popup frames inherit the Plasma Style.
 - [x] SDDM, profile lock wallpaper, and splash screen.
 - [x] OMOTE/URA switcher.

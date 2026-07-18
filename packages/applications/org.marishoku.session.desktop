@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Session Controls
+Name[ja]=セッション操作
+Comment=Log out, restart, shut down, or sleep
+Exec=qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptAll
+Icon=system-shutdown
+Categories=System;
+Terminal=false

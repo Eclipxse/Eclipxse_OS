@@ -84,17 +84,17 @@ for applet in "$ROOT"/packages/plasma/applets/*; do
   applet_name="$(basename "$applet")"
   applet_target="$HOME/.local/share/plasma/plasmoids/$applet_name"
   if command -v kpackagetool6 >/dev/null 2>&1; then
-    # Plasma caches applet packages by id/version. Remove the registration
-    # before installing so an older system copy cannot win resolution.
+    # Plasma caches packages by id/version. Remove any registration first,
+    # then install the repository payload directly so a successful-but-stale
+    # KPackage operation cannot leave an older applet behind.
     kpackagetool6 --type Plasma/Applet --remove "$applet_name" >/dev/null 2>&1 || true
   fi
   rm -rf "$applet_target"
   mkdir -p "$HOME/.local/share/plasma/plasmoids"
-  if command -v kpackagetool6 >/dev/null 2>&1 \
-    && kpackagetool6 --type Plasma/Applet --install "$applet" >/dev/null 2>&1; then
-    :
-  else
-    cp -a "$applet" "$HOME/.local/share/plasma/plasmoids/"
+  cp -a "$applet" "$applet_target"
+  if ! cmp -s "$applet/metadata.json" "$applet_target/metadata.json"; then
+    printf 'Applet verification failed: %s\n' "$applet_name" >&2
+    exit 1
   fi
 done
 
@@ -215,7 +215,7 @@ if "$APPLY"; then
     kbuildsycoca6 >/dev/null 2>&1 || true
   fi
 
-  layout_marker="$HOME/.config/marishoku/layout-v1.2.applied"
+  layout_marker="$HOME/.config/marishoku/layout-v1.3.applied"
   if [[ ! -f "$layout_marker" ]] || "$APPLY_LAYOUT"; then
     applet_config="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
     if [[ -f "$applet_config" && ! -f "${applet_config}.pre-phase1d.bak" ]]; then
@@ -226,20 +226,25 @@ if "$APPLY"; then
     layout_script="$(sed "s|@WALLPAPER_URI@|$wallpaper_uri|g" "$ROOT/tools/apply-desktop-layout.js")"
     layout_applied=false
     if command -v qdbus6 >/dev/null 2>&1; then
-      qdbus6 org.kde.plasmashell /PlasmaShell \
-        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
-      layout_applied=true
+      if qdbus6 org.kde.plasmashell /PlasmaShell \
+        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null; then
+        layout_applied=true
+      fi
     elif command -v qdbus >/dev/null 2>&1; then
-      qdbus org.kde.plasmashell /PlasmaShell \
-        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null
-      layout_applied=true
+      if qdbus org.kde.plasmashell /PlasmaShell \
+        org.kde.PlasmaShell.evaluateScript "$layout_script" >/dev/null; then
+        layout_applied=true
+      fi
     fi
 
     if "$layout_applied"; then
       mkdir -p "$(dirname "$layout_marker")"
       touch "$layout_marker"
     else
-      printf '%s\n' 'Plasma layout could not be applied because qdbus was unavailable.' >&2
+      printf '%s\n' \
+        'Plasma layout application failed. The applets were installed, but the shell did not accept the V1.3 layout.' \
+        'Run this command from an active Plasma desktop session, not a TTY or SSH session.' >&2
+      exit 1
     fi
   fi
 
@@ -250,10 +255,10 @@ if "$APPLY"; then
   fi
 
   printf '%s\n' \
-    'MARISHOKU/OS V1 desktop installed.' \
+    'MARISHOKU/OS V1.3 desktop installed.' \
     'Log out and back in once to refresh the shell and input method.'
 else
   printf '%s\n' \
-    'MARISHOKU/OS V1 desktop installed for the current user.' \
+    'MARISHOKU/OS V1.3 desktop installed for the current user.' \
     'Run again with --apply, or select it in System Settings -> Colors & Themes -> Global Theme.'
 fi

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-marker="$HOME/.config/marishoku/welcome-v1.2.seen"
+marker="$HOME/.config/marishoku/welcome-v1.3.seen"
 if [[ -f $marker ]]; then
   exit 0
 fi

@@ -75,6 +75,9 @@ $required = @(
     'artwork/sounds/MARISHOKU/index.theme'
     'packages/plasma/applets/org.marishoku.status/metadata.json'
     'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml'
+    'packages/plasma/applets/org.marishoku.launcher/metadata.json'
+    'packages/plasma/applets/org.marishoku.launcher/contents/ui/main.qml'
+    'packages/plasma/applets/org.marishoku.launcher/contents/images/heart.svg'
     'packages/plasma/applets/org.marishoku.toolrail/metadata.json'
     'packages/plasma/applets/org.marishoku.toolrail/contents/ui/main.qml'
     'packages/plasma/applets/org.marishoku.toolrail/contents/images/heart.svg'
@@ -83,6 +86,8 @@ $required = @(
     'packages/autostart/org.marishoku.first-run.desktop'
     'packages/applications/org.marishoku.dolphin.desktop'
     'packages/applications/org.marishoku.konsole.desktop'
+    'packages/applications/org.marishoku.japanese.desktop'
+    'packages/applications/org.marishoku.session.desktop'
     'packages/system-apps/marishoku_center.py'
     'packages/bin/neofetch'
     'packages/installer/branding/marishoku/branding.desc'
@@ -177,21 +182,83 @@ foreach ($layoutContract in @(
     'for \(var index = oldPanels\.length - 1; index >= 0; index -= 1\)',
     'taskbar\.height = 54',
     'clock\.writeConfig\("fontFamily", "Terminus"\)'
+    'org\.marishoku\.launcher'
 )) {
     if ($layoutTool -notmatch $layoutContract) {
-        throw "Responsive V1.2 layout is missing contract: $layoutContract"
+        throw "Responsive V1.3 layout is missing contract: $layoutContract"
     }
 }
 if ($layoutTool -match 'var oldPanels = panelIds') {
     throw 'Layout must not iterate the live panelIds collection while removing panels.'
 }
 
-foreach ($applet in @('org.marishoku.status', 'org.marishoku.toolrail')) {
+foreach ($applet in @('org.marishoku.launcher', 'org.marishoku.status', 'org.marishoku.toolrail')) {
     $metadataPath = Join-Path $root "packages/plasma/applets/$applet/metadata.json"
     $metadata = Get-Content -Raw -Encoding UTF8 -LiteralPath $metadataPath | ConvertFrom-Json
-    if ($metadata.KPlugin.Version -ne '1.2.0') {
-        throw "V1.2 applet package version drifted for $applet."
+    if ($metadata.KPlugin.Version -ne '1.3.0') {
+        throw "V1.3 applet package version drifted for $applet."
     }
+}
+
+$launcherQml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/plasma/applets/org.marishoku.launcher/contents/ui/main.qml')
+foreach ($launcherContract in @(
+    'MARISHOKU/OS // COMMAND',
+    'applications:org\.marishoku\.center\.desktop',
+    'applications:org\.marishoku\.japanese\.desktop',
+    'applications:org\.marishoku\.session\.desktop',
+    'root\.expanded = !root\.expanded'
+)) {
+    if ($launcherQml -notmatch $launcherContract) {
+        throw "V1.3 command launcher is missing contract: $launcherContract"
+    }
+}
+
+$statusQml = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/plasma/applets/org.marishoku.status/contents/ui/main.qml')
+foreach ($statusContract in @('JP READY', 'org\.marishoku\.japanese\.desktop')) {
+    if ($statusQml -notmatch $statusContract) {
+        throw "V1.3 status applet is missing contract: $statusContract"
+    }
+}
+
+$centerApp = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/system-apps/marishoku_center.py')
+foreach ($centerContract in @('MARISHOKU CONTROL\.EXE', 'VERSION 1\.3\.0 DEV', 'kcm_kscreen', 'fcitx5-config-qt')) {
+    if ($centerApp -notmatch $centerContract) {
+        throw "V1.3 Control Center is missing contract: $centerContract"
+    }
+}
+
+$desktopContracts = @{
+    'packages/applications/org.marishoku.center.desktop' = 'Exec=marishoku-center --page home'
+    'packages/applications/org.marishoku.japanese.desktop' = 'Exec=marishoku-center --page japanese'
+    'packages/applications/org.marishoku.session.desktop' = 'Exec=qdbus6 org.kde.LogoutPrompt /LogoutPrompt promptAll'
+}
+foreach ($entry in $desktopContracts.GetEnumerator()) {
+    $desktopFile = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root $entry.Key)
+    if ($desktopFile -notmatch [regex]::Escape($entry.Value)) {
+        throw "Desktop entry '$($entry.Key)' is missing contract: $($entry.Value)"
+    }
+}
+
+$installer = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/install-theme.sh')
+if ($installer -notmatch 'layout-v1\.3\.applied') {
+    throw 'Installer does not use the V1.3 desktop-layout marker.'
+}
+foreach ($installerContract in @('cp -a "\$applet" "\$applet_target"', 'cmp -s "\$applet/metadata\.json"', 'Plasma layout application failed')) {
+    if ($installer -notmatch $installerContract) {
+        throw "Hardened V1.3 installer is missing contract: $installerContract"
+    }
+}
+$firstRun = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/marishoku-first-run')
+if ($firstRun -notmatch 'welcome-v1\.3\.seen') {
+    throw 'First-run launcher does not use the V1.3 marker.'
+}
+$debianControl = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/debian/control')
+if ($debianControl -notmatch '(?m)^Version: 1\.3\.0-1$') {
+    throw 'Debian package version is not V1.3.'
+}
+$packageBuilder = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/build-package.sh')
+if ($packageBuilder -notmatch 'PACKAGE_VERSION=.*packages/debian/control') {
+    throw 'Package builder does not derive its artifact version from Debian control metadata.'
 }
 
 $auroraeRc = Get-Content -Raw -LiteralPath (Join-Path $root 'themes/aurorae/MARISHOKU/MARISHOKUrc')
@@ -381,4 +448,4 @@ foreach ($pair in $contrastPairs) {
     }
 }
 
-Write-Host 'MARISHOKU/OS V1 repository validation passed.' -ForegroundColor Magenta
+Write-Host 'MARISHOKU/OS V1.3 repository validation passed.' -ForegroundColor Magenta
