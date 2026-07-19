@@ -1,6 +1,6 @@
 task-kde-desktop
 task-japanese-kde-desktop
-plasma-workspace-wayland
+plasma-workspace
 sddm
 qt-style-kvantum
 konsole
@@ -9,7 +9,7 @@ ark
 kate
 gwenview
 okular
-spectacle
+kde-spectacle
 firefox-esr
 plasma-discover
 plasma-discover-backend-flatpak
@@ -46,7 +46,6 @@ live-config
 live-config-systemd
 live-tools
 linux-headers-amd64
-virtualbox-guest-x11
 spice-vdagent
 qemu-guest-agent
 firmware-linux
