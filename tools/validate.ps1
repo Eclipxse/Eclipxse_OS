@@ -160,13 +160,20 @@ foreach ($identity in @('ID=marishoku', 'ID_LIKE=debian', 'VERSION_ID="1.0"')) {
 }
 
 $isoPackages = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/config/package-lists/marishoku-desktop.list.chroot')
-foreach ($package in @('task-kde-desktop', 'task-japanese-kde-desktop', 'plasma-discover', 'calamares', 'plymouth', 'fcitx5-mozc', 'virtualbox-guest-x11')) {
+foreach ($package in @('task-kde-desktop', 'task-japanese-kde-desktop', 'plasma-workspace', 'kde-spectacle', 'plasma-discover', 'calamares', 'plymouth', 'fcitx5-mozc', 'spice-vdagent', 'qemu-guest-agent')) {
     if ($isoPackages -notmatch "(?m)^$([regex]::Escape($package))$") {
         throw "Live image is missing required package: $package"
     }
 }
-if ($isoPackages -match '(?m)^discover$') {
-    throw "Live image selects Debian's hardware-identification package 'discover' instead of KDE Plasma Discover."
+foreach ($obsoletePackage in @('discover', 'plasma-workspace-wayland', 'spectacle', 'virtualbox-guest-x11')) {
+    if ($isoPackages -match "(?m)^$([regex]::Escape($obsoletePackage))$") {
+        throw "Live image selects unavailable or incorrect Debian 13 package: $obsoletePackage"
+    }
+}
+
+$packageControl = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/debian/control')
+if ($packageControl -match '(?m)^Depends:.*\bplasma-workspace-wayland\b') {
+    throw 'MARISHOKU package dependencies still reference the removed Debian 13 plasma-workspace-wayland package.'
 }
 
 $liveStaging = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/stage-live-build.sh')
@@ -188,7 +195,7 @@ if ($autoBuild -notmatch 'lb build noauto "\$\{@\}"') {
     throw 'auto/build must pass noauto to prevent recursive live-build invocation.'
 }
 $autoClean = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/auto/clean')
-if ($autoClean -notmatch 'lb clean noauto --purge "\$\{@\}"') {
+if ($autoClean -notmatch 'lb clean noauto "\$\{@\}"') {
     throw 'auto/clean must pass noauto to prevent recursive live-build invocation.'
 }
 
@@ -333,7 +340,7 @@ if ($firstRun -notmatch 'welcome-v1\.3\.seen') {
     throw 'First-run launcher does not use the V1.3 marker.'
 }
 $debianControl = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'packages/debian/control')
-if ($debianControl -notmatch '(?m)^Version: 1\.3\.1-1$') {
+if ($debianControl -notmatch '(?m)^Version: 1\.3\.1-[1-9][0-9]*$') {
     throw 'Debian package version is not V1.3.'
 }
 $packageBuilder = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'tools/build-package.sh')
