@@ -8,4 +8,4 @@ tools/build-cursors.sh
 tools/build-package.sh
 tools/stage-live-build.sh
 cd iso
-lb build
+lb build noauto "${@}"

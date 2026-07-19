@@ -103,6 +103,7 @@ $required = @(
     'tools/stage-live-build.sh'
     'iso/auto/config'
     'iso/auto/build'
+    'iso/auto/clean'
     'iso/config/package-lists/marishoku-desktop.list.chroot'
     'iso/config/hooks/live/0100-marishoku.hook.chroot'
     'iso/artwork/splash.png'
@@ -180,6 +181,15 @@ foreach ($buildContract in @('Debian 13 \(trixie\)', '30 GiB required', 'sudo: s
     if ($isoBuild -notmatch $buildContract) {
         throw "ISO build preflight is missing contract: $buildContract"
     }
+}
+
+$autoBuild = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/auto/build')
+if ($autoBuild -notmatch 'lb build noauto "\$\{@\}"') {
+    throw 'auto/build must pass noauto to prevent recursive live-build invocation.'
+}
+$autoClean = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/auto/clean')
+if ($autoClean -notmatch 'lb clean noauto --purge "\$\{@\}"') {
+    throw 'auto/clean must pass noauto to prevent recursive live-build invocation.'
 }
 
 $isoReadme = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/README.md')
