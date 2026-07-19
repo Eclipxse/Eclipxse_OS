@@ -37,6 +37,9 @@ cd ..
 sudo ./iso/build.sh
 ```
 
+The default clean preserves downloaded package caches for a faster retry. Use
+`sudo ./auto/clean --purge` only when the cache itself must be discarded.
+
 ## Test safely
 
 1. Create a new VM with 8 GiB RAM, 4 vCPUs, 64-80 GiB dynamic disk, EFI, and

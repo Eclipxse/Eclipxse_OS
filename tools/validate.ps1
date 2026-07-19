@@ -195,7 +195,7 @@ if ($autoBuild -notmatch 'lb build noauto "\$\{@\}"') {
     throw 'auto/build must pass noauto to prevent recursive live-build invocation.'
 }
 $autoClean = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'iso/auto/clean')
-if ($autoClean -notmatch 'lb clean noauto --purge "\$\{@\}"') {
+if ($autoClean -notmatch 'lb clean noauto "\$\{@\}"') {
     throw 'auto/clean must pass noauto to prevent recursive live-build invocation.'
 }
 

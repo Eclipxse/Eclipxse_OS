@@ -3,4 +3,4 @@ set -eu
 
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
 cd "$ROOT/iso"
-lb clean noauto --purge "${@}"
+lb clean noauto "${@}"
